@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Eyebrow, PlaceholderNotice, InfoRow } from "@/components/ui";
+import { PageHeader, PlaceholderNotice, InfoRow, PullQuote } from "@/components/ui";
 import { PhotoFigure } from "@/components/Media";
 import { contact } from "@/lib/site";
 
@@ -13,15 +13,32 @@ export const metadata: Metadata = {
 // explicit [placeholder] in the source content — see docs/LEGAL_RISK_REGISTER.md.
 // "Send Us a Message" is a mailto: link, not a submitted form: this site has
 // no backend to receive form submissions (docs/ARCHITECTURE.md), and the
-// destination address is itself unconfirmed placeholder information.
+// destination address is itself unconfirmed placeholder information. The
+// invitation is given first and largest (section 22's "large contact
+// invitation"); the placeholder details follow as secondary information.
 export default function ContactPage() {
   return (
     <>
-      <section className="container grid-split-a" style={{ padding: "56px 0 40px" }}>
+      <section className="container" style={{ padding: "56px 0 48px" }}>
+        <PageHeader label="Get in touch">
+          <h1 style={{ marginBottom: "var(--space-5)" }}>Contact</h1>
+          <div style={{ maxWidth: 560 }}>
+            <PullQuote size="medium">
+              Have a question about membership, workshops, or the Circle? Send us a note
+              and we&rsquo;ll get back to you within 3–5 business days.
+            </PullQuote>
+            <div style={{ marginTop: "var(--space-6)" }}>
+              <a href={`mailto:${contact.email}`} className="button button--primary">
+                Send Us a Message
+              </a>
+            </div>
+          </div>
+        </PageHeader>
+      </section>
+
+      <section className="container grid-split-a hairline-top" style={{ padding: "48px 0 96px" }}>
         <div>
-          <Eyebrow label="Get in touch" />
-          <h1 style={{ marginBottom: "var(--space-6)" }}>Contact</h1>
-          <div style={{ marginBottom: "var(--space-6)", maxWidth: 520 }}>
+          <div style={{ marginBottom: "var(--space-5)", maxWidth: 480 }}>
             <PlaceholderNotice>Confirm real details before publishing.</PlaceholderNotice>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -46,17 +63,8 @@ export default function ContactPage() {
           alt="A sunset over a rural Eastern Ontario road, seen through a car side mirror"
           caption="Eastern Ontario."
           ratio="4 / 3"
+          hoverZoom
         />
-      </section>
-
-      <section className="container hairline-top" style={{ padding: "40px 0 96px", maxWidth: 720 }}>
-        <p style={{ fontSize: "var(--text-body-size)", lineHeight: "var(--text-body-line)", color: "var(--ink-700)", marginBottom: "var(--space-6)" }}>
-          Have a question about membership, workshops, or the Circle? Send us a note and
-          we&rsquo;ll get back to you within 3–5 business days.
-        </p>
-        <a href={`mailto:${contact.email}`} className="button button--primary">
-          Send Us a Message
-        </a>
       </section>
     </>
   );
