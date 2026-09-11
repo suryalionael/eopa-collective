@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ImageSlot } from "@/components/Media";
 
 export const metadata: Metadata = {
   title: "Performance Art",
@@ -18,13 +17,15 @@ const elements = [
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
 // (PERFORMANCE ART section) — see docs/CONTENT.md §10. Deliberately composed
 // differently from every other page (docs/DESIGN.md's own instruction that
-// this page should read as a distinct practice): no rail/eyebrow label, an
+// this page should read as a distinct practice): no kicker label, an
 // irregular typographic "spine" instead of uniform sizing, and more open
 // whitespace. Kept distinct from the performing-arts table on the About
-// page (docs/DESIGN.md §6 non-negotiable). The closing CTA has no defined
-// destination in any source (flagged in docs/CONTENT.md) — routed to
-// Contact rather than left as a dead link; a routing decision, not
-// invented content.
+// page (docs/DESIGN.md §6 non-negotiable). No image placeholder — see
+// docs/VISUAL_RECOMPOSITION.md; the intro paragraph runs at a single wide
+// measure instead of splitting to make room for an empty box. The closing
+// CTA has no defined destination in any source (flagged in docs/CONTENT.md)
+// — routed to Contact rather than left as a dead link; a routing
+// decision, not invented content.
 export default function PerformanceArtPage() {
   return (
     <>
@@ -35,14 +36,13 @@ export default function PerformanceArtPage() {
         </p>
       </section>
 
-      <section className="container grid-split-b" style={{ padding: "72px 0 24px" }}>
-        <p style={{ fontSize: 17, lineHeight: 1.65, color: "var(--ink-700)", margin: 0, maxWidth: 560 }}>
+      <section className="container" style={{ padding: "56px 0 24px" }}>
+        <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--ink-700)", margin: 0, maxWidth: 720 }}>
           Where the performing arts (theatre, dance, music, opera, circus, spoken word)
           are about a piece being performed for an audience, performance art is its own
           fine-art discipline — the artist&rsquo;s live presence, body, and actions are the
           artwork itself, often shown in a gallery or museum context rather than a stage.
         </p>
-        <ImageSlot ratio="260 / 360" caption="Photography needed — an unusual crop, body/gesture detail" />
       </section>
 
       <section className="container" style={{ padding: "80px 0 56px", maxWidth: 780 }}>
@@ -70,8 +70,8 @@ export default function PerformanceArtPage() {
         </p>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "48px 0 112px" }}>
-        <Link href="/contact/" className="arrow-link" style={{ fontSize: 16 }}>
+      <section className="container hairline-top" style={{ padding: "56px 0 128px" }}>
+        <Link href="/contact/" className="arrow-link" style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 24 }}>
           Explore Performance Art at the Collective{" "}
           <span className="arrow-link__arrow" aria-hidden="true">→</span>
         </Link>
