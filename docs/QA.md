@@ -94,3 +94,48 @@ screenshots reviewed against `docs/DESIGN.md`):**
 - No test beyond the 1280px/390px viewports checked above — tablet-width
   (~760–1024px) was implemented per the same CSS breakpoints but not
   independently screenshotted.
+
+### Visual art-direction pass (second session)
+
+A dedicated visual redesign pass — see `docs/DESIGN.md` §3.1 for the shared
+rail-grid system this introduced.
+
+**Before redesigning, rendered and inspected (Playwright screenshots) Home,
+About, and Membership at 390/768/1024/1280/1440px**, plus every other page
+at 1280/390px, before writing any CSS — per the instruction that the
+rendered site, not assumption, is the source of truth. Findings:
+- The 1080px container left ~180px of unengaged gutter per side at
+  1440px — the site read as a fixed-width island, a strong "templated"
+  signal.
+- A real bug, not intentional asymmetry: independent per-section
+  `max-width` values inside an already-centered `.container` caused the
+  left edge of each section to drift to a different x-position down every
+  page (most visible on About).
+- Every interior page opened with an identical hairline-rule + caps-label
+  + H1 stack — the repeated-template signal explicitly flagged as a
+  problem.
+- Numbered-digit rows were overused (Home's Get Involved, About's
+  Beliefs) relative to how much of the content was an actual sequence.
+- Home's "What We're About" section left the entire right half of the
+  viewport empty at wide widths.
+- All photography used identical rectangular treatment with no variation
+  in crop, size, or grounding to the surrounding layout.
+
+**Fixes applied:** widened the container to 1220px; introduced one shared
+asymmetric rail grid used consistently instead of ad hoc widths (this both
+fixes the drift bug and replaces the repeated eyebrow-heading template);
+rebuilt Home's hero, mission, get-involved, and closing sections around
+real compositional relationships (grounded/offset images, a marginal
+index built from words already in the copy, an interactive directory
+list); dropped numbering from About's Beliefs; gave Performance Art a
+deliberately different, rail-free composition with an irregular
+typographic spine; varied photo treatment (aspect ratio, grounding,
+hover-zoom) instead of uniform boxes.
+
+**Verified after redesigning:** `npm run build`/`typecheck`/`lint` clean;
+full Playwright re-screenshot at 1440px (Home, About, Membership) and
+1280px (all other pages) plus 390px mobile spot checks — reviewed
+page-by-page against the findings above; no new console/page errors.
+Not independently re-verified at 768/1024/1440 for every page (only
+Home/About/Membership got the full five-breakpoint pass) — a follow-up
+pass should confirm the remaining pages at those two intermediate widths.

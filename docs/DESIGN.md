@@ -109,6 +109,16 @@ Mobile: scale H1/H2 down roughly 25–30% (established precedent: Source A's own
 
 **RECOMMENDED FINAL RULE:** Adopt **Source A's 1080px max-width / 60px margin / 4px spacing scale** as canonical — it's the one actually load-bearing across the real, multi-page implementation, and its narrower measure suits body-copy line length better for an editorial/literary reading experience. Source B's wider 1360px belongs to a single dramatic full-bleed layout style that isn't the adopted page structure (see §6, Information Architecture).
 
+**Revised during the visual art-direction pass (see `docs/QA.md`'s verification log):** the outer container was widened from 1080px to **1220px** (`--content-max-width`). At real desktop widths (1440px+), the 1080px column left ~180px of unengaged gutter on each side — the page read as a fixed-width island floating in empty space rather than something composed for the viewport it occupies. 1220px keeps a comfortable side gutter without stretching body copy past a reasonable reading measure (text itself is still capped by `--measure: 640px` inside each content column, never by the outer container). This does not reopen the Source A/B conflict above — it's a refinement of the adopted rule, not a reversion to Source B's 1360px (which was never load-bearing).
+
+### 3.1 The editorial rail — one shared composition idea
+
+Every page-opening header and most page sections use one asymmetric grid (`.page-grid` / the `PageHeader` component): a slim label rail (`--rail-width: 176px`) beside a flush-left content column. This replaced two things at once:
+1. **A real bug**, not intentional asymmetry: sections used to each apply their own one-off `max-width` *inside* an already auto-centered `.container`. Centering a narrower box inside a wider centered box shifts the narrower box's left edge by a different amount each time, so the page's left edge visibly drifted section to section (most visible on About, where Mission/Values/Beliefs/Table/Status each started at a different x-position). The rail grid fixes this structurally: the content column is never re-centered, so it stays flush with the same left edge as every other section on the page.
+2. **The repeated "eyebrow-above-heading" template.** Every interior page previously opened with an identical hairline-rule-plus-caps-label sitting directly above an H1, stacked in a single centered column — the exact kind of repetition that reads as templated. Moving the label into a side rail, and using that rail for real supporting content where one exists (Home's disciplines list, drawn from words already in that section's own sentence — not new copy), gives the wide-viewport gutter a real purpose instead of leaving it empty or filling it with decoration.
+
+**Exception, deliberately:** the Performance Art page does not use the rail (see §6). It is meant to read as a distinct practice, not another instance of the shared template, so it opens with nothing but its own typography.
+
 ```css
 --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
 --space-5: 24px;  --space-6: 32px;  --space-7: 48px;  --space-8: 64px;
@@ -172,6 +182,8 @@ This is the most significant conflict between the two sources and governs how ev
 **RECOMMENDED FINAL RULE:** Adopt **Source A's multi-page IA and its content as canonical** — it is a real, complete, faithful implementation of the approved Content source. **Do not use Source B's invented copy, fabricated events, fabricated quotes, or alternate contact details under any circumstance** — using them would violate the project's own "never invent content" rule. Source B should be mined only for its **visual/interaction ideas** (see §4–5) and layered onto Source A's real page structure and real content — never adopted as a structural template.
 
 **Resolved:** the mandated 10-page list (see `docs/CONTENT.md`) includes "Get Involved" as a standalone page, and the Content PDF itself gives it its own top-level heading (between MEMBERSHIP and TEAM) rather than nesting it under Membership. Source A's mockup nested it inside `Membership.dc.html` anyway. Implementation now follows the mandated page list and the PDF's own structure: "Get Involved" is its own route (`app/get-involved/page.tsx`), and Membership links to it rather than embedding its copy — see `docs/IMPLEMENTATION.md` Phase 6.
+
+**Per-page composition exception:** Performance Art (§7's photography aside) is deliberately composed without the shared rail/label pattern described in §3.1 — it's a one-page exception to the site's shared layout system, made because the content itself insists this practice is categorically distinct, not a sign the rest of the IA is unsettled.
 
 ---
 
