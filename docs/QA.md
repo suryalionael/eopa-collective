@@ -139,3 +139,68 @@ page-by-page against the findings above; no new console/page errors.
 Not independently re-verified at 768/1024/1440 for every page (only
 Home/About/Membership got the full five-breakpoint pass) — a follow-up
 pass should confirm the remaining pages at those two intermediate widths.
+
+### Full visual recomposition pass (third session)
+
+A second, more aggressive visual pass following a senior-creative-director
+critique of the rail-grid redesign above — see `docs/VISUAL_RECOMPOSITION.md`
+for the plan written before implementing it.
+
+**Rendered all 10 core pages at 390/768/1024/1280/1440px before writing any
+code** (the critique itself), then again after implementing, to compare
+before/after rather than judging from source.
+
+**What the critique found (evidence, not assumption):** every real photo on
+the site was decorative atmosphere with no stated reason to sit next to its
+paragraph; the grey `ImageSlot` placeholder had become a major visual
+object (the single largest element on Team at mobile width, while empty);
+the rail-label system from the first pass, applied identically everywhere,
+had become its own repeated template, with labels orphaned in empty
+columns on short sections; no page had a real scale event except
+Performance Art; Get Involved and Partners read unfinished rather than
+deliberately quiet.
+
+**What changed:** photography was cut from 6 decorative placements to 2
+purposeful ones (Home's hero — a wide establishing crop instead of a small
+thumbnail — and About's "Where We Stand," paired specifically because an
+unglamorous real place reinforces the honest smallness the copy admits).
+`ImageSlot` was removed from the codebase entirely — pages that had no
+photo now solve the section with typography instead of an empty box.
+`PageHeader`/`.page-grid`/`.page-rail__*` were retired; each page's
+opening and internal sections were recomposed individually rather than
+sharing one mechanical device (About went from six identical
+label-content-hairline blocks to five visually distinct moments: a flush
+statement, a 3-column list, large stacked expressive statements, a table,
+and a text+photo pairing). Unused processed images
+(`autumn-road.jpg`, `maple-branch.jpg`, `mirror-sunset.jpg`,
+`pond-roots.jpg`, `starling-murmuration.jpg`) were deleted from
+`public/images/` — they were shipping in every production build via
+Next's static-file copy regardless of whether any page referenced them.
+
+**Bugs caught and fixed in this pass, not before:**
+- About's "Our Values" 3-column grid and Contact's 2-column detail grid
+  were both built as raw inline `gridTemplateColumns` with no mobile media
+  query — inline styles can't carry breakpoints. At 390px both were
+  cramped into unreadable multi-column text. Fixed by moving both to real
+  CSS classes (`.trio`, `.contact-grid`) with a collapse breakpoint, then
+  re-screenshotted at 390px to confirm.
+- Events Calendar and How to Join & Pay both skipped a heading level
+  (`<h1>` straight to `<h3>`, with no `<h2>` in between) — caught by an
+  explicit grep audit of heading tags per page, not by rendering. Both
+  changed to `<h2>` with an inline font-size override to preserve the
+  intended visual size (semantic level and visual size are independent —
+  see the equivalent pattern already used on Team's "Sample Roles").
+
+**Verified after this pass:** `npm run build`/`typecheck`/`lint` clean;
+`rm -rf .next out && npm run build` succeeds from a clean state; full
+Playwright re-screenshot of all 10 pages at all 5 breakpoints
+(390/768/1024/1280/1440px) with `pageerror`/`console.error` listeners
+attached on every load — zero errors across all 50 page/viewport
+combinations, both before and after the two bug fixes above. `/out` size
+dropped from 3.9MB to 2.5MB after removing the unused images.
+
+**Not done in this pass (flag for a follow-up):** no screen-reader pass;
+no Lighthouse run (no devtools access in this environment); the
+1024/1440px renders were reviewed for Home and About specifically, and
+spot-checked rather than exhaustively compared pixel-by-pixel for the
+remaining 8 pages at those two widths.
