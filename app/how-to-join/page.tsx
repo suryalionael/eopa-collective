@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader, PlaceholderNotice } from "@/components/ui";
+import { Kicker, PlaceholderNotice } from "@/components/ui";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -12,6 +12,10 @@ export const metadata: Metadata = {
 // (HOW TO JOIN & PAY section) — see docs/CONTENT.md §8. "Fill Out Membership
 // Form" is a mailto: link, not a submitted form — see docs/LEGAL_RISK_REGISTER.md.
 // Steps are a continuous connected line rather than four identical cards.
+// The line's measure was widened (640px -> 820px) and step titles given
+// more presence so the page uses the container intentionally instead of
+// occupying a narrow strip beside a large empty right side — see
+// docs/VISUAL_RECOMPOSITION.md.
 const steps = [
   {
     n: "1",
@@ -40,34 +44,33 @@ export default function HowToJoinPage() {
   return (
     <>
       <section className="container" style={{ padding: "64px 0 40px" }}>
-        <PageHeader label="Getting Started">
-          <h1 style={{ fontSize: 44, marginBottom: "var(--space-6)" }}>How to Join &amp; Pay</h1>
-          <div style={{ maxWidth: 480 }}>
-            <PlaceholderNotice>
-              Sample process — confirm actual payment method and tools with Nel before
-              publishing.
-            </PlaceholderNotice>
-          </div>
-        </PageHeader>
+        <Kicker>Getting started</Kicker>
+        <h1 style={{ fontSize: 44, margin: "var(--space-3) 0 var(--space-6)" }}>How to Join &amp; Pay</h1>
+        <div style={{ maxWidth: 480 }}>
+          <PlaceholderNotice>
+            Sample process — confirm actual payment method and tools with Nel before
+            publishing.
+          </PlaceholderNotice>
+        </div>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "48px 0 96px" }}>
-        <div style={{ position: "relative", maxWidth: 640, paddingLeft: 48 }}>
+      <section className="container hairline-top" style={{ padding: "56px 0 112px" }}>
+        <div style={{ position: "relative", maxWidth: 820, paddingLeft: 56 }}>
           <div
             aria-hidden="true"
-            style={{ position: "absolute", left: 15, top: 10, bottom: 10, width: 1, background: "var(--ink-100)" }}
+            style={{ position: "absolute", left: 17, top: 10, bottom: 10, width: 1, background: "var(--ink-100)" }}
           />
           {steps.map((step, i) => (
-            <div key={step.n} style={{ position: "relative", paddingBottom: i === steps.length - 1 ? 0 : "var(--space-8)" }}>
+            <div key={step.n} style={{ position: "relative", paddingBottom: i === steps.length - 1 ? 0 : "var(--space-9)" }}>
               <span
                 style={{
                   position: "absolute",
-                  left: -48,
-                  top: -4,
-                  width: 32,
+                  left: -56,
+                  top: -6,
+                  width: 36,
                   textAlign: "center",
                   fontFamily: "var(--font-display)",
-                  fontSize: 22,
+                  fontSize: 26,
                   fontWeight: 500,
                   color: "var(--plum)",
                   background: "var(--paper)",
@@ -75,8 +78,8 @@ export default function HowToJoinPage() {
               >
                 {step.n}
               </span>
-              <h3 style={{ marginBottom: 8 }}>{step.title}</h3>
-              <p style={{ margin: step.cta ? "0 0 16px" : 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
+              <h2 style={{ fontSize: 24, marginBottom: 10 }}>{step.title}</h2>
+              <p style={{ margin: step.cta ? "0 0 18px" : 0, fontSize: 16, lineHeight: 1.6, color: "var(--ink-700)", maxWidth: 620 }}>
                 {step.body}
               </p>
               {step.cta && (

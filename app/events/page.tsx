@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader, PlaceholderNotice } from "@/components/ui";
+import { Kicker, PlaceholderNotice } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Events Calendar",
@@ -10,10 +10,11 @@ export const metadata: Metadata = {
 // (EVENTS CALENDAR section) — see docs/CONTENT.md §7. Dates below are the
 // PDF's own bracketed placeholders, not the concrete "Sept 03" date the
 // design mockup invented — see the discrepancy flagged in docs/CONTENT.md.
-// Each row uses the same rail/content split as the rest of the site (the
-// "when/where" meta sits in the rail column) instead of a generic event
-// card, giving the list a calendar-like structure without inventing real
-// dates to fill it.
+// Each row keeps a when/where meta column — justified here specifically
+// because it's real calendar data, not a decorative device borrowed from
+// elsewhere on the site (see docs/VISUAL_RECOMPOSITION.md). Bottom padding
+// is tightened so three sample listings don't trail into a disproportionate
+// empty area; no events are invented to fill space.
 const events = [
   {
     title: "Spoken Word & Poetry Circle — Kickoff Session",
@@ -46,21 +47,20 @@ export default function EventsPage() {
   return (
     <>
       <section className="container" style={{ padding: "56px 0 40px" }}>
-        <PageHeader label="What's On">
-          <h1 style={{ marginBottom: "var(--space-6)" }}>Events Calendar</h1>
-          <div style={{ maxWidth: 480 }}>
-            <PlaceholderNotice>
-              Sample listings — replace with real dates once scheduled.
-            </PlaceholderNotice>
-          </div>
-        </PageHeader>
+        <Kicker>What&rsquo;s on</Kicker>
+        <h1 style={{ margin: "var(--space-3) 0 var(--space-6)" }}>Events Calendar</h1>
+        <div style={{ maxWidth: 480 }}>
+          <PlaceholderNotice>
+            Sample listings — replace with real dates once scheduled.
+          </PlaceholderNotice>
+        </div>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "8px 0 96px" }}>
+      <section className="container hairline-top" style={{ padding: "8px 0 72px" }}>
         {events.map((event, i, arr) => (
           <div
             key={event.title}
-            className="page-grid"
+            className="event-row"
             style={{
               borderTop: "1px solid var(--ink-100)",
               borderBottom: i === arr.length - 1 ? "1px solid var(--ink-100)" : undefined,
@@ -68,11 +68,11 @@ export default function EventsPage() {
             }}
           >
             <div>
-              <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 15, color: "var(--ink-700)", display: "block", lineHeight: 1.4 }}>
+              <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 18, color: "var(--ink-900)", display: "block", lineHeight: 1.35 }}>
                 {event.when}
               </span>
               {event.time && (
-                <span style={{ fontSize: 12, color: "var(--ink-500)", display: "block", marginTop: 2 }}>{event.time}</span>
+                <span style={{ fontSize: 12, color: "var(--ink-500)", display: "block", marginTop: 4 }}>{event.time}</span>
               )}
               {event.where && (
                 <span style={{ fontSize: 12, color: "var(--ink-500)", display: "block", marginTop: 2 }}>
@@ -83,7 +83,7 @@ export default function EventsPage() {
             </div>
             <div style={{ maxWidth: "var(--measure)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
-                <h3 style={{ margin: 0 }}>{event.title}</h3>
+                <h2 style={{ margin: 0, fontSize: 20, lineHeight: "var(--text-h3-line)" }}>{event.title}</h2>
                 <span
                   style={{
                     fontFamily: "var(--font-body)",
