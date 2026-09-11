@@ -49,8 +49,11 @@
   --space-8: 64px;
   --space-9: 96px;
   --space-10: 128px;
-  --content-max-width: 1080px;
+  --content-max-width: 1220px;
   --content-margin: 60px;
+  --rail-width: 176px;
+  --rail-gap: 56px;
+  --measure: 640px; /* comfortable reading-width ceiling for body copy */
 
   /* Effects (docs/DESIGN.md §4 — 2px radius, no shadows) */
   --radius: 2px;
@@ -170,6 +173,75 @@ p {
 }
 .eyebrow--plum .eyebrow__label {
   color: var(--plum);
+}
+
+/* Editorial rail grid — the site's one shared asymmetric layout idea,
+   used for every page-opening/section header instead of repeating the
+   same "eyebrow directly above heading, centered column" formula on
+   every page. A slim left rail (section label + optional supporting
+   content) sits beside a flush-left content column. This also fixes a
+   real bug: sections used to apply their own one-off `max-width` inside
+   an auto-centered `.container`, so each section's left edge drifted to
+   a different x-position down the page. Never re-center an inner
+   max-width with `margin: 0 auto` inside `.page-grid` or `.container` —
+   narrow a reading column by applying `max-width` with no auto margin,
+   so it stays flush with the shared left edge. */
+.page-grid {
+  display: grid;
+  grid-template-columns: var(--rail-width) 1fr;
+  column-gap: var(--rail-gap);
+  align-items: start;
+}
+.page-rail {
+  padding-top: 6px;
+}
+.page-rail__label {
+  font-family: var(--font-body);
+  font-size: var(--text-meta-size);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grove);
+  display: block;
+}
+.page-rail--plum .page-rail__label {
+  color: var(--plum);
+}
+.page-rail__rule {
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.page-rail__list {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.page-rail__list span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-500);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-4);
+  }
+  .page-rail {
+    padding-top: 0;
+  }
+  .page-rail__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin-top: var(--space-4);
+  }
 }
 
 .pull-quote {
@@ -298,6 +370,78 @@ p {
   padding-left: var(--space-2);
 }
 
+/* Interactive directory row (Home "Ways to Get Involved", Get Involved
+   entry points): a growing underline + arrow fade-in on hover/focus,
+   instead of another identical card. */
+.directory-row {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--ink-100);
+  transition: padding-left var(--transition-base);
+}
+.directory-row:hover,
+.directory-row:focus-visible {
+  padding-left: var(--space-3);
+}
+.directory-row__title {
+  display: inline-block;
+  position: relative;
+}
+.directory-row__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--plum);
+  transition: width var(--transition-base);
+}
+.directory-row:hover .directory-row__title::after,
+.directory-row:focus-visible .directory-row__title::after {
+  width: 100%;
+}
+.directory-row__arrow {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  color: var(--plum);
+}
+.directory-row:hover .directory-row__arrow,
+.directory-row:focus-visible .directory-row__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Belief/value rows: rhythm from a left rule + shifting emphasis, not a
+   digit in a box (docs/DESIGN.md anti-pattern: overused numbering). */
+.rhythm-row {
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--ink-100);
+  border-left: 2px solid transparent;
+  padding-left: var(--space-5);
+  margin-left: calc(-1 * var(--space-5) - 2px);
+  transition: border-color var(--transition-base);
+}
+.rhythm-row:hover {
+  border-left-color: var(--plum);
+}
+
+/* Image scale-on-hover — the one motion cue applied to real photography,
+   restrained (docs/DESIGN.md §5: no aggressive zoom). */
+.photo-hover {
+  overflow: hidden;
+}
+.photo-hover img {
+  transition: transform 500ms ease;
+}
+.photo-hover:hover img {
+  transform: scale(1.03);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -352,6 +496,19 @@ p {
   gap: var(--space-5);
 }
 
+/* Home hero: headline+intro | vertical rule | grounded image. The rule
+   is a structural column divider (an editorial page convention), not
+   decoration; the image sits flush to the section's closing rule instead
+   of floating mid-whitespace. */
+.home-hero {
+  display: grid;
+  grid-template-columns: 1fr 1px 320px;
+  gap: var(--space-8);
+}
+.home-hero__divider {
+  background: var(--ink-100);
+}
+
 @media (max-width: 760px) {
   .grid-split-a,
   .grid-split-b,
@@ -374,6 +531,12 @@ p {
     grid-template-columns: 1fr;
     max-width: 320px;
   }
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+  .home-hero__divider {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -384,7 +547,15 @@ p {
   }
   .arrow-link__arrow,
   .entry-row,
-  .button {
+  .button,
+  .directory-row,
+  .directory-row__title::after,
+  .directory-row__arrow,
+  .rhythm-row,
+  .photo-hover img {
     transition: none !important;
+  }
+  .photo-hover:hover img {
+    transform: none !important;
   }
 }

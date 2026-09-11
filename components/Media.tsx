@@ -55,21 +55,28 @@ export function PhotoFigure({
   caption,
   ratio = "4 / 3",
   priority = false,
+  hoverZoom = false,
+  border = true,
+  style,
 }: {
   src: string;
   alt: string;
   caption?: string;
   ratio?: string;
   priority?: boolean;
+  hoverZoom?: boolean;
+  border?: boolean;
+  style?: React.CSSProperties;
 }) {
   return (
-    <figure style={{ margin: 0 }}>
+    <figure style={{ margin: 0, ...style }}>
       <div
+        className={hoverZoom ? "photo-hover" : undefined}
         style={{
           position: "relative",
           aspectRatio: ratio,
           overflow: "hidden",
-          border: "1px solid var(--ink-100)",
+          border: border ? "1px solid var(--ink-100)" : undefined,
           borderRadius: "var(--radius)",
         }}
       >
