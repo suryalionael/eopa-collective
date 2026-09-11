@@ -47,12 +47,14 @@ export default function AboutPage() {
         <h1 style={{ marginTop: "var(--space-3)" }}>About</h1>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "48px 0 72px" }}>
-        <PullQuote>
-          To develop a learning network that enhances the arts and cultural experiences
-          within the communities of Eastern Ontario, and to foster strong support for the
-          performing arts in all of its expressions.
-        </PullQuote>
+      <section className="container hairline-top" style={{ padding: "56px 0 80px" }}>
+        <div style={{ maxWidth: 820 }}>
+          <PullQuote size="xl">
+            To develop a learning network that enhances the arts and cultural experiences
+            within the communities of Eastern Ontario, and to foster strong support for
+            the performing arts in all of its expressions.
+          </PullQuote>
+        </div>
       </section>
 
       <section className="container hairline-top" style={{ padding: "56px 0 72px" }}>

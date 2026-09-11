@@ -18,29 +18,34 @@ export const metadata: Metadata = {
 // its actual content rather than inheriting a taller page's spacing, so
 // the whitespace here reads as intentional rather than leftover. No image
 // or extra content was added to fill space — see docs/VISUAL_RECOMPOSITION.md.
+//
+// The CTA area was a primary + secondary button pair, which read as two
+// generic buttons under a paragraph. There is one obvious action here
+// (become a member) — "Ask a Question" is now a quiet arrow-link beside
+// it rather than a competing button, so the conclusion reads as singular.
 export default function GetInvolvedPage() {
   return (
-    <section className="container" style={{ padding: "56px 0 88px" }}>
+    <section className="container" style={{ padding: "56px 0 96px" }}>
       <Kicker>Join us</Kicker>
       <h1 style={{ margin: "var(--space-3) 0 var(--space-7)" }}>Get Involved</h1>
       <div style={{ maxWidth: 700 }}>
-        <p className="pull-quote" style={{ fontSize: 30, lineHeight: 1.42, margin: "0 0 var(--space-6)" }}>
+        <p className="pull-quote" style={{ fontSize: 33, lineHeight: 1.4, margin: "0 0 var(--space-6)" }}>
           Whether you&rsquo;re an aspiring or seasoned artist, a cultural organization, or
           simply someone who loves the arts — there&rsquo;s a place for you in the
           Collective.
         </p>
-        <p style={{ fontSize: "var(--text-body-size)", lineHeight: "var(--text-body-line)", color: "var(--ink-700)", maxWidth: "var(--measure)", margin: "0 0 var(--space-7)" }}>
+        <p style={{ fontSize: "var(--text-body-size)", lineHeight: "var(--text-body-line)", color: "var(--ink-700)", maxWidth: "var(--measure)", margin: "0 0 var(--space-8)" }}>
           Members gain visibility through our regional directory, our annual events, and a
           stronger digital footprint. Beyond that, membership opens the door to workshops,
           public performances, and the kind of networking that sparks new creative
           collaborations.
         </p>
-        <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-6)", flexWrap: "wrap" }}>
           <Link href="/membership/" className="button button--primary">
             Become a Member
           </Link>
-          <Link href="/contact/" className="button button--ghost">
-            Ask a Question
+          <Link href="/contact/" className="arrow-link">
+            Ask a Question <span className="arrow-link__arrow" aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
