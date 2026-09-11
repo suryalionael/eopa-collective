@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { basePath } from "@/lib/basePath";
 
 // The grey dashed `ImageSlot` placeholder that used to stand in for
 // missing photography was removed in the second visual pass — it became
@@ -46,7 +47,7 @@ export function PhotoFigure({
         }}
       >
         <Image
-          src={src}
+          src={`${basePath}${src}`}
           alt={alt}
           fill
           sizes="(max-width: 760px) 100vw, 480px"
