@@ -14,6 +14,71 @@ export function Eyebrow({ label, tone = "grove" }: { label: string; tone?: "grov
   );
 }
 
+/**
+ * The site's one shared page/section-opening composition: a slim label
+ * rail beside flush-left content, instead of repeating "eyebrow directly
+ * above heading" identically on every page. `railExtra` lets a specific
+ * page use the rail for something real (a short list already stated in
+ * that page's own copy) rather than leaving it empty — see docs/DESIGN.md.
+ */
+export function PageHeader({
+  label,
+  tone = "grove",
+  railExtra,
+  children,
+}: {
+  label: string;
+  tone?: "grove" | "plum";
+  railExtra?: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <div className="page-grid">
+      <div className={tone === "plum" ? "page-rail page-rail--plum" : "page-rail"}>
+        <span className="page-rail__rule" aria-hidden="true" />
+        <span className="page-rail__label">{label}</span>
+        {railExtra && <div className="page-rail__list">{railExtra}</div>}
+      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+/**
+ * A directory-style interactive row (Home "Ways to Get Involved", Get
+ * Involved entry points) — underline-grow + arrow fade on hover/focus,
+ * not another identical card.
+ */
+export function DirectoryRow({
+  number,
+  title,
+  children,
+  href,
+}: {
+  number: string;
+  title: string;
+  children: ReactNode;
+  href?: string;
+}) {
+  const Tag = href ? "a" : "div";
+  return (
+    <Tag className="directory-row" href={href}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-4)" }}>
+        <span style={{ fontFamily: "var(--font-display)", fontSize: 14, color: "var(--ink-300)", flexShrink: 0 }}>
+          {number}
+        </span>
+        <h3 className="directory-row__title" style={{ fontSize: 20 }}>
+          {title}
+        </h3>
+        <span className="directory-row__arrow" aria-hidden="true">→</span>
+      </div>
+      <p style={{ margin: "6px 0 0 calc(14px + var(--space-4))", fontSize: 15, lineHeight: 1.5, color: "var(--ink-700)", maxWidth: 480 }}>
+        {children}
+      </p>
+    </Tag>
+  );
+}
+
 export function Notice({ tag, children }: { tag: string; children: ReactNode }) {
   return (
     <div className="placeholder-notice" role="note">
