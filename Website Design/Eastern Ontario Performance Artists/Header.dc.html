@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <style>
+    a { color: var(--plum); text-decoration: none; }
+    a:hover { color: var(--plum-hover); text-decoration: underline; }
+  </style>
+</helmet>
+<header style="border-bottom:1px solid var(--ink-100); background:var(--paper);">
+  <div style="max-width:1080px; margin:0 auto; padding:20px 60px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+    <a href="Home.dc.html" style="display:flex; align-items:center; gap:12px; color:var(--ink-900);">
+      <img src="assets/logo.png" alt="EOPA logo" style="width:40px; height:40px; object-fit:contain;">
+      <span style="font-family:var(--font-display); font-size:16px; font-weight:500; line-height:1.15;">Eastern Ontario<br/>Performance Artists Collective</span>
+    </a>
+    <nav style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+      <a href="Home.dc.html" style="{{ navStyle.home }}">Home</a>
+      <a href="About.dc.html" style="{{ navStyle.about }}">About</a>
+      <a href="Team.dc.html" style="{{ navStyle.team }}">Team</a>
+      <a href="Contact.dc.html" style="{{ navStyle.contact }}">Contact</a>
+      <a href="Events.dc.html" style="{{ navStyle.events }}">Events Calendar</a>
+      <a href="Membership.dc.html" style="font-family:var(--font-body); font-weight:500; font-size:14px; background:var(--accent-primary); color:var(--paper); border-radius:2px; padding:10px 18px; display:inline-flex; align-items:center;">Become a Member</a>
+    </nav>
+  </div>
+</header>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active || '';
+    const keys = ['home','about','team','contact','events'];
+    const navStyle = {};
+    keys.forEach(k => {
+      navStyle[k] = k === active
+        ? 'font-family:var(--font-body); font-size:14.5px; color:var(--ink-900); font-weight:500;'
+        : 'font-family:var(--font-body); font-size:14.5px; color:var(--ink-700);';
+    });
+    return { navStyle };
+  }
+}
+</script>
+</body>
+</html>

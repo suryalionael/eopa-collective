@@ -1,0 +1,125 @@
+[normal] Eastern Ontario Performance Artists Collective
+[normal] Website Copy — Draft
+[normal] Built from Nel's outline. Structure borrows the mission → values → ways to get involved pattern from artsottawa.ca, adapted to our scale and services.
+[normal] HOME
+[normal] Hero
+[normal] Eastern Ontario Performance Artists Collective
+[normal] Growing a learning network for the performing arts across Eastern Ontario.
+[normal] We connect artists, audiences, and organizations across the region — through workshops, a shared events calendar, and hands-on support for building your presence, on and off the stage.
+[normal] [ Become a Member ]
+[normal] [ See Upcoming Events ]
+[normal] What We're About
+[normal] The Collective exists to enhance the arts and cultural life of Eastern Ontario communities and to build strong, lasting support for the performing arts in all its forms — theatre, dance, music, opera, circus and physical arts, and spoken word.
+[normal] Ways to Get Involved
+[normal|list] Join as a Member — Get listed in our regional directory and stay connected to events, festivals, and workshops.
+[normal|list] Build Your Digital Presence — Add a website to your membership and get discovered online.
+[normal|list] Attend a Workshop — Sharpen your craft in a low-cost, drop-in session.
+[normal|list] Bring an Idea to the Incubator — Get support developing and marketing a new performance or event.
+[normal] 
+[normal] ABOUT
+[normal] Mission Statement
+[normal] To develop a learning network that enhances the arts and cultural experiences within the communities of Eastern Ontario, and to foster strong support for the performing arts in all of its expressions.
+[normal] Our Values
+[normal|list] Promoting a love of artistic and cultural life
+[normal|list] Collaboration with artists and organizations across the region
+[normal|list] Developing a learning environment that fosters experiential learning in the arts
+[normal] Our Artistic Beliefs
+[normal] The Collective is founded on three core beliefs:
+[normal|list] Experiencing the arts in their diverse forms is transformational
+[normal|list] Developing an artistic practice is accessible to everyone
+[normal|list] Engaging with the arts is an individual journey that leads to personal growth
+[normal] What Counts as Performing Arts, Here
+[normal] Performing arts are creative acts done in front of an audience — using voice, body, or objects. Our community spans:
+--- TABLE START ---
+ROW: Art Form || What It Looks Like
+ROW: Theatre || Plays, dramas, and musical theatre — stories acted out through speech, gesture, and staging
+ROW: Dance || Ballet, tap, jazz, and other rhythmic movement used to express idea or emotion
+ROW: Music || Live concerts, singing, and instrumental performance
+ROW: Opera || Dramatic storytelling through singing, with live orchestral accompaniment
+ROW: Circus & Physical Arts || Acrobatics, juggling, magic, and mime
+ROW: Spoken Word || Poetry, stories, and speeches performed live to connect with an audience
+--- TABLE END ---
+[normal] 
+[normal] Where We Stand Today
+[normal] The Collective currently operates as an unincorporated association — an informal agreement among members with no filing fees, though also without personal liability protection. We'll move toward incorporating as a non-profit once our membership base grows to a point where it clearly benefits the people we serve.
+[normal] We operate in partnership with Aspen Training Centre, which provides student support for running the Collective — meaning your membership fees also help fund real, hands-on training opportunities for the students who help keep things running.
+[normal] 
+[normal] MEMBERSHIP
+[normal] Two ways to join, plus pay-as-you-go options for workshops and idea development — no membership required for those.
+[normal] Basic Artist Membership — $25/year
+[normal|list] A profile in our regional artist directory
+[normal|list] Network access to arts events across Eastern Ontario
+[normal|list] Early word on upcoming events, festivals, and workshops
+[normal|list] A voice at our Annual General Meeting, where members help set the Collective's direction through focus groups and surveys
+[normal] Artist Digital Membership — $35/year
+[normal] Everything in Basic Artist Membership, plus:
+[normal|list] A website of up to 3 pages, built for you
+[normal|list] Your social media links added to your profile
+[normal|list] One profile update per year
+[normal] Artist Workshops — $10/workshop
+[normal] (No membership required)
+[normal] Drop into a workshop and build skills alongside other regional artists.
+[normal] Incubator Idea Clinic — $20/session or 3 for $50
+[normal] (No membership required)
+[normal] One-on-one support developing a new performance or event, including a marketing tutorial to help it find an audience.
+[normal] 
+[normal] GET INVOLVED
+[normal] Whether you're an aspiring or seasoned artist, a cultural organization, or simply someone who loves the arts — there's a place for you in the Collective.
+[normal] Members gain visibility through our regional directory, our annual events, and a stronger digital footprint. Beyond that, membership opens the door to workshops, public performances, and the kind of networking that sparks new creative collaborations.
+[normal] [ Become a Member ]
+[normal] [ Ask a Question ]
+[normal] 
+[normal] TEAM
+[normal] Placeholder names/roles below — swap in real founding members before this goes live.
+[normal] Nel Coloma-Moya — Founding Coordinator
+[normal] Leads day-to-day coordination for the Collective, including membership and partner relationships with Aspen Training Centre.
+[normal] [Sample Name] — Programs Lead
+[normal] [Placeholder] Oversees workshops and the Spoken Word & Poetry Circle, working with members to shape session formats and cadence.
+[normal] [Sample Name] — Membership & Directory
+[normal] [Placeholder] Manages the artist directory, member profiles, and annual renewals.
+[normal] [Sample Name] — Treasurer
+[normal] [Placeholder] Manages membership fees, workshop payments, and the Collective's finances.
+[normal] 
+[normal] CONTACT
+[normal] SAMPLE — confirm real details before publishing.
+[normal|list] Email: info@eopacollective.ca  [placeholder]
+[normal|list] Phone: (613) 555-0142  [placeholder]
+[normal|list] Mailing Address: c/o Aspen Training Centre, Eastern Ontario, ON  [placeholder]
+[normal|list] Instagram / Facebook: @eopacollective  [placeholder]
+[normal] Have a question about membership, workshops, or the Circle? Send us a note and we'll get back to you within 3–5 business days.
+[normal] [ Send Us a Message ]
+[normal] 
+[normal] EVENTS CALENDAR
+[normal] SAMPLE listings — replace with real dates once scheduled.
+[normal] [Sample] Spoken Word & Poetry Circle — Kickoff Session
+[normal] First Tuesday, [Month] [Day], [Year] · 7:00–8:30 PM · Brockville Public Library [placeholder]
+[normal] Our first Circle session — bring a poem to share or just come to listen.
+[normal] [Sample] Artist Workshop: Intro to Stage Movement
+[normal] [Date placeholder] · 6:30–8:00 PM · Location TBD
+[normal] A hands-on workshop for performers of any discipline looking to build stage presence.
+[normal] [Sample] Annual General Meeting
+[normal] [Date placeholder] · Members set direction for the year ahead through focus groups and surveys.
+[normal] [ See All Events ]
+[normal] 
+[normal] HOW TO JOIN & PAY
+[normal] SAMPLE process — confirm actual payment method and tools with Nel before publishing.
+[normal] Step 1 — Choose Your Membership
+[normal] Pick Basic ($25/year) or Digital ($35/year) based on whether you want a website built as part of your membership.
+[normal] Step 2 — Fill Out the Membership Form
+[normal] [Placeholder] A short form collecting your name, discipline, contact info, and (for Digital members) basic details for your website.
+[normal] [ Fill Out Membership Form ]
+[normal] Step 3 — Pay Your Membership Fee
+[normal] [Placeholder] Fees can be paid by e-transfer to payments@eopacollective.ca or through our online payment page. Workshops and Incubator sessions can be paid the same way, per session.
+[normal] Step 4 — Get Confirmed
+[normal] [Placeholder] You'll be added to the artist directory and receive a welcome email within 5 business days, along with details on upcoming events and how to get involved.
+[normal] 
+[normal] PARTNERS
+[normal] In partnership with Aspen Training Centre
+[normal] Aspen Training Centre provides student support that keeps the Collective running day to day — a practicum-style arrangement that gives students real experience while helping our members get the support they need.
+[normal] 
+[normal] PERFORMANCE ART
+[normal] A separate practice from the performing arts, worth its own space on the site.
+[normal] Where the performing arts (theatre, dance, music, opera, circus, spoken word) are about a piece being performed for an audience, performance art is its own fine-art discipline — the artist's live presence, body, and actions are the artwork itself, often shown in a gallery or museum context rather than a stage.
+[normal] A performance art piece typically centers five elements: time, space, the artist's body, the artist's presence, and the relationship between artist and audience. It can be scripted or fully improvised, and it can happen anywhere — a gallery, a public square, or somewhere unexpected — for any length of time. The goal isn't a polished show so much as a live reaction: pieces are often tied to the artist's own experience, and to social or political commentary.
+[normal] We're carving this out as its own category because folding it into "performing arts" undersells what makes it distinct — it belongs alongside our other categories, not inside one of them.
+[normal] [ Explore Performance Art at the Collective ]

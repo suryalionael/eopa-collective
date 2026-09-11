@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; background:var(--paper); color:var(--ink-900); font-family:var(--font-body); }
+    a { color: var(--plum); }
+    a:hover { color: var(--plum-hover); }
+    @media (max-width: 720px) {
+      .pa-split { grid-template-columns: 1fr !important; }
+      .pa-spine { font-size: 30px !important; }
+    }
+  </style>
+</helmet>
+<dc-import name="Header" active="" hint-size="100%,88px"></dc-import>
+<main style="max-width:1080px; margin:0 auto; padding:0 60px;">
+  <section style="padding:80px 0 8px; max-width:640px;">
+    <h1 style="font-family:var(--font-display); font-weight:500; font-size:44px; margin:0 0 16px; letter-spacing:-0.01em;">Performance Art</h1>
+    <p style="font-family:var(--font-display); font-style:italic; font-weight:500; font-size:20px; color:var(--ink-900); margin:0;">A separate practice from the performing arts, worth its own space on the site.</p>
+  </section>
+
+  <section class="pa-split" style="padding:56px 0 8px; display:grid; grid-template-columns:1fr 260px; gap:48px; align-items:start;">
+    <p style="font-size:16.5px; line-height:1.6; color:var(--ink-700); margin:0; max-width:560px;">Where the performing arts (theatre, dance, music, opera, circus, spoken word) are about a piece being performed for an audience, performance art is its own fine-art discipline — the artist's live presence, body, and actions are the artwork itself, often shown in a gallery or museum context rather than a stage.</p>
+    <image-slot id="pa-image" shape="rect" placeholder="Unusual crop — body/gesture detail" style="width:100%; height:340px; margin-top:6px;"></image-slot>
+  </section>
+
+  <section style="padding:48px 0 40px; max-width:720px;">
+    <div style="display:flex; flex-wrap:wrap; gap:8px 28px; margin:0 0 40px;">
+      <span class="pa-spine" style="font-family:var(--font-display); font-weight:500; font-size:38px; color:var(--ink-900); letter-spacing:0.01em;">Time</span>
+      <span class="pa-spine" style="font-family:var(--font-display); font-weight:500; font-size:38px; color:var(--ink-900); letter-spacing:0.01em;">Space</span>
+      <span class="pa-spine" style="font-family:var(--font-display); font-weight:500; font-size:38px; color:var(--ink-900); letter-spacing:0.01em;">The Body</span>
+      <span class="pa-spine" style="font-family:var(--font-display); font-weight:500; font-size:38px; color:var(--ink-900); letter-spacing:0.01em;">Presence</span>
+      <span class="pa-spine" style="font-family:var(--font-display); font-weight:500; font-size:38px; color:var(--ink-900); letter-spacing:0.01em;">Audience</span>
+    </div>
+    <p style="font-size:16.5px; line-height:1.6; color:var(--ink-700); margin:0 0 24px; max-width:640px;">A performance art piece typically centers these five elements. It can be scripted or fully improvised, and it can happen anywhere — a gallery, a public square, or somewhere unexpected — for any length of time. The goal isn't a polished show so much as a live reaction: pieces are often tied to the artist's own experience, and to social or political commentary.</p>
+    <p style="font-size:16.5px; line-height:1.6; color:var(--ink-700); margin:0; max-width:640px;">We're carving this out as its own category because folding it into "performing arts" undersells what makes it distinct — it belongs alongside our other categories, not inside one of them.</p>
+  </section>
+
+  <section style="padding:32px 0 96px; border-top:1px solid var(--ink-100);">
+    <a href="#" style="font-family:var(--font-body); font-weight:500; font-size:14px; color:var(--plum); text-decoration:underline;">Explore Performance Art at the Collective →</a>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,160px"></dc-import>
+
+</x-dc>
+</body>
+</html>

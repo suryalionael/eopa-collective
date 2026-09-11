@@ -1,0 +1,8 @@
+:root{
+--radius-sm:2px;
+--radius-md:3px;
+--border-width:1px;
+--shadow-none:none;
+--transition-fast:120ms ease; /* @kind other */
+--transition-base:180ms ease; /* @kind other */
+}

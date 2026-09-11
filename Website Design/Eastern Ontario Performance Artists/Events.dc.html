@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <style>
+    body { margin:0; background:var(--paper); color:var(--ink-900); font-family:var(--font-body); }
+    a { color: var(--plum); }
+    a:hover { color: var(--plum-hover); }
+    .eopa-event { transition: padding-left 160ms ease; }
+    .eopa-event:hover { padding-left: 8px; }
+    .eopa-event:hover .eopa-earrow { transform: translateX(4px); color: var(--plum); }
+    .eopa-earrow { display:inline-block; transition: transform 160ms ease, color 160ms ease; }
+  </style>
+</helmet>
+<dc-import name="Header" active="events" hint-size="100%,88px"></dc-import>
+<main style="max-width:1080px; margin:0 auto; padding:0 60px;">
+  <section style="padding:72px 0 24px; max-width:720px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+      <span style="width:22px; height:1px; background:var(--grove);"></span>
+      <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--grove);">What's on</span>
+    </div>
+    <h1 style="font-family:var(--font-display); font-weight:500; font-size:40px; margin:0 0 24px; letter-spacing:-0.01em;">Events Calendar</h1>
+    <div style="border:1px dashed var(--ink-300); border-radius:2px; padding:14px 18px; display:flex; align-items:center; gap:12px;">
+      <span style="font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px; flex-shrink:0;">SAMPLE</span>
+      <p style="margin:0; font-size:14px; color:var(--ink-500);">Sample listings — replace with real dates once scheduled.</p>
+    </div>
+  </section>
+
+  <section style="padding:16px 0 96px; border-top:1px solid var(--ink-100);">
+    <div style="display:flex; flex-direction:column;">
+
+      <div class="eopa-event" style="display:grid; grid-template-columns:100px 1fr auto; gap:32px; align-items:start; padding:32px 0; border-top:1px solid var(--ink-100);">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-body); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-500);">Sept</div>
+          <div style="font-family:var(--font-display); font-weight:500; font-size:40px; line-height:1;">03</div>
+        </div>
+        <div style="max-width:520px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+            <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0;">Spoken Word &amp; Poetry Circle — Kickoff Session</h3>
+            <span style="font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px; flex-shrink:0;">SAMPLE</span>
+          </div>
+          <p style="margin:0 0 10px; font-size:13px; color:var(--ink-500);">7:00–8:30 PM · Brockville Public Library <span style="font-style:italic;">[placeholder]</span></p>
+          <p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Our first Circle session — bring a poem to share or just come to listen.</p>
+        </div>
+        <span class="eopa-earrow" style="font-size:18px; color:var(--ink-500); margin-top:6px;">→</span>
+      </div>
+
+      <div class="eopa-event" style="display:grid; grid-template-columns:100px 1fr auto; gap:32px; align-items:start; padding:32px 0; border-top:1px solid var(--ink-100);">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-body); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-500);">[Mo]</div>
+          <div style="font-family:var(--font-display); font-weight:500; font-size:40px; line-height:1;">[DD]</div>
+        </div>
+        <div style="max-width:520px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+            <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0;">Artist Workshop: Intro to Stage Movement</h3>
+            <span style="font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px; flex-shrink:0;">SAMPLE</span>
+          </div>
+          <p style="margin:0 0 10px; font-size:13px; color:var(--ink-500);">6:30–8:00 PM · Location TBD</p>
+          <p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">A hands-on workshop for performers of any discipline looking to build stage presence.</p>
+        </div>
+        <span class="eopa-earrow" style="font-size:18px; color:var(--ink-500); margin-top:6px;">→</span>
+      </div>
+
+      <div class="eopa-event" style="display:grid; grid-template-columns:100px 1fr auto; gap:32px; align-items:start; padding:32px 0; border-top:1px solid var(--ink-100); border-bottom:1px solid var(--ink-100);">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-body); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-500);">[Mo]</div>
+          <div style="font-family:var(--font-display); font-weight:500; font-size:40px; line-height:1;">[DD]</div>
+        </div>
+        <div style="max-width:520px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+            <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0;">Annual General Meeting</h3>
+            <span style="font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px; flex-shrink:0;">SAMPLE</span>
+          </div>
+          <p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Members set direction for the year ahead through focus groups and surveys.</p>
+        </div>
+        <span class="eopa-earrow" style="font-size:18px; color:var(--ink-500); margin-top:6px;">→</span>
+      </div>
+    </div>
+    <div style="margin-top:40px;">
+      <a href="#" style="font-family:var(--font-body); font-weight:500; font-size:14px; background:transparent; color:var(--ink-900); border:1px solid var(--ink-900); border-radius:2px; padding:13px 22px; text-decoration:none; display:inline-flex;">See All Events</a>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,160px"></dc-import>
+
+</x-dc>
+</body>
+</html>

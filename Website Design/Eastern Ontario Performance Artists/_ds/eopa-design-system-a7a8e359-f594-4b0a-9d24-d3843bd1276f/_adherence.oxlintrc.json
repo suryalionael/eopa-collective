@@ -1,0 +1,231 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/forms/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Fraunces|Work Sans))/i]",
+        "message": "Font not provided by the design system. Available: Fraunces, Work Sans."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|disabled|type|onClick|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, disabled, type, onClick, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Checkbox'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|checked|onChange|key|ref|className|style|children)$/]",
+        "message": "<Checkbox> doesn't accept that prop. Declared props: label, checked, onChange."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|placeholder|type|value|onChange|error|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: label, placeholder, type, value, onChange, error."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:text|email|password)$/]",
+        "message": "<Input> type must be one of 'text' | 'email' | 'password'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "Checkbox": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-primary",
+      "--accent-primary-hover",
+      "--accent-secondary",
+      "--accent-secondary-hover",
+      "--bg-card",
+      "--bg-page",
+      "--border-hairline",
+      "--border-width",
+      "--content-margin",
+      "--content-max-width",
+      "--focus-ring",
+      "--font-body",
+      "--font-display",
+      "--grove",
+      "--grove-hover",
+      "--ink-100",
+      "--ink-300",
+      "--ink-500",
+      "--ink-700",
+      "--ink-900",
+      "--logo-amber",
+      "--logo-gold",
+      "--logo-indigo",
+      "--logo-magenta",
+      "--logo-violet",
+      "--paper",
+      "--plum",
+      "--plum-hover",
+      "--radius-md",
+      "--radius-sm",
+      "--shadow-none",
+      "--space-1",
+      "--space-10",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--text-body",
+      "--text-body-line",
+      "--text-body-size",
+      "--text-body-weight",
+      "--text-caption-line",
+      "--text-caption-size",
+      "--text-caption-weight",
+      "--text-h1-line",
+      "--text-h1-size",
+      "--text-h1-weight",
+      "--text-h2-line",
+      "--text-h2-size",
+      "--text-h2-weight",
+      "--text-h3-line",
+      "--text-h3-size",
+      "--text-h3-weight",
+      "--text-heading",
+      "--text-meta",
+      "--text-meta-line",
+      "--text-meta-size",
+      "--text-meta-weight",
+      "--text-secondary",
+      "--transition-base",
+      "--transition-fast"
+    ],
+    "tokenKinds": {
+      "--paper": "color",
+      "--ink-900": "color",
+      "--ink-700": "color",
+      "--ink-500": "color",
+      "--ink-300": "color",
+      "--ink-100": "color",
+      "--plum": "color",
+      "--plum-hover": "color",
+      "--grove": "color",
+      "--grove-hover": "color",
+      "--logo-magenta": "color",
+      "--logo-violet": "color",
+      "--logo-indigo": "color",
+      "--logo-gold": "color",
+      "--logo-amber": "color",
+      "--bg-page": "color",
+      "--bg-card": "color",
+      "--text-heading": "font",
+      "--text-body": "font",
+      "--text-secondary": "font",
+      "--text-meta": "font",
+      "--border-hairline": "color",
+      "--accent-primary": "color",
+      "--accent-primary-hover": "color",
+      "--accent-secondary": "color",
+      "--accent-secondary-hover": "color",
+      "--focus-ring": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--text-h1-size": "font",
+      "--text-h1-weight": "font",
+      "--text-h1-line": "font",
+      "--text-h2-size": "font",
+      "--text-h2-weight": "font",
+      "--text-h2-line": "font",
+      "--text-h3-size": "font",
+      "--text-h3-weight": "font",
+      "--text-h3-line": "font",
+      "--text-body-size": "font",
+      "--text-body-weight": "font",
+      "--text-body-line": "font",
+      "--text-caption-size": "font",
+      "--text-caption-weight": "font",
+      "--text-caption-line": "font",
+      "--text-meta-size": "font",
+      "--text-meta-weight": "font",
+      "--text-meta-line": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--content-max-width": "spacing",
+      "--content-margin": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--border-width": "spacing",
+      "--shadow-none": "shadow",
+      "--transition-fast": "other",
+      "--transition-base": "other"
+    },
+    "fontFamilies": [
+      "Fraunces",
+      "Work Sans"
+    ]
+  }
+}

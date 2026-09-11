@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; background:var(--paper); color:var(--ink-900); font-family:var(--font-body); }
+    a { color: var(--plum); }
+    a:hover { color: var(--plum-hover); }
+  </style>
+</helmet>
+<dc-import name="Header" active="team" hint-size="100%,88px"></dc-import>
+<main style="max-width:1080px; margin:0 auto; padding:0 60px;">
+  <section style="padding:72px 0 24px; max-width:720px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+      <span style="width:22px; height:1px; background:var(--grove);"></span>
+      <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--grove);">Who runs it</span>
+    </div>
+    <h1 style="font-family:var(--font-display); font-weight:500; font-size:40px; margin:0 0 24px; letter-spacing:-0.01em;">Team</h1>
+    <div style="border:1px dashed var(--ink-300); border-radius:2px; padding:14px 18px; display:flex; align-items:center; gap:12px;">
+      <span style="font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px; flex-shrink:0;">SAMPLE</span>
+      <p style="margin:0; font-size:14px; color:var(--ink-500);">Placeholder names/roles below — swap in real founding members before this goes live.</p>
+    </div>
+  </section>
+
+  <section style="padding:24px 0 64px; border-top:1px solid var(--ink-100); display:grid; grid-template-columns:5fr 7fr; gap:48px; align-items:center;">
+    <image-slot id="team-nel" shape="rect" placeholder="Portrait — Nel Coloma-Moya" style="width:100%; height:420px;"></image-slot>
+    <div>
+      <h2 style="font-family:var(--font-display); font-weight:500; font-size:27px; margin:0 0 4px;">Nel Coloma-Moya</h2>
+      <p style="font-family:var(--font-body); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--grove); margin:0 0 16px;">Founding Coordinator</p>
+      <p style="margin:0; font-size:16.5px; line-height:1.55; color:var(--ink-700); max-width:440px;">Leads day-to-day coordination for the Collective, including membership and partner relationships with Aspen Training Centre.</p>
+    </div>
+  </section>
+
+  <section style="padding:8px 0 96px; border-top:1px solid var(--ink-100);">
+    <div style="display:flex; flex-direction:column; gap:0;">
+      <div style="border-top:1px dashed var(--ink-300); padding:28px 0; position:relative; max-width:720px;">
+        <span style="position:absolute; top:28px; right:0; font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px;">SAMPLE</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 8px;">[Sample Name] — Programs Lead</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700); max-width:600px;">[Placeholder] Oversees workshops and the Spoken Word &amp; Poetry Circle, working with members to shape session formats and cadence.</p>
+      </div>
+      <div style="border-top:1px dashed var(--ink-300); padding:28px 0; position:relative; max-width:720px;">
+        <span style="position:absolute; top:28px; right:0; font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px;">SAMPLE</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 8px;">[Sample Name] — Membership &amp; Directory</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700); max-width:600px;">[Placeholder] Manages the artist directory, member profiles, and annual renewals.</p>
+      </div>
+      <div style="border-top:1px dashed var(--ink-300); border-bottom:1px dashed var(--ink-300); padding:28px 0; position:relative; max-width:720px;">
+        <span style="position:absolute; top:28px; right:0; font-family:var(--font-body); font-size:11px; font-weight:500; letter-spacing:0.05em; color:var(--ink-500); border:1px solid var(--ink-300); border-radius:2px; padding:2px 8px;">SAMPLE</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 8px;">[Sample Name] — Treasurer</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700); max-width:600px;">[Placeholder] Manages membership fees, workshop payments, and the Collective's finances.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,160px"></dc-import>
+
+</x-dc>
+</body>
+</html>

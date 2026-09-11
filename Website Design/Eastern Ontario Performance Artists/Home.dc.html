@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; background:var(--paper); color:var(--ink-900); font-family:var(--font-body); }
+    a { color: var(--plum); }
+    a:hover { color: var(--plum-hover); }
+    @keyframes eopaFadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .eopa-fade { animation: eopaFadeUp 0.8s ease both; }
+    .eopa-inv-arrow { display:inline-block; transition: transform 200ms ease; }
+    .eopa-inv:hover .eopa-inv-arrow { transform: translateX(5px); }
+    .eopa-inv:hover { opacity: 0.62; }
+    @media (prefers-reduced-motion: reduce) { .eopa-fade { animation: none; opacity:1; transform:none; } }
+    @media (max-width: 760px) {
+      .eopa-hero-split { grid-template-columns: 1fr !important; }
+      .eopa-hero-img { order: -1; max-width: 240px !important; margin: 0 0 24px !important; }
+      .eopa-getinvolved { grid-template-columns: 1fr !important; }
+      .eopa-cluster { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</helmet>
+<dc-import name="Header" active="home" hint-size="100%,88px"></dc-import>
+<main style="max-width:1080px; margin:0 auto; padding:0 60px;">
+
+  <!-- 01 HERO — typographic, one small/medium image as punctuation -->
+  <section class="eopa-hero-split" style="padding:80px 0 96px; display:grid; grid-template-columns:1fr 300px; gap:48px; align-items:start;">
+    <div class="eopa-fade">
+      <h1 style="font-family:var(--font-display); font-weight:500; font-size:44px; line-height:1.14; margin:0 0 24px; letter-spacing:-0.01em; max-width:600px;">Eastern Ontario Performance Artists Collective</h1>
+      <p style="font-family:var(--font-body); font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:0 0 36px; max-width:460px;">Growing a learning network for the performing arts across Eastern Ontario. We connect artists, audiences, and organizations across the region — through workshops, a shared events calendar, and hands-on support for building your presence, on and off the stage.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a href="Membership.dc.html" style="font-family:var(--font-body); font-weight:500; font-size:14px; background:var(--accent-primary); color:var(--paper); border-radius:2px; padding:13px 22px; text-decoration:none;">Become a Member</a>
+        <a href="Events.dc.html" style="font-family:var(--font-body); font-weight:500; font-size:14px; background:transparent; color:var(--ink-900); border:1px solid var(--ink-900); border-radius:2px; padding:13px 22px; text-decoration:none;">See Upcoming Events</a>
+      </div>
+    </div>
+    <image-slot id="home-hero" shape="rect" class="eopa-hero-img" placeholder="Small performance moment" style="width:100%; height:380px; margin-top:8px;"></image-slot>
+  </section>
+
+  <!-- 02 WHAT WE'RE ABOUT — purely typographic pause -->
+  <section style="padding:72px 0 96px; border-top:1px solid var(--ink-100);">
+    <p style="font-family:var(--font-display); font-style:italic; font-weight:500; font-size:30px; line-height:1.42; color:var(--ink-900); margin:0; max-width:700px;">The Collective exists to enhance the arts and cultural life of Eastern Ontario communities and to build strong, lasting support for the performing arts in all its forms — theatre, dance, music, opera, circus and physical arts, and spoken word.</p>
+  </section>
+
+  <!-- 03 WAYS TO GET INVOLVED — numbered editorial sequence with a small image -->
+  <section class="eopa-getinvolved" style="padding:0 0 96px; border-top:1px solid var(--ink-100); padding-top:72px; display:grid; grid-template-columns:1fr 220px; gap:48px; align-items:start;">
+    <div>
+      <h2 style="font-family:var(--font-display); font-weight:500; font-size:27px; margin:0 0 32px;">Ways to Get Involved</h2>
+      <div style="display:flex; flex-direction:column;">
+        <div style="display:grid; grid-template-columns:40px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--ink-100);">
+          <span style="font-family:var(--font-display); font-size:18px; color:var(--plum);">01</span>
+          <div><h3 style="font-family:var(--font-display); font-weight:500; font-size:18px; margin:0 0 4px;">Join as a Member</h3><p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Get listed in our regional directory and stay connected to events, festivals, and workshops.</p></div>
+        </div>
+        <div style="display:grid; grid-template-columns:40px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--ink-100);">
+          <span style="font-family:var(--font-display); font-size:18px; color:var(--plum);">02</span>
+          <div><h3 style="font-family:var(--font-display); font-weight:500; font-size:18px; margin:0 0 4px;">Build Your Digital Presence</h3><p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Add a website to your membership and get discovered online.</p></div>
+        </div>
+        <div style="display:grid; grid-template-columns:40px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--ink-100);">
+          <span style="font-family:var(--font-display); font-size:18px; color:var(--plum);">03</span>
+          <div><h3 style="font-family:var(--font-display); font-weight:500; font-size:18px; margin:0 0 4px;">Attend a Workshop</h3><p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Sharpen your craft in a low-cost, drop-in session.</p></div>
+        </div>
+        <div style="display:grid; grid-template-columns:40px 1fr; gap:20px; padding:20px 0; border-top:1px solid var(--ink-100); border-bottom:1px solid var(--ink-100);">
+          <span style="font-family:var(--font-display); font-size:18px; color:var(--plum);">04</span>
+          <div><h3 style="font-family:var(--font-display); font-weight:500; font-size:18px; margin:0 0 4px;">Bring an Idea to the Incubator</h3><p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Get support developing and marketing a new performance or event.</p></div>
+        </div>
+      </div>
+    </div>
+    <image-slot id="home-involve" shape="rect" placeholder="Small photo — workshop moment" style="width:100%; height:280px; margin-top:64px;"></image-slot>
+  </section>
+
+  <!-- photographic interruption — two small paired images -->
+  <section class="eopa-cluster" style="padding:0 0 96px; display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:640px;">
+    <image-slot id="home-cluster-1" shape="rect" placeholder="Hands / instrument detail" style="width:100%; height:220px;"></image-slot>
+    <image-slot id="home-cluster-2" shape="rect" placeholder="Backstage moment" style="width:100%; height:220px;"></image-slot>
+  </section>
+
+  <!-- 05 CLOSING INVITATION -->
+  <section style="padding:0 0 96px; border-top:1px solid var(--ink-100); padding-top:64px; max-width:480px;">
+    <p style="font-family:var(--font-display); font-weight:500; font-size:24px; line-height:1.4; color:var(--ink-900); margin:0 0 24px;">There's a place here for whatever you make, and however you're starting.</p>
+    <a href="Membership.dc.html" style="font-family:var(--font-body); font-weight:500; font-size:14px; color:var(--plum); text-decoration:underline;">Become a Member →</a>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,160px"></dc-import>
+
+</x-dc>
+</body>
+</html>
