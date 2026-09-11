@@ -197,6 +197,16 @@ p {
   color: var(--ink-900);
 }
 
+/* The "xl" PullQuote variant (About's mission — the largest quote on the
+   site) needs its own mobile step for the same reason as .hero-headline:
+   a fixed inline font-size doesn't inherit any token's responsive
+   behavior. */
+@media (max-width: 640px) {
+  .pull-quote--xl {
+    font-size: 26px !important;
+  }
+}
+
 .hairline-top {
   border-top: 1px solid var(--ink-100);
 }
@@ -323,6 +333,14 @@ p {
 .directory-row:hover,
 .directory-row:focus-visible {
   padding-left: var(--space-3);
+}
+.directory-row__number {
+  color: var(--ink-300);
+  transition: color var(--transition-base);
+}
+.directory-row:hover .directory-row__number,
+.directory-row:focus-visible .directory-row__number {
+  color: var(--plum);
 }
 .directory-row__title {
   display: inline-block;
@@ -467,6 +485,26 @@ p {
   align-items: start;
 }
 
+/* Home's hero headline is deliberately larger than the shared --text-h1-size
+   scale (a one-off scale event for the homepage, not the site-wide H1) —
+   it needs its own responsive steps rather than inheriting the token's
+   mobile override. Caught in visual QA: an inline fontSize bypassed the
+   token's mobile breakpoint entirely, rendering at full desktop size (58px)
+   on a 390px screen and wrapping to five tall lines. */
+.hero-headline {
+  font-size: 58px;
+}
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: 36px;
+  }
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  .hero-headline {
+    font-size: 46px;
+  }
+}
+
 /* Home hero: a wide headline spans the top, then an asymmetric row pairs
    a narrow text column with a wide, letterboxed establishing photograph —
    the photo does real work at real scale instead of being a small
@@ -474,9 +512,9 @@ p {
    docs/VISUAL_RECOMPOSITION.md. */
 .hero-band {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   gap: var(--space-8);
-  align-items: center;
+  align-items: end;
 }
 
 @media (max-width: 760px) {
