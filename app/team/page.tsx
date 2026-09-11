@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Eyebrow, PlaceholderNotice } from "@/components/ui";
+import { PageHeader, PlaceholderNotice } from "@/components/ui";
 import { ImageSlot } from "@/components/Media";
 
 export const metadata: Metadata = {
@@ -24,21 +24,26 @@ const placeholderRoles = [
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
 // (TEAM section) — see docs/CONTENT.md §5. Nel Coloma-Moya is the only
-// confirmed real person; the other three roles are explicit placeholders
-// and must stay visibly marked as SAMPLE until replaced.
+// confirmed real person; the other three roles are explicit placeholders.
+// Placeholder status is marked four ways (the intro notice, the literal
+// "[Sample Name]" text from the source copy, the dashed border, and the
+// rail label) rather than a repeated identical badge on every row.
 export default function TeamPage() {
   return (
     <>
-      <section className="container" style={{ padding: "56px 0 24px", maxWidth: 720 }}>
-        <Eyebrow label="Who runs it" />
-        <h1 style={{ marginBottom: "var(--space-6)" }}>Team</h1>
-        <PlaceholderNotice>
-          Placeholder names/roles below — swap in real founding members before this goes
-          live.
-        </PlaceholderNotice>
+      <section className="container" style={{ padding: "56px 0 40px" }}>
+        <PageHeader label="Who runs it">
+          <h1 style={{ marginBottom: "var(--space-6)" }}>Team</h1>
+          <div style={{ maxWidth: 480 }}>
+            <PlaceholderNotice>
+              Placeholder names/roles below — swap in real founding members before this
+              goes live.
+            </PlaceholderNotice>
+          </div>
+        </PageHeader>
       </section>
 
-      <section className="container grid-split-c hairline-top" style={{ paddingTop: 24, paddingBottom: 64 }}>
+      <section className="container grid-split-c hairline-top" style={{ paddingTop: 40, paddingBottom: 56 }}>
         <ImageSlot ratio="5 / 6" caption="Portrait needed — Nel Coloma-Moya" />
         <div>
           <h2 style={{ marginBottom: 4 }}>Nel Coloma-Moya</h2>
@@ -61,7 +66,8 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "8px 0 96px" }}>
+      <section className="container page-grid hairline-top" style={{ padding: "40px 0 96px" }}>
+        <span className="page-rail__label">Sample Roles</span>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {placeholderRoles.map((role, i, arr) => (
             <div
@@ -69,30 +75,12 @@ export default function TeamPage() {
               style={{
                 borderTop: "1px dashed var(--ink-300)",
                 borderBottom: i === arr.length - 1 ? "1px dashed var(--ink-300)" : undefined,
-                padding: "28px 0",
-                position: "relative",
-                maxWidth: 720,
+                padding: "24px 0",
+                maxWidth: "var(--measure)",
               }}
             >
-              <span
-                style={{
-                  position: "absolute",
-                  top: 28,
-                  right: 0,
-                  fontFamily: "var(--font-body)",
-                  fontSize: 11,
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  color: "var(--ink-500)",
-                  border: "1px solid var(--ink-300)",
-                  borderRadius: "var(--radius)",
-                  padding: "2px 8px",
-                }}
-              >
-                SAMPLE
-              </span>
-              <h3 style={{ marginBottom: 8, maxWidth: 560 }}>{role.name}</h3>
-              <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)", maxWidth: 600 }}>
+              <h3 style={{ marginBottom: 8 }}>{role.name}</h3>
+              <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
                 {role.bio}
               </p>
             </div>

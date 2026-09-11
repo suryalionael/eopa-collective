@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Eyebrow, PlaceholderNotice } from "@/components/ui";
+import { PageHeader, PlaceholderNotice } from "@/components/ui";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
 // (HOW TO JOIN & PAY section) — see docs/CONTENT.md §8. "Fill Out Membership
-// Form" is a mailto: link, not a submitted form — see docs/LEGAL_RISK_REGISTER.md
-// and the same decision on the Contact page.
+// Form" is a mailto: link, not a submitted form — see docs/LEGAL_RISK_REGISTER.md.
+// Steps are a continuous connected line rather than four identical cards.
 const steps = [
   {
     n: "1",
@@ -39,45 +39,54 @@ const steps = [
 export default function HowToJoinPage() {
   return (
     <>
-      <section className="container" style={{ padding: "64px 0 24px", maxWidth: 720 }}>
-        <Eyebrow label="Getting started" />
-        <h1 style={{ fontSize: 44, marginBottom: "var(--space-6)" }}>How to Join &amp; Pay</h1>
-        <PlaceholderNotice>
-          Sample process — confirm actual payment method and tools with Nel before
-          publishing.
-        </PlaceholderNotice>
+      <section className="container" style={{ padding: "64px 0 40px" }}>
+        <PageHeader label="Getting Started">
+          <h1 style={{ fontSize: 44, marginBottom: "var(--space-6)" }}>How to Join &amp; Pay</h1>
+          <div style={{ maxWidth: 480 }}>
+            <PlaceholderNotice>
+              Sample process — confirm actual payment method and tools with Nel before
+              publishing.
+            </PlaceholderNotice>
+          </div>
+        </PageHeader>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "24px 0 96px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)", maxWidth: 720 }}>
-          {steps.map((step) => (
-            <div key={step.n} style={{ display: "flex", gap: "var(--space-5)" }}>
+      <section className="container hairline-top" style={{ padding: "48px 0 96px" }}>
+        <div style={{ position: "relative", maxWidth: 640, paddingLeft: 48 }}>
+          <div
+            aria-hidden="true"
+            style={{ position: "absolute", left: 15, top: 10, bottom: 10, width: 1, background: "var(--ink-100)" }}
+          />
+          {steps.map((step, i) => (
+            <div key={step.n} style={{ position: "relative", paddingBottom: i === steps.length - 1 ? 0 : "var(--space-8)" }}>
               <span
                 style={{
+                  position: "absolute",
+                  left: -48,
+                  top: -4,
+                  width: 32,
+                  textAlign: "center",
                   fontFamily: "var(--font-display)",
-                  fontSize: 27,
+                  fontSize: 22,
                   fontWeight: 500,
                   color: "var(--plum)",
-                  flexShrink: 0,
-                  width: 32,
+                  background: "var(--paper)",
                 }}
               >
                 {step.n}
               </span>
-              <div>
-                <h3 style={{ marginBottom: 8 }}>{step.title}</h3>
-                <p style={{ margin: step.cta ? "0 0 16px" : 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
-                  {step.body}
-                </p>
-                {step.cta && (
-                  <a
-                    href={`mailto:${contact.email}?subject=${encodeURIComponent("Membership form request")}`}
-                    className="button button--primary"
-                  >
-                    Fill Out Membership Form
-                  </a>
-                )}
-              </div>
+              <h3 style={{ marginBottom: 8 }}>{step.title}</h3>
+              <p style={{ margin: step.cta ? "0 0 16px" : 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
+                {step.body}
+              </p>
+              {step.cta && (
+                <a
+                  href={`mailto:${contact.email}?subject=${encodeURIComponent("Membership form request")}`}
+                  className="button button--primary"
+                >
+                  Fill Out Membership Form
+                </a>
+              )}
             </div>
           ))}
         </div>
