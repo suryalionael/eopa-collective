@@ -35,44 +35,56 @@ No transparent/vector (SVG) version of the logo was found anywhere in the suppli
 | `_MG_1776 copy-4.jpg` | JPEG | 1400×902 | ~1.55:1 | A rock ledge over dark pond water with lily pads and exposed tree roots. | Shared — small accent; least clearly "Eastern Ontario arts" of the set, reads as generic nature macro. | Lowest priority of the 7. |
 | `_MG_1795 copy.JPG` | JPEG | 1200×1332 | ~0.9:1 (near-square, portrait-leaning) | A foggy rural scene: a weathered fence post with an "OFA" (Ontario Federation of Agriculture) member sign, a large oak tree, a white farmhouse and outbuildings in soft-focus background. | **Not used.** Excluded from the implemented site — see below. | On rendering, the OFA sign is clearly legible, not a minor background detail. Implementation decision: excluded from `public/images/` and not referenced by any page rather than shipped with the risk merely flagged — see `docs/LEGAL_RISK_REGISTER.md`. The source file remains in `Pictures/` for provenance. |
 
-### Actual usage in the implemented site
+### Actual usage in the implemented site (as of the second visual pass)
 
-Every image slot that originally called for a performance/portrait/rehearsal
-photo (per the design mockups) and has no real substitute was implemented as
-an honest `ImageSlot` placeholder — never filled with a mismatched landscape
-photo. Where a slot's purpose was general regional atmosphere rather than a
-specific person/performance, a real supplied photo was used, honestly
-captioned for what it actually shows (never claimed as a performance,
-rehearsal, or portrait it isn't):
+The first visual pass (rail-grid redesign) used six of the seven supplied
+photos as atmosphere accents across Home, About, Contact, and Partners. A
+senior-creative-director review of the rendered site found that none of
+them had a stated reason to sit next to their specific paragraph — they
+were decorative, not composed, and would not be missed if removed. See
+`docs/VISUAL_RECOMPOSITION.md` for the full reasoning. The photography
+budget was cut rather than redistributed:
 
-- **Home:** `starling-murmuration.jpg` (hero, captioned "Eastern Ontario, at
-  dusk"), `autumn-road.jpg` + `maple-branch.jpg` (small paired cluster,
-  reframed as a regional-identity interlude rather than the mockup's
-  "hands/instrument detail" + "backstage moment" captions, which nothing
-  supplied can honestly satisfy). The "Ways to Get Involved" slot
-  ("workshop moment") is an `ImageSlot` placeholder — no real substitute.
-- **About:** `farm-road-dusk.jpg` (captioned "Rural Eastern Ontario," paired
-  with the Values list) — swapped in during visual QA for
-  `_MG_1795 copy.JPG` after its visible OFA sign was judged too prominent
-  to ship; see the Copyright note above.
-- **Membership, Get Involved, Events, How to Join & Pay:** no image used —
-  matches Source A, which defines no image slot for any of these pages;
-  kept as purely typographic/editorial pages.
-- **Team:** `ImageSlot` placeholder for Nel Coloma-Moya's portrait (no
-  substitute makes sense for a headshot); the three fully-placeholder roles
-  have no image, matching Source A.
-- **Contact:** `mirror-sunset.jpg` (captioned "Eastern Ontario") as a
-  regional-atmosphere accent — not presented as the "documentary
-  photograph" of a person the original mockup called for.
-- **Partners:** `pond-roots.jpg` (captioned "Eastern Ontario") — added for
-  visual balance on the site's thinnest page (a single paragraph); no copy
-  was invented to justify it.
-- **Performance Art:** `ImageSlot` placeholder ("an unusual crop,
-  body/gesture detail") — no real substitute exists.
-- **Not used:** `_MG_1456 copy 3.JPG`, `_MG_1776 copy-4.jpg`,
-  `_MG_1795 copy.JPG` (excluded for the OFA-sign concern — see above),
-  `IMGP9141 copy 3.JPG` — lowest-priority or excluded material; source
-  files remain in `Pictures/` for provenance.
+- **Home:** `farm-road-dusk.jpg` — the hero, cropped wide (2:1, close to
+  its native ~2.09:1 proportions) as a real establishing view of the
+  region at full visual weight, captioned "Eastern Ontario, at dusk." This
+  is the one image on the site doing the most compositional work. The
+  "Ways to Get Involved" section carries no image — the previous grey
+  `ImageSlot` placeholder box was removed as one of the site's weakest
+  elements; the section is now a 2×2 typographic directory instead.
+- **About:** `farm-road-dusk.jpg` reused at a small, quiet crop (4:5),
+  paired specifically with "Where We Stand Today" — the honest admission
+  that this is a small, unincorporated, regional collective is reinforced
+  by an unglamorous real place, rather than paired arbitrarily with
+  "Our Values" as in the first pass.
+- **Membership, Get Involved, Events, How to Join & Pay, Partners:** no
+  image. Partners previously paired a pond/lily-pad photo
+  (`pond-roots.jpg`) with the Aspen Training Centre paragraph for "visual
+  balance" with no stated connection between the two — removed; the
+  partnership statement itself now carries the page's visual weight.
+- **Team:** no image. The portrait placeholder for Nel Coloma-Moya was
+  removed — a large, empty, dashed box was judged the least honest
+  element on the site (most damaging at mobile width, where it became the
+  dominant object on the page). Her entry is text-led instead, at the
+  largest, most confident type on the page.
+- **Contact:** no image. `mirror-sunset.jpg` previously floated here with
+  no stronger claim to this page than to any other; removed per the
+  instruction that a photo must contribute to the composition or
+  disappear.
+- **Performance Art:** no image. The `ImageSlot` placeholder ("an unusual
+  crop, body/gesture detail") is gone; the intro paragraph runs at a
+  single wide measure instead of splitting to make room for an empty box.
+- **`ImageSlot` (the grey dashed placeholder component) was removed from
+  the codebase** — see `components/Media.tsx`. A missing photo is no
+  longer represented as a box; the page around it is composed without one.
+- **Not shipped in `public/images/`:** `autumn-road.jpg`,
+  `maple-branch.jpg`, `mirror-sunset.jpg`, `pond-roots.jpg`,
+  `starling-murmuration.jpg` — processed for the first pass, unused after
+  the second. Removed from `public/images/` (they were being copied
+  as-is into every production build regardless of use) but the original
+  source files remain in `Pictures/` for provenance. `_MG_1456 copy 3.JPG`,
+  `_MG_1776 copy-4.jpg`, and `_MG_1795 copy.JPG` (OFA-sign concern — see
+  above) were never processed at all.
 
 ### Quality considerations
 - `IMGP9132 copy 2.JPG` is a very large file (6.3MB, 4608×2208) — needs resizing/compression for web delivery.
