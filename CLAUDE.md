@@ -7,7 +7,7 @@ This file is the permanent instruction set for all future Claude Code sessions w
 - **Content (all website copy):** `Content/EO-Performance-Artists-Collective-Website-Copy.pdf` — see `docs/CONTENT.md` for the page-by-page map. Never rewrite, shorten, "improve," or invent copy from this source.
 - **Photography / visual assets:** `Pictures/` and `Logo/` — see `docs/ASSETS.md`. Note: the supplied photography contains **no performance, portrait, rehearsal, or backstage imagery** — only rural/regional landscape photography. Do not paper over that gap with stock or AI-generated "artist" photos.
 - **Design system:** `docs/DESIGN.md` — the reconciled system, built from two conflicting design sources (`Website Design/Eastern Ontario Performance Artists/` and `Website Design/stitch_eopa_editorial_design_system/`). Neither source file is authoritative on its own from this point forward; `docs/DESIGN.md` is binding.
-- **Technical architecture:** the existing application — **except there currently is no existing application** (see `docs/ARCHITECTURE.md`). A framework/stack decision is an open, unresolved question requiring explicit user approval before Phase 1 implementation begins. Do not assume a stack.
+- **Technical architecture:** a Next.js (App Router, TypeScript) static export, deployed to Bluehost shared hosting — see `docs/ARCHITECTURE.md` and `docs/DEPLOYMENT.md`. Reuse this architecture; don't introduce a new framework, dependency, or server-side capability without an explicit, approved reason.
 
 ## Non-negotiables
 
@@ -42,4 +42,24 @@ Workflow: **Resource audit → Documentation (done) → Design reconciliation (d
 
 ## Current status
 
-As of this writing, **no website implementation exists.** Only source material (design mockups, content PDF, photography, logo files) and this documentation have been produced. Do not begin Phase 1 implementation (per `docs/IMPLEMENTATION.md`) without explicit approval, and not before the open framework/stack decision is resolved.
+A working implementation of all 10 required pages plus 4 policy pages exists (Next.js static export — `npm run build` produces a deployable `/out`). See `docs/IMPLEMENTATION.md` for phase-by-phase status and `docs/QA.md`'s verification log for what has and hasn't been tested. Real work still open: sourcing real performance/portrait photography, confirming placeholder contact/team/event details, and a confirmed production domain — none of these should be invented; see `docs/LEGAL_RISK_REGISTER.md`.
+
+## Commands
+
+```bash
+npm install       # install dependencies
+npm run dev       # local dev server
+npm run build     # production static export -> /out
+npm run typecheck # tsc --noEmit
+npm run lint      # next lint
+```
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

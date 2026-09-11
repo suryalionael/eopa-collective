@@ -33,21 +33,46 @@ No transparent/vector (SVG) version of the logo was found anywhere in the suppli
 | `IMG_0325.jpg` | JPEG | 1400×933 | ~1.5:1 | An autumn country road flanked by two orange/gold maple trees, blue sky with clouds. | Shared/regional-atmosphere accent — Home, About, or a section divider. | Bright, warm-toned — pairs well with the Paper/warm palette. |
 | `_MG_1456 copy 3.JPG` | JPEG | 1200×800 | 3:2 | A close-up of an orange maple branch against dark evergreen background. | Shared — small decorative/texture accent, not a standalone feature image. | Tight macro crop; low usefulness as a page-defining image. |
 | `_MG_1776 copy-4.jpg` | JPEG | 1400×902 | ~1.55:1 | A rock ledge over dark pond water with lily pads and exposed tree roots. | Shared — small accent; least clearly "Eastern Ontario arts" of the set, reads as generic nature macro. | Lowest priority of the 7. |
-| `_MG_1795 copy.JPG` | JPEG | 1200×1332 | ~0.9:1 (near-square, portrait-leaning) | A foggy rural scene: a weathered fence post with an "OFA" (Ontario Federation of Agriculture) member sign, a large oak tree, a white farmhouse and outbuildings in soft-focus background. | About or Partners — grounds the "Eastern Ontario" / regional-agricultural setting; moody, atmospheric tone fits "editorial confidence." | The only image with a legible sign/text element (OFA member sign) — verify this doesn't need clearance/blurring for a public-facing site. `NEEDS VERIFICATION`. |
+| `_MG_1795 copy.JPG` | JPEG | 1200×1332 | ~0.9:1 (near-square, portrait-leaning) | A foggy rural scene: a weathered fence post with an "OFA" (Ontario Federation of Agriculture) member sign, a large oak tree, a white farmhouse and outbuildings in soft-focus background. | **Not used.** Excluded from the implemented site — see below. | On rendering, the OFA sign is clearly legible, not a minor background detail. Implementation decision: excluded from `public/images/` and not referenced by any page rather than shipped with the risk merely flagged — see `docs/LEGAL_RISK_REGISTER.md`. The source file remains in `Pictures/` for provenance. |
 
-### Grouping by likely usage
-- **Home:** `IMGP9132 copy 2.JPG`, `IMG_0325.jpg`, `IMGP9149 copy.JPG` (regional-atmosphere candidates only — Home's actual image slots per `Home.dc.html` call for "Small performance moment," "workshop moment," "Hands/instrument detail," "Backstage moment" — **none of the 7 supplied photos satisfy any of these captions**; do not force a landscape photo into a caption slot that promises a performance image).
-- **About:** `_MG_1795 copy.JPG`, `IMGP9149 copy.JPG` (regional/atmospheric grounding only — About's actual slot calls for "Rehearsal or workshop moment," which is unmet).
-- **Membership:** no supplied image is a fit; page currently has no image slot in Source A.
-- **Get Involved:** none — no image slot defined.
-- **Team:** none of the 7 fit; `Team.dc.html` needs individual **portraits**, which do not exist in the supplied set at all.
-- **Contact:** `Contact.dc.html` calls for a "Documentary photograph" — none of the 7 supplied photos are documentary-of-people; a landscape shot could substitute only as an atmosphere image, not as the intended documentary-human shot.
-- **Events:** no image slots defined in Source A.
-- **How to Join & Pay:** no image slots defined.
-- **Partners:** no image slot defined; `_MG_1795 copy.JPG`'s farm/rural tone could suit this page contextually if an image is added.
-- **Performance Art:** `PerformanceArt.dc.html` calls for "Unusual crop — body/gesture detail" — unmet by any of the 7.
-- **Shared/decorative only:** `_MG_1456 copy 3.JPG`, `_MG_1776 copy-4.jpg`, `IMGP9141 copy 3.JPG` — lowest priority, generic nature/texture material with no strong page affinity.
-- **Unknown/unsuitable:** none classified as technically unsuitable (all are in-focus, reasonably exposed), but see quality notes below.
+### Actual usage in the implemented site
+
+Every image slot that originally called for a performance/portrait/rehearsal
+photo (per the design mockups) and has no real substitute was implemented as
+an honest `ImageSlot` placeholder — never filled with a mismatched landscape
+photo. Where a slot's purpose was general regional atmosphere rather than a
+specific person/performance, a real supplied photo was used, honestly
+captioned for what it actually shows (never claimed as a performance,
+rehearsal, or portrait it isn't):
+
+- **Home:** `starling-murmuration.jpg` (hero, captioned "Eastern Ontario, at
+  dusk"), `autumn-road.jpg` + `maple-branch.jpg` (small paired cluster,
+  reframed as a regional-identity interlude rather than the mockup's
+  "hands/instrument detail" + "backstage moment" captions, which nothing
+  supplied can honestly satisfy). The "Ways to Get Involved" slot
+  ("workshop moment") is an `ImageSlot` placeholder — no real substitute.
+- **About:** `farm-road-dusk.jpg` (captioned "Rural Eastern Ontario," paired
+  with the Values list) — swapped in during visual QA for
+  `_MG_1795 copy.JPG` after its visible OFA sign was judged too prominent
+  to ship; see the Copyright note above.
+- **Membership, Get Involved, Events, How to Join & Pay:** no image used —
+  matches Source A, which defines no image slot for any of these pages;
+  kept as purely typographic/editorial pages.
+- **Team:** `ImageSlot` placeholder for Nel Coloma-Moya's portrait (no
+  substitute makes sense for a headshot); the three fully-placeholder roles
+  have no image, matching Source A.
+- **Contact:** `mirror-sunset.jpg` (captioned "Eastern Ontario") as a
+  regional-atmosphere accent — not presented as the "documentary
+  photograph" of a person the original mockup called for.
+- **Partners:** `pond-roots.jpg` (captioned "Eastern Ontario") — added for
+  visual balance on the site's thinnest page (a single paragraph); no copy
+  was invented to justify it.
+- **Performance Art:** `ImageSlot` placeholder ("an unusual crop,
+  body/gesture detail") — no real substitute exists.
+- **Not used:** `_MG_1456 copy 3.JPG`, `_MG_1776 copy-4.jpg`,
+  `_MG_1795 copy.JPG` (excluded for the OFA-sign concern — see above),
+  `IMGP9141 copy 3.JPG` — lowest-priority or excluded material; source
+  files remain in `Pictures/` for provenance.
 
 ### Quality considerations
 - `IMGP9132 copy 2.JPG` is a very large file (6.3MB, 4608×2208) — needs resizing/compression for web delivery.
