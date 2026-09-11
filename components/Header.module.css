@@ -1,0 +1,131 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink-100);
+}
+
+.bar {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 18px var(--content-margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--ink-900);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand:hover {
+  color: var(--ink-900);
+}
+
+.brandMark {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brandWordmark {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.desktopNav {
+  display: none;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--ink-700);
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: var(--plum);
+}
+
+.navLinkActive {
+  color: var(--ink-900);
+  font-weight: 500;
+}
+
+/* Specificity bumped (.bar .desktopCta, not just .desktopCta) so this
+   reliably wins over the global .button class's `display: inline-flex`
+   regardless of stylesheet concatenation order between globals.css and
+   this CSS Module — a real bug caught in visual QA (see docs/QA.md). */
+.bar .desktopCta {
+  display: none;
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ink-100);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink-900);
+  flex-shrink: 0;
+}
+
+.mobilePanel {
+  border-top: 1px solid var(--ink-100);
+  background: var(--paper);
+}
+
+.mobilePanelInner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--content-margin) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.mobileNavLink {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--ink-700);
+  text-decoration: none;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--ink-100);
+}
+
+.mobileNavLinkActive {
+  color: var(--ink-900);
+  font-weight: 500;
+}
+
+.mobileCta {
+  margin-top: var(--space-4);
+  justify-content: center;
+}
+
+@media (min-width: 861px) {
+  .desktopNav {
+    display: flex;
+  }
+  .bar .desktopCta {
+    display: inline-flex;
+  }
+  .menuToggle {
+    display: none;
+  }
+}
