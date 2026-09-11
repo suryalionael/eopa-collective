@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EOPA — Eastern Ontario Performance Artists Collective</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&amp;family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#FBFAF7',
+            'paper-warm': '#F4EFE6',
+            ink: '#262420',
+            'ink-light': '#4A463F',
+            'ink-muted': '#787368',
+            plum: '#5D1274',
+            'plum-deep': '#450B57',
+            'plum-glow': '#EED8F6',
+            grove: '#3A5D16',
+            'grove-soft': '#E6EEDC',
+            'rule-subtle': '#E8E3DA'
+          },
+          fontFamily: {
+            fraunces: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Work Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #FBFAF7;
+      color: #262420;
+      font-family: 'Work Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection {
+      background: #5D1274;
+      color: #FBFAF7;
+    }
+    .font-fraunces {
+      font-family: 'Fraunces', Georgia, serif;
+      font-feature-settings: "liga" 1, "dlig" 1;
+    }
+    .action-button {
+      transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, box-shadow 0.25s ease;
+    }
+    .action-button:hover {
+      transform: translateY(-2px);
+    }
+    .action-button:active {
+      transform: translateY(0);
+    }
+    .image-stage {
+      overflow: hidden;
+      position: relative;
+    }
+    .image-stage img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .image-stage:hover img {
+      transform: scale(1.025);
+    }
+    .entry-row {
+      transition: background-color 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+    }
+    .entry-row:hover {
+      background-color: rgba(93, 18, 116, 0.035);
+      transform: translateX(4px);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .action-button, .image-stage img, .entry-row {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-paper text-ink selection:bg-plum selection:text-paper font-normal">
+<!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+<header class="w-full bg-paper/90 sticky top-0 z-50 backdrop-blur-md border-b border-ink/10">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
+<div class="flex items-center space-x-6">
+<a class="font-fraunces text-3xl sm:text-4xl font-semibold tracking-tight text-ink hover:text-plum transition-colors" href="#">
+          EOPA
+        </a>
+<span class="hidden md:inline-block text-xs uppercase tracking-[0.18em] text-ink-muted border-l border-ink/15 pl-5 font-medium">
+          Eastern Ontario Performance Artists
+        </span>
+</div>
+<div class="flex items-center space-x-8">
+<nav class="hidden lg:flex items-center space-x-8 text-[13px] font-medium tracking-wider uppercase text-ink">
+<a class="text-plum font-semibold" href="#">Home</a>
+<a class="hover:text-plum transition-colors" href="#what-we-do">What We Do</a>
+<a class="hover:text-plum transition-colors" href="#get-involved">Get Involved</a>
+<a class="hover:text-plum transition-colors" href="#calendar">Calendar</a>
+<a class="hover:text-plum transition-colors" href="#contact">Contact</a>
+</nav>
+<a class="action-button bg-plum text-paper px-6 py-3 text-xs uppercase tracking-[0.16em] font-semibold rounded-[2px] shadow-sm hover:bg-plum-deep" href="#join">
+          Join Collective
+        </a>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- ==========================================
+         SECTION 01 — HERO (BOLD ASYMMETRIC OPENING)
+         ========================================== -->
+<section class="relative pt-12 sm:pt-20 pb-20 sm:pb-28 border-b border-ink/10">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<!-- Top Status Indicator -->
+<div class="flex items-center space-x-3 mb-8 sm:mb-12">
+<span class="w-2.5 h-2.5 rounded-full bg-grove animate-pulse"></span>
+<span class="text-xs uppercase tracking-[0.2em] font-medium text-grove">
+            Regional Alliance for Practicing Artists · St. Lawrence &amp; Ottawa Valleys
+          </span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+<!-- Dominant Typographic Presence -->
+<div class="lg:col-span-8 space-y-8">
+<h1 class="font-fraunces font-normal text-5xl sm:text-6xl lg:text-[5.5rem] leading-[1.02] tracking-tight text-ink">
+              Eastern Ontario Performance Artists Collective
+            </h1>
+<p class="text-xl sm:text-2xl font-light text-ink-light leading-relaxed max-w-2xl">
+              Growing a collaborative learning network and shared production infrastructure for theatre makers, choreographers, dancers, spoken word poets, and multidisciplinary performers across our shared geography.
+            </p>
+<div class="pt-4 flex flex-wrap items-center gap-6">
+<a class="action-button bg-plum text-paper px-7 py-4 text-xs uppercase tracking-[0.16em] font-semibold rounded-[2px] shadow-md hover:bg-plum-deep inline-flex items-center gap-2" href="#get-involved">
+<span>Explore Membership</span>
+<span>→</span>
+</a>
+<a class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] font-semibold text-ink hover:text-plum transition-colors group" href="#what-we-do">
+<span>Discover the Mission</span>
+<span class="group-hover:translate-x-1 transition-transform">→</span>
+</a>
+</div>
+</div>
+<!-- Tensioned Image Frame with Human Caption -->
+<div class="lg:col-span-4 lg:pt-6 space-y-4">
+<div class="image-stage border border-ink/15 bg-paper-warm shadow-sm">
+<img alt="Contemporary Canadian theatre and dance artists rehearsing in a sunlit wooden hall in Eastern Ontario" class="w-full h-auto object-cover aspect-[4/3] block" src="https://lh3.googleusercontent.com/aida/AEtjO1WqgZWjdhTDqKdwB8hrX-PQxI7gfFEqhS91pkgIvI9Gn3pYOFeyfcJNKqjYP3s0G_lVaq4aBcpp3cs9R1Jmphup4Z78lwnb4WzCLN9MVQgDD1oeVVv0GC6Kx90DOiLJzdrqMby5YxUduUWkrXfjnG3x-7yqtb3W35tXpW59OmrnEPttCQGqtmX8KKZV7enPWxtzchPNdyrSX6CjmOiG_YrPHUiErZHsM2G3yIXKRC24VXc4u5SMqHWs5AMJ"/>
+</div>
+<p class="text-xs text-ink-muted leading-relaxed">
+              Ensemble movement and text development workshop in Lanark County. Shared floors and live acoustic space outside the metropolis.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+         SECTION 02 — WHAT WE'RE ABOUT (EXPANSIVE TYPOGRAPHIC FIELD)
+         ========================================== -->
+<section class="py-24 sm:py-32 bg-paper-warm/40 border-b border-ink/10" id="what-we-do">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<div class="max-w-4xl mb-16 sm:mb-20">
+<span class="text-xs uppercase tracking-[0.2em] font-semibold text-plum mb-4 block">The Living Mission</span>
+<h2 class="font-fraunces font-normal text-3xl sm:text-4xl lg:text-5xl leading-[1.15] text-ink tracking-tight">
+            We are an artist-led collective cultivating space for theatre makers, dancers, musicians, circus creators, and poets to exchange craft, develop new works, and sustain regional performance practices.
+          </h2>
+</div>
+<!-- Two-column narrative -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 text-base sm:text-lg leading-relaxed text-ink-light mb-20">
+<p>
+            Performance is an embodied craft demanding shared space, resonant rooms, and immediate communion between artists and audiences. Yet across Eastern Ontario, geographic distance between studios often breeds creative isolation. We dismantle the friction of travel and cost by pooling resources, bartering rehearsal halls, and touring collaborative work across our rural and urban centers.
+          </p>
+<p>
+            From Brockville to Kingston, Lanark to Ottawa, and Cornwall to the Valley, we believe artists should not need to relocate to Toronto or Montreal to sustain a profound, challenging, and financially viable performance practice. We build regional stamina together.
+          </p>
+</div>
+<!-- Expressive, Organic Disciplines Typographic Field -->
+<div class="border-t border-b border-ink/15 py-12">
+<div class="text-xs uppercase tracking-[0.2em] font-semibold text-ink-muted mb-8">
+            Encompassing Across Disciplines
+          </div>
+<div class="flex flex-wrap items-baseline gap-x-6 sm:gap-x-10 gap-y-6 text-ink">
+<span class="font-fraunces text-2xl sm:text-4xl font-normal hover:text-plum transition-colors cursor-default">Theatre &amp; Ensemble Staging</span>
+<span class="text-grove text-xl">✦</span>
+<span class="font-fraunces text-3xl sm:text-5xl italic font-light hover:text-plum transition-colors cursor-default">Contemporary Dance</span>
+<span class="text-plum text-xl">✦</span>
+<span class="font-fraunces text-xl sm:text-3xl font-normal hover:text-plum transition-colors cursor-default">Spoken Word &amp; Live Poetry</span>
+<span class="text-grove text-xl">✦</span>
+<span class="font-fraunces text-3xl sm:text-4xl font-normal hover:text-plum transition-colors cursor-default">Physical Arts &amp; Circus</span>
+<span class="text-plum text-xl">✦</span>
+<span class="font-fraunces text-2xl sm:text-3xl italic font-light hover:text-plum transition-colors cursor-default">Acoustic &amp; Vocal Scoring</span>
+<span class="text-grove text-xl">✦</span>
+<span class="font-fraunces text-xl sm:text-2xl font-normal hover:text-plum transition-colors cursor-default">Experimental Opera &amp; Sound Work</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+         SECTION 03 — WAYS TO GET INVOLVED
+         ========================================== -->
+<section class="py-24 sm:py-32 border-b border-ink/10 bg-paper" id="get-involved">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div>
+<span class="text-xs uppercase tracking-[0.2em] font-semibold text-grove mb-3 block">Participation &amp; Practice</span>
+<h2 class="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight">
+              Ways to Enter the Circle
+            </h2>
+</div>
+<p class="text-sm sm:text-base text-ink-muted max-w-md">
+            Direct, accessible avenues to exchange skills, access rehearsal space, and develop raw work alongside working peers.
+          </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+<!-- Interactive Entry Points List -->
+<div class="lg:col-span-7 divide-y divide-ink/10 border-t border-b border-ink/10">
+<!-- 01 -->
+<a class="entry-row py-8 px-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 block group cursor-pointer" href="#join">
+<div class="space-y-2 max-w-lg">
+<div class="flex items-baseline space-x-4">
+<span class="font-fraunces text-plum text-xl font-medium">01</span>
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                    Join as a Member
+                  </h3>
+</div>
+<p class="text-sm text-ink-light leading-relaxed pl-8">
+                  Direct access to our regional barter network, shared technical equipment pool, peer critiques, and collective voting rights.
+                </p>
+</div>
+<div class="sm:text-right shrink-0 pl-8 sm:pl-0">
+<span class="inline-block font-sans text-xs uppercase tracking-wider font-semibold text-ink bg-paper-warm border border-ink/10 px-3 py-1 rounded-sm">
+                  $25 / year
+                </span>
+</div>
+</a>
+<!-- 02 -->
+<a class="entry-row py-8 px-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 block group cursor-pointer" href="#join">
+<div class="space-y-2 max-w-lg">
+<div class="flex items-baseline space-x-4">
+<span class="font-fraunces text-plum text-xl font-medium">02</span>
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                    Build Your Digital Presence
+                  </h3>
+</div>
+<p class="text-sm text-ink-light leading-relaxed pl-8">
+                  Dedicated artist archive pages, work documentation support, and promotion to curators and presenter networks across Canada.
+                </p>
+</div>
+<div class="sm:text-right shrink-0 pl-8 sm:pl-0">
+<span class="inline-block font-sans text-xs uppercase tracking-wider font-semibold text-ink bg-paper-warm border border-ink/10 px-3 py-1 rounded-sm">
+                  $35 / year
+                </span>
+</div>
+</a>
+<!-- 03 -->
+<a class="entry-row py-8 px-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 block group cursor-pointer" href="#calendar">
+<div class="space-y-2 max-w-lg">
+<div class="flex items-baseline space-x-4">
+<span class="font-fraunces text-plum text-xl font-medium">03</span>
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                    Attend a Workshop
+                  </h3>
+</div>
+<p class="text-sm text-ink-light leading-relaxed pl-8">
+                  Intensive weekend labs in vocal projection, choreographic scores, stage mechanics, and grant writing led by regional and visiting artists.
+                </p>
+</div>
+<div class="sm:text-right shrink-0 pl-8 sm:pl-0">
+<span class="inline-block font-sans text-xs uppercase tracking-wider font-semibold text-ink bg-paper-warm border border-ink/10 px-3 py-1 rounded-sm">
+                  $10 / session
+                </span>
+</div>
+</a>
+<!-- 04 -->
+<a class="entry-row py-8 px-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 block group cursor-pointer" href="#calendar">
+<div class="space-y-2 max-w-lg">
+<div class="flex items-baseline space-x-4">
+<span class="font-fraunces text-plum text-xl font-medium">04</span>
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                    Bring an Idea to the Incubator
+                  </h3>
+</div>
+<p class="text-sm text-ink-light leading-relaxed pl-8">
+                  Share early work-in-progress drafts and scripts with peers in a low-stakes, constructive studio environment without premiere stress.
+                </p>
+</div>
+<div class="sm:text-right shrink-0 pl-8 sm:pl-0">
+<span class="inline-block font-sans text-xs uppercase tracking-wider font-semibold text-ink bg-paper-warm border border-ink/10 px-3 py-1 rounded-sm">
+                  $20 / session
+                </span>
+</div>
+</a>
+</div>
+<!-- Backstage Portrait & Authentic Quote Pairing -->
+<div class="lg:col-span-5 space-y-6">
+<div class="image-stage border border-ink/15 bg-ink shadow-md">
+<img alt="Eastern Ontario spoken word poet and theatre maker backstage preparing before a performance" class="w-full h-auto object-cover aspect-[3/4] block" src="https://lh3.googleusercontent.com/aida/AEtjO1UeclK101WnH3EJya1hY3IRIcnyC52JrXU3OoiAFkj2JOpzkOLosEtO57vfEjBGFkZO6SUZ9tNJhanFLTe3gFFTviL_Wzvhe0DwhOa3jh3S9BhpETWXNYuIfmwZx3N5y4PdqJbjhqPtiEyYpXXsmDq9fr6dyXqGTDjPsAWFjp2gdBNC5_rTP9aC_zaDWFufwiPAGuktxkxicMLuWd0qGrSDZ7yXOmLR6HsmipIhdKtl3g8CBgaDKN5OaiRr"/>
+</div>
+<div class="space-y-3 pt-2">
+<blockquote class="font-fraunces italic text-xl sm:text-2xl text-ink leading-snug">
+                “Having peers who understand the realities of producing work outside Toronto or Montreal gives us lasting regional stamina.”
+              </blockquote>
+<p class="text-xs uppercase tracking-wider font-medium text-ink-muted">
+                Spoken word artist &amp; theatre maker · Ottawa rehearsal lab
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+         SECTION 04 — VISUAL PAUSE & TENSION (DRAMATIC PLUM SHIFT)
+         ========================================== -->
+<section class="py-24 sm:py-36 bg-plum text-paper relative overflow-hidden">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<div class="max-w-5xl space-y-10">
+<div class="flex items-center space-x-4 text-xs font-semibold tracking-[0.25em] uppercase text-plum-glow">
+<span class="w-8 h-[1px] bg-plum-glow inline-block"></span>
+<span>The Shared Devotion</span>
+</div>
+<h2 class="font-fraunces text-4xl sm:text-6xl lg:text-7xl font-normal leading-[1.08] tracking-tight text-paper">
+            “Performing arts in Eastern Ontario are built through human presence and shared devotion.”
+          </h2>
+<div class="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-6 text-sm text-paper/80 border-t border-white/20">
+<p class="max-w-lg font-light">
+              We gather where we live—in town halls, converted barn studios, libraries, and independent spaces across the Ottawa Valley and Seaway corridor.
+            </p>
+<span class="text-xs uppercase tracking-[0.2em] text-paper/70 font-medium">
+              Ottawa · Brockville · Kingston · Lanark · Cornwall
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+         SECTION 05 — CULTURAL GATHERINGS & CALENDAR
+         ========================================== -->
+<section class="py-24 sm:py-32 bg-paper border-b border-ink/10" id="calendar">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 pb-6 border-b border-ink/10 gap-4">
+<div>
+<span class="text-xs uppercase tracking-[0.2em] font-semibold text-plum mb-3 block">Upcoming Gatherings</span>
+<h2 class="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-normal text-ink tracking-tight">
+              Community Calendar
+            </h2>
+</div>
+<span class="text-xs uppercase tracking-wider text-ink-muted">
+            Open to all practicing regional performers
+          </span>
+</div>
+<div class="divide-y divide-ink/10 border-b border-ink/10">
+<!-- Calendar Event 01 -->
+<article class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline group hover:bg-paper-warm/40 px-4 -mx-4 transition-colors">
+<div class="md:col-span-3 space-y-1">
+<span class="text-xs uppercase tracking-[0.16em] text-plum font-semibold block">Thursday</span>
+<span class="font-fraunces text-2xl sm:text-3xl text-ink font-normal block">Nov 14</span>
+<span class="text-xs text-ink-muted block">7:00 PM – 9:00 PM</span>
+</div>
+<div class="md:col-span-6 space-y-2">
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                Spoken Word &amp; Poetry Circle
+              </h3>
+<p class="text-sm sm:text-base text-ink-light leading-relaxed">
+                Informal reading and feedback laboratory focusing on pacing, cadence, and breath in live vocal delivery. Open to both polished work and draft fragments.
+              </p>
+</div>
+<div class="md:col-span-3 md:text-right space-y-1 pt-2 md:pt-0">
+<div class="text-sm font-semibold text-ink">Brockville Public Library</div>
+<div class="text-xs text-grove font-medium">Free for Members · $10 Guests</div>
+</div>
+</article>
+<!-- Calendar Event 02 -->
+<article class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline group hover:bg-paper-warm/40 px-4 -mx-4 transition-colors">
+<div class="md:col-span-3 space-y-1">
+<span class="text-xs uppercase tracking-[0.16em] text-plum font-semibold block">Saturday</span>
+<span class="font-fraunces text-2xl sm:text-3xl text-ink font-normal block">Nov 23</span>
+<span class="text-xs text-ink-muted block">10:00 AM – 3:30 PM</span>
+</div>
+<div class="md:col-span-6 space-y-2">
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                Physical Theatre &amp; Ensemble Composition
+              </h3>
+<p class="text-sm sm:text-base text-ink-light leading-relaxed">
+                Full-day movement masterclass exploring spatial awareness, viewpoints, and collective tempo. Designed for actors, choreographers, and physical creators.
+              </p>
+</div>
+<div class="md:col-span-3 md:text-right space-y-1 pt-2 md:pt-0">
+<div class="text-sm font-semibold text-ink">Heritage Hall · Lanark</div>
+<div class="text-xs text-grove font-medium">Pre-registration Required</div>
+</div>
+</article>
+<!-- Calendar Event 03 -->
+<article class="py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline group hover:bg-paper-warm/40 px-4 -mx-4 transition-colors">
+<div class="md:col-span-3 space-y-1">
+<span class="text-xs uppercase tracking-[0.16em] text-plum font-semibold block">Wednesday</span>
+<span class="font-fraunces text-2xl sm:text-3xl text-ink font-normal block">Dec 04</span>
+<span class="text-xs text-ink-muted block">6:30 PM – 8:30 PM</span>
+</div>
+<div class="md:col-span-6 space-y-2">
+<h3 class="font-fraunces text-2xl sm:text-3xl text-ink group-hover:text-plum transition-colors font-normal">
+                Winter Incubator: Pitch &amp; Peer Consultation
+              </h3>
+<p class="text-sm sm:text-base text-ink-light leading-relaxed">
+                Artists present 10-minute work-in-progress outlines followed by structured group questioning and grant alignment notes for Ontario Arts Council deadlines.
+              </p>
+</div>
+<div class="md:col-span-3 md:text-right space-y-1 pt-2 md:pt-0">
+<div class="text-sm font-semibold text-ink">Arts Court Studio · Ottawa</div>
+<div class="text-xs text-grove font-medium">12 Presenter Slots Available</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ==========================================
+         SECTION 06 — CLOSING & INVITATION
+         ========================================== -->
+<section class="py-24 sm:py-36 bg-paper" id="join">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<div class="bg-paper-warm p-10 sm:p-16 lg:p-20 border border-ink/15 text-center max-w-4xl mx-auto space-y-8">
+<span class="text-xs uppercase tracking-[0.2em] font-semibold text-grove block">An Open Invitation</span>
+<h2 class="font-fraunces text-3xl sm:text-5xl font-normal text-ink tracking-tight leading-tight">
+            Bring your voice, your body, and your practice into the room.
+          </h2>
+<p class="text-base sm:text-lg text-ink-light max-w-xl mx-auto leading-relaxed">
+            Whether you are establishing a new ensemble or looking for trusted artistic dialogue in Eastern Ontario, you belong in this alliance.
+          </p>
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="action-button w-full sm:w-auto bg-plum text-paper px-8 py-4 text-xs uppercase tracking-[0.16em] font-semibold rounded-[2px] shadow hover:bg-plum-deep" href="#contact">
+              Join the Collective
+            </a>
+<a class="w-full sm:w-auto text-ink hover:text-plum text-xs uppercase tracking-[0.16em] font-semibold border border-ink/25 px-8 py-4 rounded-[2px] hover:border-plum transition-colors" href="mailto:collective@eopa-artists.org">
+              Contact Coordinators
+            </a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ==========================================
+       FOOTER & COMMUNITY
+       ========================================== -->
+<footer class="bg-ink text-paper py-20 text-sm" id="contact">
+<div class="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+<!-- Brand & Partner -->
+<div class="md:col-span-4 space-y-5">
+<a class="font-fraunces text-3xl font-semibold tracking-tight text-paper block" href="#">
+            EOPA
+          </a>
+<p class="text-paper/70 leading-relaxed max-w-sm text-xs sm:text-sm">
+            Eastern Ontario Performance Artists Collective. Cultivating space, discourse, and professional sustainability for regional theatre, movement, spoken word, and sound artists.
+          </p>
+<div class="pt-2">
+<div class="inline-flex items-center space-x-2.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-sm">
+<span class="w-2 h-2 rounded-full bg-[#c2ed95]"></span>
+<span class="text-xs text-[#c2ed95] font-medium tracking-wide">
+                In partnership with Aspen Training Centre
+              </span>
+</div>
+</div>
+</div>
+<!-- Navigation -->
+<div class="md:col-span-2 space-y-4">
+<span class="text-xs uppercase tracking-[0.18em] font-medium text-paper/40 block">Explore</span>
+<ul class="space-y-2.5 text-xs text-paper/80">
+<li><a class="hover:text-paper transition-colors" href="#">Home</a></li>
+<li><a class="hover:text-paper transition-colors" href="#what-we-do">What We Do</a></li>
+<li><a class="hover:text-paper transition-colors" href="#get-involved">Get Involved</a></li>
+<li><a class="hover:text-paper transition-colors" href="#calendar">Calendar</a></li>
+<li><a class="hover:text-paper transition-colors" href="#join">Join Collective</a></li>
+</ul>
+</div>
+<!-- Regional Hubs -->
+<div class="md:col-span-3 space-y-4">
+<span class="text-xs uppercase tracking-[0.18em] font-medium text-paper/40 block">Regional Circles</span>
+<ul class="space-y-2.5 text-xs text-paper/80">
+<li>Ottawa &amp; National Capital Region</li>
+<li>Brockville &amp; 1000 Islands</li>
+<li>Kingston &amp; Frontenac</li>
+<li>Lanark &amp; Perth County</li>
+<li>Cornwall &amp; Akwesasne / St. Lawrence</li>
+</ul>
+</div>
+<!-- Inquiries -->
+<div class="md:col-span-3 space-y-4">
+<span class="text-xs uppercase tracking-[0.18em] font-medium text-paper/40 block">Inquiries</span>
+<p class="text-xs text-paper/70 leading-relaxed">
+            For artist memberships, space proposals, and touring collaborations:
+          </p>
+<a class="font-medium text-sm text-plum-glow hover:underline block" href="mailto:collective@eopa-artists.org">
+            collective@eopa-artists.org
+          </a>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-paper/50">
+<div>
+          © 2024–2026 Eastern Ontario Performance Artists Collective (EOPA).
+        </div>
+<div class="flex space-x-6">
+<a class="hover:text-paper transition-colors" href="#">Artist Agreement</a>
+<a class="hover:text-paper transition-colors" href="#">Accessibility</a>
+<a class="hover:text-paper transition-colors" href="#">Community Safety</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

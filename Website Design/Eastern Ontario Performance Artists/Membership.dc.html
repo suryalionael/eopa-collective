@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <style>
+    body { margin:0; background:var(--paper); color:var(--ink-900); font-family:var(--font-body); }
+    a { color: var(--plum); }
+    a:hover { color: var(--plum-hover); }
+  </style>
+</helmet>
+<dc-import name="Header" active="" hint-size="100%,88px"></dc-import>
+<main style="max-width:1080px; margin:0 auto; padding:0 60px;">
+  <section style="padding:72px 0 24px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+      <span style="width:22px; height:1px; background:var(--grove);"></span>
+      <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--grove);">Join us</span>
+    </div>
+    <h1 style="font-family:var(--font-display); font-weight:500; font-size:40px; margin:0 0 20px; letter-spacing:-0.01em;">Membership</h1>
+    <p style="font-family:var(--font-display); font-style:italic; font-weight:500; font-size:22px; line-height:1.4; color:var(--ink-900); margin:0; max-width:600px;">Two ways to join, plus pay-as-you-go options for workshops and idea development — no membership required for those.</p>
+  </section>
+
+  <section style="padding:16px 0 0; border-top:1px solid var(--ink-100);">
+    <div style="display:grid; grid-template-columns:7fr 5fr; gap:40px; padding:36px 0; border-bottom:1px solid var(--ink-100);">
+      <div>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 12px;">Basic Artist Membership</h3>
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:520px;">
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">A profile in our regional artist directory</p>
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Network access to arts events across Eastern Ontario</p>
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Early word on upcoming events, festivals, and workshops</p>
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">A voice at our Annual General Meeting, where members help set the Collective's direction through focus groups and surveys</p>
+        </div>
+      </div>
+      <div style="text-align:right;"><span style="font-family:var(--font-display); font-weight:500; font-size:27px; color:var(--plum);">$25</span><span style="font-size:14px; color:var(--ink-500);">/year</span></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:7fr 5fr; gap:40px; padding:36px 0; border-bottom:1px solid var(--ink-100);">
+      <div>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 12px;">Artist Digital Membership</h3>
+        <p style="font-size:14px; color:var(--ink-500); margin:0 0 10px;">Everything in Basic Artist Membership, plus:</p>
+        <div style="display:flex; flex-direction:column; gap:10px; max-width:520px;">
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">A website of up to 3 pages, built for you</p>
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">Your social media links added to your profile</p>
+          <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700);">One profile update per year</p>
+        </div>
+      </div>
+      <div style="text-align:right;"><span style="font-family:var(--font-display); font-weight:500; font-size:27px; color:var(--plum);">$35</span><span style="font-size:14px; color:var(--ink-500);">/year</span></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:7fr 5fr; gap:40px; padding:32px 0; border-bottom:1px solid var(--ink-100);">
+      <div>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 6px;">Artist Workshops</h3>
+        <p style="font-size:13px; color:var(--ink-500); margin:0 0 10px;">No membership required</p>
+        <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700); max-width:520px;">Drop into a workshop and build skills alongside other regional artists.</p>
+      </div>
+      <div style="text-align:right;"><span style="font-family:var(--font-display); font-weight:500; font-size:27px; color:var(--plum);">$10</span><span style="font-size:14px; color:var(--ink-500);">/workshop</span></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:7fr 5fr; gap:40px; padding:32px 0; border-bottom:1px solid var(--ink-100);">
+      <div>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 6px;">Incubator Idea Clinic</h3>
+        <p style="font-size:13px; color:var(--ink-500); margin:0 0 10px;">No membership required</p>
+        <p style="margin:0; font-size:15px; line-height:1.5; color:var(--ink-700); max-width:520px;">One-on-one support developing a new performance or event, including a marketing tutorial to help it find an audience.</p>
+      </div>
+      <div style="text-align:right;"><span style="font-family:var(--font-display); font-weight:500; font-size:27px; color:var(--plum);">$20</span><span style="font-size:14px; color:var(--ink-500);">/session, or 3 for $50</span></div>
+    </div>
+  </section>
+
+  <section style="padding:56px 0 96px; max-width:720px;">
+    <h2 style="font-family:var(--font-display); font-weight:500; font-size:27px; margin:0 0 20px;">Get Involved</h2>
+    <p style="font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:0 0 16px;">Whether you're an aspiring or seasoned artist, a cultural organization, or simply someone who loves the arts — there's a place for you in the Collective.</p>
+    <p style="font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:0 0 32px;">Members gain visibility through our regional directory, our annual events, and a stronger digital footprint. Beyond that, membership opens the door to workshops, public performances, and the kind of networking that sparks new creative collaborations.</p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <a href="HowToJoin.dc.html" style="font-family:var(--font-body); font-weight:500; font-size:14px; background:var(--accent-primary); color:var(--paper); border-radius:2px; padding:13px 22px; text-decoration:none;">Become a Member</a>
+      <a href="Contact.dc.html" style="font-family:var(--font-body); font-weight:500; font-size:14px; background:transparent; color:var(--plum); padding:13px 4px; text-decoration:none;">Ask a Question</a>
+    </div>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,160px"></dc-import>
+
+</x-dc>
+</body>
+</html>

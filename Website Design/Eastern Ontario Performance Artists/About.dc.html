@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/styles.css">
+  <script src="_ds/eopa-design-system-a7a8e359-f594-4b0a-9d24-d3843bd1276f/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    body { margin:0; background:var(--paper); color:var(--ink-900); font-family:var(--font-body); }
+    a { color: var(--plum); }
+    a:hover { color: var(--plum-hover); }
+    .eopa-form-row { transition: padding-left 160ms ease; }
+    .eopa-form-row:hover { padding-left: 8px; }
+    @media (max-width: 680px) {
+      .eopa-values-grid { grid-template-columns: 1fr !important; }
+      .eopa-values-grid > * { order: initial !important; }
+    }
+  </style>
+</helmet>
+<dc-import name="Header" active="about" hint-size="100%,88px"></dc-import>
+<main style="max-width:1080px; margin:0 auto; padding:0 60px;">
+
+  <section style="padding:72px 0 64px;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+      <span style="width:22px; height:1px; background:var(--grove);"></span>
+      <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; color:var(--grove);">Who we are</span>
+    </div>
+    <h1 style="font-family:var(--font-display); font-weight:500; font-size:40px; margin:0; letter-spacing:-0.01em;">About</h1>
+  </section>
+
+  <!-- Mission: quiet, type-led, full width -->
+  <section style="border-top:1px solid var(--ink-100); padding:64px 0 88px; text-align:left;">
+    <p style="font-family:var(--font-display); font-style:italic; font-weight:500; font-size:32px; line-height:1.4; color:var(--ink-900); margin:0; max-width:760px;">To develop a learning network that enhances the arts and cultural experiences within the communities of Eastern Ontario, and to foster strong support for the performing arts in all of its expressions.</p>
+  </section>
+
+  <!-- Values: image-led, asymmetric -->
+  <section class="eopa-values-grid" style="padding:0 0 88px; display:grid; grid-template-columns:5fr 7fr; gap:48px; align-items:center;">
+    <image-slot id="about-values" shape="rect" placeholder="Rehearsal or workshop moment" style="width:100%; height:440px; order:1;"></image-slot>
+    <div style="order:2;">
+      <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500);">Our Values</span>
+      <div style="display:flex; flex-direction:column; margin-top:20px;">
+        <p style="margin:0; padding:16px 0; border-top:1px solid var(--ink-100); font-size:16.5px; line-height:1.55; color:var(--ink-700);">Promoting a love of artistic and cultural life</p>
+        <p style="margin:0; padding:16px 0; border-top:1px solid var(--ink-100); font-size:16.5px; line-height:1.55; color:var(--ink-700);">Collaboration with artists and organizations across the region</p>
+        <p style="margin:0; padding:16px 0; border-top:1px solid var(--ink-100); border-bottom:1px solid var(--ink-100); font-size:16.5px; line-height:1.55; color:var(--ink-700);">Developing a learning environment that fosters experiential learning in the arts</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beliefs: dense numbered list, no image -->
+  <section style="padding:56px 0 88px; border-top:1px solid var(--ink-100); max-width:640px;">
+    <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500);">Artistic Beliefs</span>
+    <p style="font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:20px 0 8px;">The Collective is founded on three core beliefs:</p>
+    <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; gap:20px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-size:20px; color:var(--plum); flex-shrink:0; width:24px;">01</span><p style="margin:0; font-size:16.5px; line-height:1.55; color:var(--ink-700);">Experiencing the arts in their diverse forms is transformational</p></div>
+      <div style="display:flex; gap:20px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-size:20px; color:var(--plum); flex-shrink:0; width:24px;">02</span><p style="margin:0; font-size:16.5px; line-height:1.55; color:var(--ink-700);">Developing an artistic practice is accessible to everyone</p></div>
+      <div style="display:flex; gap:20px; padding:18px 0; border-top:1px solid var(--ink-100); border-bottom:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-size:20px; color:var(--plum); flex-shrink:0; width:24px;">03</span><p style="margin:0; font-size:16.5px; line-height:1.55; color:var(--ink-700);">Engaging with the arts is an individual journey that leads to personal growth</p></div>
+    </div>
+  </section>
+
+  <!-- Forms: dense functional directory, full width -->
+  <section style="padding:56px 0; border-top:1px solid var(--ink-100);">
+    <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500);">What Counts as Performing Arts, Here</span>
+    <p style="font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:20px 0 32px; max-width:640px;">Performing arts are creative acts done in front of an audience — using voice, body, or objects. Our community spans:</p>
+    <div style="display:flex; flex-direction:column;">
+      <div class="eopa-form-row" style="display:grid; grid-template-columns:200px 1fr; gap:32px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-weight:500; font-size:16.5px; color:var(--ink-900);">Theatre</span><p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Plays, dramas, and musical theatre — stories acted out through speech, gesture, and staging</p></div>
+      <div class="eopa-form-row" style="display:grid; grid-template-columns:200px 1fr; gap:32px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-weight:500; font-size:16.5px; color:var(--ink-900);">Dance</span><p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Ballet, tap, jazz, and other rhythmic movement used to express idea or emotion</p></div>
+      <div class="eopa-form-row" style="display:grid; grid-template-columns:200px 1fr; gap:32px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-weight:500; font-size:16.5px; color:var(--ink-900);">Music</span><p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Live concerts, singing, and instrumental performance</p></div>
+      <div class="eopa-form-row" style="display:grid; grid-template-columns:200px 1fr; gap:32px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-weight:500; font-size:16.5px; color:var(--ink-900);">Opera</span><p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Dramatic storytelling through singing, with live orchestral accompaniment</p></div>
+      <div class="eopa-form-row" style="display:grid; grid-template-columns:200px 1fr; gap:32px; padding:18px 0; border-top:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-weight:500; font-size:16.5px; color:var(--ink-900);">Circus &amp; Physical Arts</span><p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Acrobatics, juggling, magic, and mime</p></div>
+      <div class="eopa-form-row" style="display:grid; grid-template-columns:200px 1fr; gap:32px; padding:18px 0; border-top:1px solid var(--ink-100); border-bottom:1px solid var(--ink-100);"><span style="font-family:var(--font-display); font-weight:500; font-size:16.5px; color:var(--ink-900);">Spoken Word</span><p style="margin:0; font-size:15px; line-height:1.55; color:var(--ink-700);">Poetry, stories, and speeches performed live to connect with an audience</p></div>
+    </div>
+  </section>
+
+  <!-- Status: quiet closing statement, bookends Mission -->
+  <section style="padding:64px 0 96px; border-top:1px solid var(--ink-100); max-width:680px;">
+    <span style="font-family:var(--font-body); font-size:12px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500);">Where We Stand Today</span>
+    <p style="font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:20px 0 16px;">The Collective currently operates as an unincorporated association — an informal agreement among members with no filing fees, though also without personal liability protection. We'll move toward incorporating as a non-profit once our membership base grows to a point where it clearly benefits the people we serve.</p>
+    <p style="font-size:16.5px; line-height:1.55; color:var(--ink-700); margin:0;">We operate in partnership with <a href="Partners.dc.html" style="color:var(--grove); text-decoration:underline;">Aspen Training Centre</a>, which provides student support for running the Collective — meaning your membership fees also help fund real, hands-on training opportunities for the students who help keep things running.</p>
+  </section>
+</main>
+<dc-import name="Footer" hint-size="100%,160px"></dc-import>
+
+</x-dc>
+</body>
+</html>
