@@ -47,3 +47,50 @@ Test at: desktop (≥1080px content width), tablet (~760–1024px), mobile (~375
 ## Process
 - [ ] Every finding is reported before broad changes are proposed (Visual QA agent scope, per `CLAUDE.md`) — QA does not redesign unilaterally.
 - [ ] Any deviation from `docs/DESIGN.md`/`docs/CONTENT.md` discovered during implementation is reported and reconciled back into the docs, not left as silent drift.
+
+---
+
+## Verification log
+
+Results from the implementation pass that built the site described in
+`docs/ARCHITECTURE.md`.
+
+**Automated:**
+- `npm run build` — succeeds, all 18 content/policy routes + sitemap.xml +
+  robots.txt + icon/apple-icon generated as static HTML in `/out`.
+- `npm run typecheck` (`tsc --noEmit`) — no errors.
+- `npm run lint` (`next lint`) — no issues (after scoping ESLint away from
+  the non-application `Website Design/`, `Content/`, `Pictures/`, `Logo/`
+  source directories).
+
+**Manual/visual (Playwright, desktop 1280px + mobile 390px viewports,
+screenshots reviewed against `docs/DESIGN.md`):**
+- All 14 content/policy pages screenshotted at desktop width; Home, About,
+  and Contact also captured at mobile width; the mobile hamburger menu was
+  opened, a nav link clicked, and the resulting navigation + menu-close
+  verified.
+- Console/page-error listeners attached for every page load across both
+  viewports — **zero console errors or page errors** across all pages
+  tested.
+- **Bug found and fixed:** the header's "Become a Member" button did not
+  hide at mobile width — a CSS specificity tie between the global `.button`
+  utility class and the `Header.module.css` `.desktopCta { display: none }`
+  rule, resolved by scoping the module rule to `.bar .desktopCta`. See the
+  code comment in `components/Header.module.css`.
+- **Image swapped during review:** `_MG_1795 copy.JPG` (originally paired
+  with the About page) renders with a clearly legible third-party sign in
+  frame; swapped for `farm-road-dusk.jpg` rather than shipped with the risk
+  merely noted. See `docs/LEGAL_RISK_REGISTER.md`.
+- Dev-mode-only artifacts observed (a floating "N" Next.js dev-tools
+  indicator badge in full-page screenshots) are confirmed development-only
+  and absent from the static production build — not a defect.
+
+**Not done in this session (flag for a follow-up pass):**
+- No Lighthouse/performance-profiling run (no browser devtools access in
+  this environment).
+- No screen-reader (VoiceOver/NVDA) pass — accessibility verification here
+  was structural (semantic HTML, focus states, alt text, contrast by design
+  token) rather than assistive-technology-tested.
+- No test beyond the 1280px/390px viewports checked above — tablet-width
+  (~760–1024px) was implemented per the same CSS breakpoints but not
+  independently screenshotted.

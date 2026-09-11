@@ -38,15 +38,13 @@ The Collective operates **in partnership with Aspen Training Centre**, which "pr
 
 ## Current project state
 
-**There is no existing website implementation.** This working directory contains design/content/asset source material only — no application code, no package manager files, no git repository (`git status` confirms: "Not a git repository"). See `docs/ARCHITECTURE.md` for the full technical inventory. Concretely, what exists today:
+**A working Next.js static-export implementation of all 10 required pages plus 4 policy pages now exists** — see `docs/ARCHITECTURE.md` for the technical inventory and `docs/IMPLEMENTATION.md` for what was built and what remains open (real photography, confirmed contact details, a real refund policy, a confirmed domain). It builds, typechecks, and lints cleanly, and deploys as static files to Bluehost per `docs/DEPLOYMENT.md`. The original source material remains in the repository for provenance and as the copy/design source of truth:
 
-- `Website Design/Eastern Ontario Performance Artists/` — a 9-page Design Canvas mockup (`.dc.html` files), not a deployable codebase.
-- `Website Design/stitch_eopa_editorial_design_system/` — one single-page coded HTML/Tailwind mockup, not a deployable codebase.
-- `Content/` — one PDF containing all approved website copy.
-- `Pictures/` — 7 supplied photographs (rural/regional landscape imagery — see `docs/ASSETS.md`).
-- `Logo/` — 2 logo files (a monochrome and a full-color version of the collective's mark).
-
-**This documentation phase (Phase 0) does not choose or build the real website's technical foundation.** That is an open decision — see `docs/ARCHITECTURE.md` and `docs/IMPLEMENTATION.md`.
+- `Website Design/Eastern Ontario Performance Artists/` — the 9-page Design Canvas mockup the implementation's structure and copy are traced from.
+- `Website Design/stitch_eopa_editorial_design_system/` — the single-page coded mockup mined for visual/interaction ideas (see `docs/DESIGN.md` §6) but not used for structure or copy.
+- `Content/` — the PDF that is the source of truth for all website copy.
+- `Pictures/` — the 7 supplied photographs (rural/regional landscape imagery — see `docs/ASSETS.md`); 6 are used in the site, 1 was excluded for a copyright/rights concern (see `docs/LEGAL_RISK_REGISTER.md`).
+- `Logo/` — the collective's mark, used as supplied.
 
 ## Required website pages
 
@@ -63,11 +61,11 @@ Per the Content source (`Content/EO-Performance-Artists-Collective-Website-Copy.
 9. Partners
 10. Performance Art
 
-See `docs/CONTENT.md` for the full page-by-page content map, including a flagged structural gap (Design Source A folds "Get Involved" into the Membership page rather than giving it a standalone route — see `docs/DESIGN.md` §6).
+See `docs/CONTENT.md` for the full page-by-page content map. All ten are implemented as standalone routes, including Get Involved as its own page (Design Source A's mockup had folded it into Membership — resolved per `docs/DESIGN.md` §6). Four policy pages (Privacy, Terms, Cookies, Refunds) were added on top of these ten per the master implementation instructions.
 
 ## Important project constraints
 
 - **Content is placeholder-heavy.** Team bios, contact details, and event listings are explicitly marked SAMPLE/placeholder in the source PDF and must remain visibly marked as such in any implementation until real information is supplied — see `docs/CONTENT.md` and the non-negotiables in `CLAUDE.md`.
 - **No real performance/portrait photography currently exists** in the supplied assets — see `docs/DESIGN.md` §7 and `docs/ASSETS.md`. This is a real content gap, not a design choice.
 - **Two design sources conflict** on visual and structural details — `docs/DESIGN.md` is the reconciled, binding system; neither source file should be treated as authoritative on its own from this point forward.
-- **No technical framework has been chosen or confirmed.** Do not assume any particular stack; that decision needs to be made explicitly (see `docs/ARCHITECTURE.md`) before Phase 1 implementation begins.
+- **Technical framework is decided and implemented:** Next.js static export, deployed to Bluehost — see `docs/ARCHITECTURE.md`. Changing this would be a significant, explicit decision, not a routine one.

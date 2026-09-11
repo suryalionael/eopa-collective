@@ -26,13 +26,13 @@
 - **Source:** PDF p.2–3 ("MEMBERSHIP"); `Membership.dc.html`
 - **Sections:** Intro line → 4 priced offerings (Basic Artist Membership $25/yr, Artist Digital Membership $35/yr, Artist Workshops $10/workshop, Incubator Idea Clinic $20/session or 3 for $50) → (in `Membership.dc.html` only) a "Get Involved" section reproducing the GET INVOLVED page copy + its two CTAs.
 - **Placeholder status:** none — prices and terms are stated as final draft language, not marked SAMPLE. Treat as real/approved figures, not placeholders, unless told otherwise.
-- **Implementation note / structural gap:** the PDF gives "GET INVOLVED" its own top-level heading, positioned between MEMBERSHIP and TEAM — i.e., the source content treats it as its own page-equivalent section, matching the mandated page list (`docs/PROJECT.md`) which lists it as page 4, distinct from Membership. `Membership.dc.html` instead nests this content at the bottom of the Membership page. **Decision needed** (flagged, not resolved here): implement Get Involved as its own route matching the PDF's structure and the mandated page list, or keep it nested in Membership as Design Source A does. See `docs/DESIGN.md` §6.
+- **Resolved:** the PDF gives "GET INVOLVED" its own top-level heading, positioned between MEMBERSHIP and TEAM, matching the mandated page list (`docs/PROJECT.md`) which lists it as page 4, distinct from Membership. `Membership.dc.html`'s mockup had nested this content at the bottom of the Membership page instead; the implementation follows the PDF's structure and the mandated page list — Get Involved is its own route (`app/get-involved/page.tsx`), and `app/membership/page.tsx` links to it. See `docs/DESIGN.md` §6.
 
 ## 4. Get Involved
-- **Source:** PDF p.3 ("GET INVOLVED"). No standalone `.dc.html` file exists for this page — see the structural gap noted above; its copy currently only appears embedded inside `Membership.dc.html`.
+- **Source:** PDF p.3 ("GET INVOLVED"). No standalone `.dc.html` mockup exists for this page (Design Source A embedded its copy inside `Membership.dc.html`) — implemented directly from the PDF as `app/get-involved/page.tsx`, per the resolved decision above.
 - **Content:** one intro paragraph, one paragraph on what membership unlocks, two CTAs ("Become a Member" → Membership, "Ask a Question" → Contact).
 - **Placeholder status:** none.
-- **Unresolved:** whether this becomes a standalone route (see Membership entry above).
+- **Unresolved:** none.
 
 ## 5. Team
 - **Source:** PDF p.3–4 ("TEAM"); `Team.dc.html`
@@ -69,7 +69,7 @@
 - **Source:** PDF p.5 ("PERFORMANCE ART"); `PerformanceArt.dc.html`
 - **Content:** Explains why Performance Art is treated as a distinct category from "performing arts," lists the five defining elements (Time, Space, the Body, Presence, Audience), closing CTA "Explore Performance Art at the Collective" (target unspecified/`#`).
 - **Placeholder status:** none — final draft language.
-- **Unresolved:** the closing CTA has no defined destination yet (no directory/gallery of performance-art members or works exists in any source material).
+- **Resolved (pragmatically):** the closing CTA had no defined destination in any source material (no directory/gallery of performance-art members or works exists). Rather than ship a dead link (`href="#"`), it is routed to `/contact/` in the implementation — a routing decision, not invented content. Revisit if/when a real Performance Art directory exists.
 
 ---
 

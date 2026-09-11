@@ -1,42 +1,94 @@
-# ARCHITECTURE.md — Technical Reality (as inspected)
+# ARCHITECTURE.md — Technical Reality (as implemented)
 
-This documents what actually exists in this working directory, as of inspection. **It does not propose or select a technical stack** — that is an open decision, flagged clearly below.
+This documents what actually exists in this project, kept in sync with the
+implementation. See `docs/DEPLOYMENT.md` for how it ships to production.
 
-## Summary finding
+## Summary
 
-**There is no website application in this project.** The working directory (`/Users/lionaelsmac/Documents/Eastern Ontario Performance Artists Collective Website/`) contains only:
-- design/content/asset source material (`Website Design/`, `Content/`, `Pictures/`, `Logo/`)
-- (as of this phase) a `docs/` folder and root `CLAUDE.md` created by this documentation task
-- a `.claude/agents/` folder (created by this task, see below)
+The site is a **Next.js 16 (App Router) static export**, deployed as plain
+HTML/CSS/JS to Bluehost shared hosting. There is no server, no database, no
+CMS, and no API. This was a deliberate scope decision (see the master
+implementation instructions and `docs/LEGAL_RISK_REGISTER.md`), not a
+limitation worked around.
 
-There is **no framework, no package manager file (`package.json`, etc.), no build system, no source directory, no routing, no components, no CSS architecture, no test suite, and no deployment configuration.** `git status` confirms this is **not a git repository**.
+## Stack
 
-## What exists, in detail
+- **Framework:** Next.js 16.3.4, App Router, TypeScript, React 19.
+- **Package manager:** npm (`package-lock.json` committed).
+- **Styling:** plain CSS. Global design tokens and base element styles in
+  `app/globals.css` (see `docs/DESIGN.md` for what each token means and
+  where its value comes from); component-scoped layout CSS via CSS Modules
+  (`components/Header.module.css`, `components/Footer.module.css`); one-off
+  styling on individual page sections as inline React `style` objects, since
+  most page layouts are unique editorial compositions, not a repeated
+  template (see `docs/QA.md`'s anti-repetition criteria). No CSS framework
+  (no Tailwind, no styled-components) — deliberately, to keep the dependency
+  surface minimal for a content-driven site.
+- **Fonts:** Fraunces and Work Sans via `next/font/google` in `app/layout.tsx`
+  — downloaded once at build time and served from this site's own hosting;
+  no runtime request to Google's font servers from a visitor's browser (see
+  `docs/LEGAL_RISK_REGISTER.md`).
+- **Images:** `next/image` with `images.unoptimized: true` (required for
+  static export without a custom remote loader — see `next.config.ts`). All
+  7 usable source photographs (`Pictures/`) and the logo (`Logo/`) were
+  pre-resized and compressed once with `sips` into `public/images/` before
+  build (13MB of source JPEGs → ~1.7MB of web-ready images); no
+  image-optimization service or dependency is used at build or runtime.
+- **Routing:** Next.js file-based App Router — one `app/<route>/page.tsx`
+  per page. No dynamic routes, no middleware, no route handlers other than
+  the static `sitemap.ts`/`robots.ts` metadata routes.
+- **Build:** `output: "export"` + `trailingSlash: true` in `next.config.ts`
+  — `next build` produces a complete static site in `/out`. No image loader,
+  no server actions, no cookies/headers/rewrites/redirects are used anywhere
+  (all unsupported by static export, and none were needed).
 
-### `Website Design/Eastern Ontario Performance Artists/` (Design Source A)
-A **Design Canvas** project — a proprietary preview/mockup format (`.dc.html` files loaded via a `<x-dc>` custom element and `support.js`/`image-slot.js` runtime scripts, with a companion `_ds/` design-token bundle). This is **not a deployable web framework**; it's an authoring/preview tool output. Concretely:
-- 9 page mockups + `Header.dc.html` + `Footer.dc.html`, wired together via a `<dc-import>` custom element and plain `<a href="X.dc.html">` links — i.e., simple multi-page navigation with no client-side router.
-- Styling is plain inline `style=""` attributes plus CSS custom properties from `_ds/.../tokens/*.css` — no CSS framework, no CSS-in-JS, no build step.
-- `support.js` (69KB) and `image-slot.js` (65KB) are the Design Canvas runtime/preview scaffolding, not application logic — not inspected line-by-line, as they are tooling internals, not project-specific code.
-- `uploads/EO-Performance-Artists-Collective-Website-Copy.docx` and `_tmp_document.xml`/`_tmp_copy.txt` are intermediate artifacts from ingesting the Content docx/PDF into the design tool (the `.xml` is the raw Word `document.xml`; the `.txt` is a plain-text extraction) — confirmed to match the Content PDF's copy, not an independent or conflicting source.
+## Directory structure
 
-### `Website Design/stitch_eopa_editorial_design_system/` (Design Source B)
-A single static HTML file (`code.html`) using the **Tailwind CDN** (`<script src="https://cdn.tailwindcss.com">`) with an inline `tailwind.config` — not a build pipeline, just a CDN script tag with runtime JIT compilation. Google Fonts loaded via `<link>`. No JavaScript framework, no components, no routing (single page, anchor links only). `screen.png` is a rendered screenshot; `DESIGN.md` is a written brief with a YAML frontmatter token block.
+```text
+app/                    — one folder per route (page.tsx + optional metadata)
+  layout.tsx            — root HTML shell, fonts, header/footer, metadata
+  globals.css           — design tokens + base styles (docs/DESIGN.md)
+  sitemap.ts, robots.ts — static metadata routes
+  not-found.tsx         — 404 page content
+  icon.png, apple-icon.png — favicon/touch-icon (Next file-convention)
+components/             — shared UI: Header, Footer, small presentational
+                          primitives (ui.tsx), image components (Media.tsx)
+lib/site.ts             — shared constants (nav links, contact placeholders)
+public/                 — static files copied as-is into /out
+  images/               — pre-processed photography + logo
+  .htaccess             — Bluehost/Apache config, copied into /out
+docs/                   — this documentation
+Content/, Pictures/, Logo/, Website Design/
+                        — original source material, tracked for provenance,
+                          not consumed by the build directly (its content
+                          was transcribed into app/ pages — see docs/CONTENT.md)
+```
 
-### `Content/`
-One PDF file. No CMS, no structured data format (no JSON/YAML/Markdown content files) — copy exists only as PDF prose.
+## Testing
 
-### `Pictures/` and `Logo/`
-Flat directories of image files (JPEG/PNG) — no asset pipeline, no optimization, no CDN references, no alt-text metadata, no organization by page/category beyond filename.
+- **Build:** `npm run build` — must succeed and produce `/out` with all
+  routes as static HTML.
+- **Typecheck:** `npm run typecheck` (`tsc --noEmit`).
+- **Lint:** `npm run lint` (`next lint`, flat ESLint config in
+  `eslint.config.mjs`, excluding the `Website Design/`, `Content/`,
+  `Pictures/`, `Logo/` source directories which are not application code).
+- **Visual/interaction QA:** no automated test framework is included (a
+  content site with no interactive logic beyond a mobile-nav toggle didn't
+  justify one — see the "don't over-engineer" instruction). Visual and
+  interaction QA is done by running the dev server and driving it with
+  Playwright/`chromium-cli` for screenshots and console-error checks — see
+  the verification log in `docs/QA.md`.
 
-## Framework / language / package manager / build system / tests / deployment
+## Deployment
 
-**All UNKNOWN — none exist yet.** No `package.json`, `requirements.txt`, `Gemfile`, `composer.json`, or any other manifest was found anywhere in the project tree. No `.github/workflows`, `netlify.toml`, `vercel.json`, or other deployment config. No test files or test runner configuration.
+Bluehost shared hosting, static files only. Full steps in
+`docs/DEPLOYMENT.md`. No CI/CD is configured — building and uploading is a
+manual step today; automating it was out of scope (would add a dependency —
+a CI provider — the project doesn't yet need).
 
-## Git status
+## Environment / configuration
 
-Not a git repository (`git status` → "Not a git repository"). No commit history exists to review.
-
-## Implication for future work
-
-Per the project's own non-negotiable ("Technical architecture: the existing application unless a justified change is explicitly approved") — **there is no existing application to preserve.** This means the first real technical decision in Phase 1 of `docs/IMPLEMENTATION.md` is choosing a framework/stack, which this documentation phase deliberately does **not** decide — it requires an explicit choice from the user (or a justified recommendation reviewed and approved by the user) before any implementation work begins. Candidates are not proposed here to avoid presenting an undiscussed decision as settled fact.
+No environment variables, no secrets, no `.env` file. `lib/site.ts` holds
+the only "configuration" (the placeholder production URL used for
+sitemap/metadata generation, and the placeholder contact details — both
+explicitly marked as such and traceable to `docs/CONTENT.md`).
