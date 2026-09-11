@@ -1,47 +1,12 @@
 import Image from "next/image";
 
-/**
- * Honest placeholder for an image slot with no matching real asset yet
- * (e.g. a performance moment, a portrait, a rehearsal). Never filled with
- * stock/AI photography or a mismatched real photo — see docs/DESIGN.md §7
- * and docs/ASSETS.md. Visually distinct from a real photo (dashed border,
- * flat tone, explicit caption) so it can never be mistaken for one.
- */
-export function ImageSlot({
-  ratio = "4 / 3",
-  caption,
-}: {
-  ratio?: string;
-  caption: string;
-}) {
-  return (
-    <div
-      role="img"
-      aria-label={caption}
-      style={{
-        aspectRatio: ratio,
-        border: "1px dashed var(--ink-300)",
-        borderRadius: "var(--radius)",
-        background: "var(--ink-100)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "var(--space-5)",
-      }}
-    >
-      <span
-        style={{
-          fontSize: "var(--text-caption-size)",
-          color: "var(--ink-500)",
-          textAlign: "center",
-          maxWidth: "220px",
-        }}
-      >
-        {caption}
-      </span>
-    </div>
-  );
-}
+// The grey dashed `ImageSlot` placeholder that used to stand in for
+// missing photography was removed in the second visual pass — it became
+// one of the site's weakest elements (a large, inert, empty box). Where
+// no real photo exists, the pages that used to render one now solve the
+// section with typography/composition instead. See
+// docs/VISUAL_RECOMPOSITION.md. Never replace a missing photo with stock,
+// AI-generated, or otherwise fabricated imagery.
 
 /**
  * A real supplied photograph, honestly captioned. Only the 7 photos in
