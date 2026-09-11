@@ -25,7 +25,7 @@ function Tier({
     <div className="hairline-bottom" style={{ padding: "32px 0" }}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-4)", flexWrap: "wrap", marginBottom: note ? 6 : 12 }}>
         <h3 style={{ margin: 0 }}>{title}</h3>
-        <span style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 24, color: "var(--plum)" }}>
+        <span style={{ fontFamily: "var(--font-display)", fontWeight: 500, fontSize: 28, color: "var(--plum)" }}>
           {price}
           <span style={{ fontSize: 14, color: "var(--ink-500)", fontFamily: "var(--font-body)" }}>{period}</span>
         </span>
