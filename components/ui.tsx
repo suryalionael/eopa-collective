@@ -15,33 +15,12 @@ export function Eyebrow({ label, tone = "grove" }: { label: string; tone?: "grov
 }
 
 /**
- * The site's one shared page/section-opening composition: a slim label
- * rail beside flush-left content, instead of repeating "eyebrow directly
- * above heading" identically on every page. `railExtra` lets a specific
- * page use the rail for something real (a short list already stated in
- * that page's own copy) rather than leaving it empty — see docs/DESIGN.md.
+ * A plain small-caps kicker, used only where a specific page earns a
+ * short wayfinding label — not a system applied identically on every
+ * page. See docs/VISUAL_RECOMPOSITION.md.
  */
-export function PageHeader({
-  label,
-  tone = "grove",
-  railExtra,
-  children,
-}: {
-  label: string;
-  tone?: "grove" | "plum";
-  railExtra?: ReactNode;
-  children: ReactNode;
-}) {
-  return (
-    <div className="page-grid">
-      <div className={tone === "plum" ? "page-rail page-rail--plum" : "page-rail"}>
-        <span className="page-rail__rule" aria-hidden="true" />
-        <span className="page-rail__label">{label}</span>
-        {railExtra && <div className="page-rail__list">{railExtra}</div>}
-      </div>
-      <div>{children}</div>
-    </div>
-  );
+export function Kicker({ tone = "grove", children }: { tone?: "grove" | "plum"; children: ReactNode }) {
+  return <span className={tone === "plum" ? "kicker kicker--plum" : "kicker"}>{children}</span>;
 }
 
 /**
@@ -110,38 +89,6 @@ export function PullQuote({
     >
       {children}
     </p>
-  );
-}
-
-export function NumberedItem({
-  number,
-  title,
-  children,
-}: {
-  number: string;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "40px 1fr",
-        gap: "20px",
-        padding: "20px 0",
-        borderTop: "1px solid var(--ink-100)",
-      }}
-    >
-      <span style={{ fontFamily: "var(--font-display)", fontSize: 18, color: "var(--plum)" }}>
-        {number}
-      </span>
-      <div>
-        <h3 style={{ fontSize: 18, marginBottom: 4 }}>{title}</h3>
-        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.5, color: "var(--ink-700)" }}>
-          {children}
-        </p>
-      </div>
-    </div>
   );
 }
 

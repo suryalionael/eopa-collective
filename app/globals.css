@@ -51,8 +51,6 @@
   --space-10: 128px;
   --content-max-width: 1220px;
   --content-margin: 60px;
-  --rail-width: 176px;
-  --rail-gap: 56px;
   --measure: 640px; /* comfortable reading-width ceiling for body copy */
 
   /* Effects (docs/DESIGN.md §4 — 2px radius, no shadows) */
@@ -175,73 +173,21 @@ p {
   color: var(--plum);
 }
 
-/* Editorial rail grid — the site's one shared asymmetric layout idea,
-   used for every page-opening/section header instead of repeating the
-   same "eyebrow directly above heading, centered column" formula on
-   every page. A slim left rail (section label + optional supporting
-   content) sits beside a flush-left content column. This also fixes a
-   real bug: sections used to apply their own one-off `max-width` inside
-   an auto-centered `.container`, so each section's left edge drifted to
-   a different x-position down the page. Never re-center an inner
-   max-width with `margin: 0 auto` inside `.page-grid` or `.container` —
-   narrow a reading column by applying `max-width` with no auto margin,
-   so it stays flush with the shared left edge. */
-.page-grid {
-  display: grid;
-  grid-template-columns: var(--rail-width) 1fr;
-  column-gap: var(--rail-gap);
-  align-items: start;
-}
-.page-rail {
-  padding-top: 6px;
-}
-.page-rail__label {
+/* Plain small-caps kicker — used sparingly, only on pages where a short
+   wayfinding label earns its place (not a system applied identically
+   everywhere; see docs/VISUAL_RECOMPOSITION.md). No rule/line graphic —
+   that read as one more repeated device on top of the label itself. */
+.kicker {
+  display: block;
   font-family: var(--font-body);
   font-size: var(--text-meta-size);
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--grove);
-  display: block;
 }
-.page-rail--plum .page-rail__label {
+.kicker--plum {
   color: var(--plum);
-}
-.page-rail__rule {
-  width: 22px;
-  height: 1px;
-  background: currentColor;
-  display: block;
-  margin-bottom: var(--space-3);
-}
-.page-rail__list {
-  margin-top: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-.page-rail__list span {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-500);
-  line-height: 1.4;
-}
-
-@media (max-width: 900px) {
-  .page-grid {
-    grid-template-columns: 1fr;
-    row-gap: var(--space-4);
-  }
-  .page-rail {
-    padding-top: 0;
-  }
-  .page-rail__list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-5);
-    margin-top: var(--space-4);
-  }
 }
 
 .pull-quote {
@@ -363,13 +309,6 @@ p {
   }
 }
 
-.entry-row {
-  transition: padding-left var(--transition-base);
-}
-.entry-row:hover {
-  padding-left: var(--space-2);
-}
-
 /* Interactive directory row (Home "Ways to Get Involved", Get Involved
    entry points): a growing underline + arrow fade-in on hover/focus,
    instead of another identical card. */
@@ -416,18 +355,65 @@ p {
   transform: translateX(0);
 }
 
-/* Belief/value rows: rhythm from a left rule + shifting emphasis, not a
-   digit in a box (docs/DESIGN.md anti-pattern: overused numbering). */
-.rhythm-row {
-  padding: var(--space-5) 0;
-  border-top: 1px solid var(--ink-100);
-  border-left: 2px solid transparent;
-  padding-left: var(--space-5);
-  margin-left: calc(-1 * var(--space-5) - 2px);
-  transition: border-color var(--transition-base);
+/* Contact details: two columns at desktop, collapsing to one on mobile. */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-8);
 }
-.rhythm-row:hover {
-  border-left-color: var(--plum);
+
+@media (max-width: 560px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* About "Our Values": a compact 3-column list at desktop, collapsing to
+   one column on mobile (a plain inline grid was left uncollapsed here —
+   caught in visual QA at 390px, see docs/QA.md). */
+.trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .trio {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+/* Events Calendar row: a when/where meta column beside the listing —
+   justified here specifically because it's real calendar data (see
+   docs/VISUAL_RECOMPOSITION.md), not a decorative device reused from
+   elsewhere on the site. */
+.event-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  column-gap: var(--space-7);
+}
+
+@media (max-width: 560px) {
+  .event-row {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-2);
+  }
+}
+
+/* Home "Ways to Get Involved": a 2x2 typographic directory instead of a
+   single vertical list (which About/Membership already use elsewhere) or
+   four cards. Each cell reuses .directory-row for its hover behavior. */
+.directory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-8);
+}
+
+@media (max-width: 700px) {
+  .directory-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Image scale-on-hover — the one motion cue applied to real photography,
@@ -469,73 +455,44 @@ p {
   top: var(--space-4);
 }
 
-/* Responsive asymmetric split grids (docs/DESIGN.md §3) — collapse to one
+/* Responsive asymmetric split grid (docs/DESIGN.md §3) — collapses to one
    column on mobile, image reflows above the text per Source A's precedent
-   (Home.dc.html media query). */
-.grid-split-a {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--space-7);
-  align-items: start;
-}
+   (Home.dc.html media query). Kept only where a page still pairs text
+   with an image (About's "Where We Stand"); other uses were removed along
+   with the photos they used to frame — see docs/VISUAL_RECOMPOSITION.md. */
 .grid-split-b {
   display: grid;
   grid-template-columns: 1fr 220px;
   gap: var(--space-7);
   align-items: start;
 }
-.grid-split-c {
-  display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: var(--space-7);
-  align-items: center;
-}
-.grid-cluster-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-5);
-}
 
-/* Home hero: headline+intro | vertical rule | grounded image. The rule
-   is a structural column divider (an editorial page convention), not
-   decoration; the image sits flush to the section's closing rule instead
-   of floating mid-whitespace. */
-.home-hero {
+/* Home hero: a wide headline spans the top, then an asymmetric row pairs
+   a narrow text column with a wide, letterboxed establishing photograph —
+   the photo does real work at real scale instead of being a small
+   decorative thumbnail beside equal-height text. See
+   docs/VISUAL_RECOMPOSITION.md. */
+.hero-band {
   display: grid;
-  grid-template-columns: 1fr 1px 320px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
   gap: var(--space-8);
-}
-.home-hero__divider {
-  background: var(--ink-100);
+  align-items: center;
 }
 
 @media (max-width: 760px) {
-  .grid-split-a,
-  .grid-split-b,
-  .grid-split-c {
+  .hero-band {
     grid-template-columns: 1fr;
   }
-  .grid-split-a > *:last-child,
+}
+
+@media (max-width: 760px) {
+  .grid-split-b {
+    grid-template-columns: 1fr;
+  }
   .grid-split-b > *:last-child {
     order: -1;
     max-width: 240px;
     margin: 0 0 var(--space-6);
-  }
-  .grid-split-c > *:first-child {
-    order: 1;
-  }
-  .grid-split-c > *:last-child {
-    order: 2;
-  }
-  .grid-cluster-2 {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-  }
-  .home-hero {
-    grid-template-columns: 1fr;
-  }
-  .home-hero__divider {
-    display: none;
   }
 }
 
@@ -546,12 +503,10 @@ p {
     transform: none;
   }
   .arrow-link__arrow,
-  .entry-row,
   .button,
   .directory-row,
   .directory-row__title::after,
   .directory-row__arrow,
-  .rhythm-row,
   .photo-hover img {
     transition: none !important;
   }
