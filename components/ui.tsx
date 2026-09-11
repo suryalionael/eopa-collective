@@ -43,7 +43,7 @@ export function DirectoryRow({
   return (
     <Tag className="directory-row" href={href}>
       <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-4)" }}>
-        <span style={{ fontFamily: "var(--font-display)", fontSize: 14, color: "var(--ink-300)", flexShrink: 0 }}>
+        <span className="directory-row__number" style={{ fontFamily: "var(--font-display)", fontSize: 14, flexShrink: 0 }}>
           {number}
         </span>
         <h3 className="directory-row__title" style={{ fontSize: 20 }}>
@@ -71,19 +71,21 @@ export function PlaceholderNotice({ children }: { children: ReactNode }) {
   return <Notice tag="SAMPLE">{children}</Notice>;
 }
 
+const pullQuoteSizes = { xl: "36px", large: "32px", medium: "22px" } as const;
+
 export function PullQuote({
   children,
   size = "large",
 }: {
   children: ReactNode;
-  size?: "large" | "medium";
+  size?: keyof typeof pullQuoteSizes;
 }) {
   return (
     <p
-      className="pull-quote"
+      className={size === "xl" ? "pull-quote pull-quote--xl" : "pull-quote"}
       style={{
-        fontSize: size === "large" ? "32px" : "22px",
-        lineHeight: 1.4,
+        fontSize: pullQuoteSizes[size],
+        lineHeight: size === "xl" ? 1.35 : 1.4,
         margin: 0,
       }}
     >

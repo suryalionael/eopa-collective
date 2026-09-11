@@ -19,13 +19,13 @@ import { PhotoFigure } from "@/components/Media";
 export default function HomePage() {
   return (
     <>
-      <section className="container eopa-fade" style={{ padding: "64px 0 0" }}>
-        <h1 style={{ fontSize: 48, lineHeight: 1.08, marginBottom: "var(--space-7)", maxWidth: 860 }}>
+      <section className="container eopa-fade" style={{ padding: "72px 0 0" }}>
+        <h1 className="hero-headline" style={{ lineHeight: 1.05, letterSpacing: "-0.015em", marginBottom: "var(--space-7)", maxWidth: 920 }}>
           Eastern Ontario Performance Artists Collective
         </h1>
         <div className="hero-band hairline-top" style={{ paddingTop: "var(--space-7)", paddingBottom: "var(--space-9)" }}>
           <div>
-            <p style={{ fontSize: 18, lineHeight: "var(--text-body-line)", color: "var(--ink-700)", marginBottom: "var(--space-6)", maxWidth: 420 }}>
+            <p style={{ fontSize: 18, lineHeight: "var(--text-body-line)", color: "var(--ink-700)", marginBottom: "var(--space-6)", maxWidth: 400 }}>
               Growing a learning network for the performing arts across Eastern Ontario. We
               connect artists, audiences, and organizations across the region — through
               workshops, a shared events calendar, and hands-on support for building your
@@ -44,15 +44,15 @@ export default function HomePage() {
             src="/images/farm-road-dusk.jpg"
             alt="A dirt farm road at dusk with a weathered barn and twin silos under a dramatic sky in Eastern Ontario"
             caption="Eastern Ontario, at dusk."
-            ratio="2 / 1"
+            ratio="2.3 / 1"
             priority
             hoverZoom
           />
         </div>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "80px 0 96px" }}>
-        <p className="pull-quote" style={{ fontSize: 32, lineHeight: 1.42, maxWidth: 740, marginLeft: "9%" }}>
+      <section className="container hairline-top" style={{ padding: "88px 0 112px" }}>
+        <p className="pull-quote" style={{ fontSize: 27, lineHeight: 1.48, maxWidth: 640, marginLeft: "9%" }}>
           The Collective exists to enhance the arts and cultural life of Eastern Ontario
           communities and to build strong, lasting support for the performing arts in all
           its forms — theatre, dance, music, opera, circus and physical arts, and spoken
@@ -60,7 +60,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      <section className="container hairline-top" style={{ paddingTop: 72, paddingBottom: 96 }}>
+      <section className="container" style={{ paddingTop: 8, paddingBottom: 96 }}>
         <h2 style={{ marginBottom: "var(--space-7)" }}>Ways to Get Involved</h2>
         <div className="directory-grid hairline-bottom" style={{ paddingBottom: 4 }}>
           <DirectoryRow number="01" title="Join as a Member">
