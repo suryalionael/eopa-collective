@@ -1,0 +1,73 @@
+# Review / staging deployment only — see docs/DEPLOYMENT.md.
+#
+# This publishes the Next.js static export (`next build` with
+# output: "export") to GitHub Pages so changes can be reviewed at a real
+# URL before they go anywhere near the actual production host. It is not,
+# and does not replace, the Bluehost production deployment described in
+# docs/DEPLOYMENT.md — that remains a manual `npm run build` + upload of
+# /out to public_html/, with no GitHub Pages basePath involved.
+name: Deploy review site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one review deployment in flight at a time.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build static export for GitHub Pages
+        run: npm run build
+        env:
+          # Enables the /eopa-collective basePath in next.config.ts —
+          # see that file's comments. Never set for the real production
+          # build (Bluehost is deployed at the domain root).
+          GITHUB_PAGES: "true"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static export as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
