@@ -15,13 +15,30 @@ export const metadata: Metadata = {
 // elsewhere on the site (see docs/VISUAL_RECOMPOSITION.md). Bottom padding
 // is tightened so three sample listings don't trail into a disproportionate
 // empty area; no events are invented to fill space.
+//
+// The Open Mic entry is the Collective's first confirmed real event
+// (relayed directly by Nel, 2026-09). It is NOT marked SAMPLE — the event,
+// host, and format are confirmed — but the festival date/time/location
+// were not supplied, so those fields stay explicit placeholders rather
+// than an invented date, per CLAUDE.md's no-hallucination rule.
 const events = [
+  {
+    title: "Open Mic at the Delta Harvest Festival",
+    when: "[Date placeholder — Delta Harvest Festival]",
+    time: "1 hour, immediately before the first performance",
+    where: "Delta Harvest Festival grounds",
+    placeholderLocation: true,
+    sample: false,
+    description:
+      "Hosted by Pat Johnson. Two artists are already signed up, with two more spots open — get in touch if you'd like to perform.",
+  },
   {
     title: "Spoken Word & Poetry Circle — Kickoff Session",
     when: "First Tuesday, [Month] [Day], [Year]",
     time: "7:00–8:30 PM",
     where: "Brockville Public Library",
     placeholderLocation: true,
+    sample: true,
     description: "Our first Circle session — bring a poem to share or just come to listen.",
   },
   {
@@ -30,6 +47,7 @@ const events = [
     time: "6:30–8:00 PM",
     where: "Location TBD",
     placeholderLocation: false,
+    sample: true,
     description:
       "A hands-on workshop for performers of any discipline looking to build stage presence.",
   },
@@ -39,6 +57,7 @@ const events = [
     time: null,
     where: null,
     placeholderLocation: false,
+    sample: true,
     description: "Members set direction for the year ahead through focus groups and surveys.",
   },
 ];
@@ -84,21 +103,23 @@ export default function EventsPage() {
             <div style={{ maxWidth: "var(--measure)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
                 <h2 style={{ margin: 0, fontSize: 20, lineHeight: "var(--text-h3-line)" }}>{event.title}</h2>
-                <span
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: 11,
-                    fontWeight: 500,
-                    letterSpacing: "0.05em",
-                    color: "var(--ink-500)",
-                    border: "1px solid var(--ink-300)",
-                    borderRadius: "var(--radius)",
-                    padding: "2px 8px",
-                    flexShrink: 0,
-                  }}
-                >
-                  SAMPLE
-                </span>
+                {event.sample && (
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 11,
+                      fontWeight: 500,
+                      letterSpacing: "0.05em",
+                      color: "var(--ink-500)",
+                      border: "1px solid var(--ink-300)",
+                      borderRadius: "var(--radius)",
+                      padding: "2px 8px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    SAMPLE
+                  </span>
+                )}
               </div>
               <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
                 {event.description}

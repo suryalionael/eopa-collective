@@ -7,8 +7,9 @@ export const siteConfig = {
   shortName: "EOPA",
   description:
     "Growing a learning network for the performing arts across Eastern Ontario.",
-  // Confirmed real domain (currently live, pointed at Bluehost) — used for
-  // metadataBase / OpenGraph / sitemap generation. Note it does not match
+  // Confirmed real domain (currently live via GitHub Pages — see
+  // docs/DEPLOYMENT.md) — used for metadataBase / OpenGraph / sitemap
+  // generation. Note it does not match
   // the placeholder contact-email domain (eopacollective.ca) used
   // elsewhere in the source content — see docs/CONTENT.md's email
   // inconsistency note. That is a real discrepancy in the client's own
@@ -19,6 +20,7 @@ export const siteConfig = {
 export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/about/", label: "About" },
+  { href: "/membership/", label: "Membership" },
   { href: "/team/", label: "Team" },
   { href: "/contact/", label: "Contact" },
   { href: "/events/", label: "Events Calendar" },
