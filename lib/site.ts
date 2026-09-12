@@ -28,6 +28,7 @@ export const primaryNav = [
 
 export const footerNav = [
   { href: "/membership/", label: "Membership" },
+  { href: "/directory/", label: "Artist Directory" },
   { href: "/how-to-join/", label: "How to Join & Pay" },
   { href: "/partners/", label: "Partners" },
   { href: "/performance-art/", label: "Performance Art" },

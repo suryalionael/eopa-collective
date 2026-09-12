@@ -7,6 +7,7 @@ const routes = [
   "",
   "about",
   "membership",
+  "directory",
   "get-involved",
   "team",
   "contact",
