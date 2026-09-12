@@ -4,8 +4,12 @@ This roadmap follows the reconciled system in `docs/DESIGN.md`, the content
 map in `docs/CONTENT.md`, and the asset inventory in `docs/ASSETS.md`.
 
 **Stack decision (resolved):** Next.js 16 (App Router, TypeScript), static
-export (`output: "export"`), deployed to Bluehost shared hosting as plain
-static files. See `docs/ARCHITECTURE.md` and `docs/DEPLOYMENT.md`.
+export (`output: "export"`), deployed as plain static files via GitHub
+Actions to GitHub Pages, which serves the custom production domain
+`https://eoperformancecollective.ca/` (DNS at GoDaddy). This was earlier
+(wrongly) documented as a Bluehost deployment — that error caused a real
+production outage; see `docs/DEPLOYMENT.md`'s incident section. See
+`docs/ARCHITECTURE.md` and `docs/DEPLOYMENT.md`.
 
 ## Phase 0 — Documentation ✅ complete
 Resource inspection, design reconciliation, content/asset inventory, agent

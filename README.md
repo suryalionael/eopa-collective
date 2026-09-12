@@ -49,29 +49,20 @@ npm run dev        # http://localhost:3000
 ```bash
 npm run build       # production static export -> /out
 npm run typecheck    # tsc --noEmit
-npm run lint         # next lint
+npm run lint         # eslint .
 ```
 
 ## Deployment
 
-This project has **two separate deployment targets** built from the same
-source and the same `next build`:
+**Production is <https://eoperformancecollective.ca/>**, a custom domain
+(DNS at GoDaddy) pointed at this repository's **GitHub Pages** site.
+Every push to `main` triggers `.github/workflows/deploy-pages.yml`, which
+builds and publishes `/out` automatically — there is no manual upload
+step and no separate Bluehost deployment for this domain.
 
-1. **Bluehost (production)** — the real destination. `npm run build`
-   produces `/out`, which is uploaded as-is to Bluehost's `public_html/`.
-   Deployed at the domain root, no path prefix.
-2. **GitHub Pages (review only)** — a staging copy for reviewing changes
-   at a real URL before they go anywhere near production, deployed
-   automatically by GitHub Actions on every push to `main`. Served under
-   `/eopa-collective/` (a GitHub Pages project-site path), which the build
-   accounts for via an environment-gated `basePath` — see
-   [`next.config.ts`](next.config.ts) and
-   [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
-
-**GitHub Pages is not production.** It exists solely so reviewers can see
-a change rendered at a URL instead of reading a diff. Full details,
-including how to trigger a deployment and the Bluehost upload steps, are
-in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+Full details — DNS, HTTPS, the CNAME file, and a real incident write-up
+about why the build must stay root-relative (no `basePath`) — are in
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 
 ## Repository / access
 
@@ -91,5 +82,5 @@ strategy, and access policy.
 | [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | Build phases and status |
 | [`docs/QA.md`](docs/QA.md) | QA checklist and verification log |
 | [`docs/LEGAL_RISK_REGISTER.md`](docs/LEGAL_RISK_REGISTER.md) | Privacy/legal risk log — not legal advice |
-| [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Bluehost + GitHub Pages deployment steps |
+| [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | GitHub Pages production deployment, DNS, HTTPS |
 | [`docs/GITHUB.md`](docs/GITHUB.md) | Repository ownership and access policy |

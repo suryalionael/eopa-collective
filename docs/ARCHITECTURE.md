@@ -6,10 +6,17 @@ implementation. See `docs/DEPLOYMENT.md` for how it ships to production.
 ## Summary
 
 The site is a **Next.js 16 (App Router) static export**, deployed as plain
-HTML/CSS/JS to Bluehost shared hosting. There is no server, no database, no
-CMS, and no API. This was a deliberate scope decision (see the master
-implementation instructions and `docs/LEGAL_RISK_REGISTER.md`), not a
-limitation worked around.
+HTML/CSS/JS via GitHub Actions to GitHub Pages, which serves the custom
+production domain `https://eoperformancecollective.ca/` (DNS at GoDaddy).
+There is no server, no database, no CMS, and no API. This was a deliberate
+scope decision (see the master implementation instructions and
+`docs/LEGAL_RISK_REGISTER.md`), not a limitation worked around.
+
+This was previously documented as a Bluehost deployment — that was wrong
+for this domain and caused a real production outage when a GitHub-Pages
+subpath build was deployed to it; see `docs/DEPLOYMENT.md`'s incident
+section for the full account before changing `next.config.ts` or the
+deploy workflow.
 
 ## Stack
 
@@ -56,7 +63,13 @@ components/             — shared UI: Header, Footer, small presentational
 lib/site.ts             — shared constants (nav links, contact placeholders)
 public/                 — static files copied as-is into /out
   images/               — pre-processed photography + logo
-  .htaccess             — Bluehost/Apache config, copied into /out
+  CNAME                 — GitHub Pages custom-domain file (eoperformancecollective.ca)
+  .nojekyll             — disables GitHub Pages' default Jekyll processing,
+                          which would otherwise silently drop the /_next/
+                          folder (leading underscore)
+  .htaccess             — Apache config; harmless leftover from when this
+                          was believed to be Bluehost-hosted, ignored by
+                          GitHub Pages (not Apache) — see docs/DEPLOYMENT.md
 docs/                   — this documentation
 Content/, Pictures/, Logo/, Website Design/
                         — original source material, tracked for provenance,
@@ -69,9 +82,14 @@ Content/, Pictures/, Logo/, Website Design/
 - **Build:** `npm run build` — must succeed and produce `/out` with all
   routes as static HTML.
 - **Typecheck:** `npm run typecheck` (`tsc --noEmit`).
-- **Lint:** `npm run lint` (`next lint`, flat ESLint config in
-  `eslint.config.mjs`, excluding the `Website Design/`, `Content/`,
-  `Pictures/`, `Logo/` source directories which are not application code).
+- **Lint:** `npm run lint` (`eslint .`, flat config in `eslint.config.mjs`,
+  excluding the `Website Design/`, `Content/`, `Pictures/`, `Logo/` source
+  directories which are not application code). Runs `eslint` directly
+  rather than through `next lint` — the latter failed deterministically in
+  GitHub Actions' Linux runners with an argument-parsing bug
+  (`Invalid project directory provided, no such directory: .../lint`,
+  matching reports against other Next.js 16 projects), even though it
+  worked locally on macOS. Both invocations use the same config and rules.
 - **Visual/interaction QA:** no automated test framework is included (a
   content site with no interactive logic beyond a mobile-nav toggle didn't
   justify one — see the "don't over-engineer" instruction). Visual and
@@ -81,10 +99,12 @@ Content/, Pictures/, Logo/, Website Design/
 
 ## Deployment
 
-Bluehost shared hosting, static files only. Full steps in
-`docs/DEPLOYMENT.md`. No CI/CD is configured — building and uploading is a
-manual step today; automating it was out of scope (would add a dependency —
-a CI provider — the project doesn't yet need).
+GitHub Actions (`.github/workflows/deploy-pages.yml`) builds and deploys
+automatically on every push to `main`, publishing to GitHub Pages, which
+serves the custom production domain `https://eoperformancecollective.ca/`
+(DNS at GoDaddy). No manual build-and-upload step exists or is needed.
+Full details, including DNS/HTTPS/CNAME specifics and a real incident
+write-up, are in `docs/DEPLOYMENT.md`.
 
 ## Environment / configuration
 
