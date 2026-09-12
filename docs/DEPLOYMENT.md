@@ -62,11 +62,35 @@ There is no CMS and no server — publishing a content or design change means:
 
 ## 5. Domain / HTTPS
 
-Bluehost's own domain and SSL configuration (cPanel / AutoSSL) is unrelated to
-this codebase and out of scope here — configure it through Bluehost's hosting
-panel. `lib/site.ts`'s `siteConfig.url` should be updated to match the real
-production domain once one is confirmed (it currently holds a placeholder
-value used only for sitemap/metadata generation — see the code comment there).
+The confirmed production domain is `https://eoperformancecollective.ca`
+(live, pointed at Bluehost) — set as `siteConfig.url` in `lib/site.ts` for
+metadataBase/OpenGraph/sitemap generation. Bluehost's own domain and SSL
+configuration (cPanel / AutoSSL) is unrelated to this codebase and out of
+scope here — configure it through Bluehost's hosting panel.
+
+Note this domain does **not** match the placeholder contact-email domain
+(`eopacollective.ca`, no "performance") used elsewhere in the source
+content — see `docs/CONTENT.md`'s email-inconsistency note. That mismatch
+comes from the client's own supplied material, not from this codebase;
+don't silently "fix" it by changing one to match the other.
+
+### A real incident this section exists because of
+
+A build made with the GitHub Pages review flag (`GITHUB_PAGES=true` — see
+§6) was, at some point, uploaded to this production domain instead of a
+normal build. Every asset on a `GITHUB_PAGES=true` build is prefixed with
+`/eopa-collective/`, which doesn't exist at the domain root, so every
+CSS/JS/image/font request 404'd — the page still rendered (semantic HTML
+degrades gracefully) but with zero styling, images, or working navigation
+assets. **Never upload a build made with `GITHUB_PAGES=true` to
+Bluehost.** The production upload in §1–2 above must always be a plain
+`npm run build` with no `GITHUB_PAGES` environment variable set — confirm
+this by checking that `out/index.html` contains no `/eopa-collective`
+strings before uploading:
+
+```bash
+grep -c '/eopa-collective' out/index.html   # must print 0
+```
 
 ## 6. GitHub Pages Review Deployment
 
