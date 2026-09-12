@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { primaryNav } from "@/lib/site";
-import { basePath } from "@/lib/basePath";
 import styles from "./Header.module.css";
 
 function isActive(pathname: string, href: string) {
@@ -22,7 +21,7 @@ export default function Header() {
       <div className={styles.bar}>
         <Link href="/" className={styles.brand}>
           <Image
-            src={`${basePath}/images/eopa-logo.png`}
+            src="/images/eopa-logo.png"
             alt="Eastern Ontario Performance Artists Collective logo — four artist silhouettes in a green ring"
             width={40}
             height={40}

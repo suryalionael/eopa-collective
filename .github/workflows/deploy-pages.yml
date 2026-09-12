@@ -1,12 +1,21 @@
-# Review / staging deployment only — see docs/DEPLOYMENT.md.
+# Production deployment — see docs/DEPLOYMENT.md.
 #
 # This publishes the Next.js static export (`next build` with
-# output: "export") to GitHub Pages so changes can be reviewed at a real
-# URL before they go anywhere near the actual production host. It is not,
-# and does not replace, the Bluehost production deployment described in
-# docs/DEPLOYMENT.md — that remains a manual `npm run build` + upload of
-# /out to public_html/, with no GitHub Pages basePath involved.
-name: Deploy review site to GitHub Pages
+# output: "export") to GitHub Pages, which serves the custom domain
+# https://eoperformancecollective.ca/ (DNS at GoDaddy, pointed at GitHub
+# Pages). This workflow IS the production deployment pipeline — there is
+# no separate Bluehost deployment for this domain.
+#
+# The build must stay a plain root-relative static export (no basePath).
+# GitHub Pages serves a *project* site at the domain root once a custom
+# domain is attached — confirmed by inspecting the live response, which
+# 301-redirects the default https://<user>.github.io/eopa-collective/ URL
+# to the custom domain root. A basePath-prefixed build previously caused a
+# full production outage (every CSS/JS/image/font request 404'd) — do not
+# reintroduce a basePath/GITHUB_PAGES build flag here without re-verifying
+# against the live GitHub Pages configuration (`gh api repos/<owner>/<repo>/pages`)
+# that a custom domain isn't attached.
+name: Deploy to GitHub Pages (production)
 
 on:
   push:
@@ -18,7 +27,7 @@ permissions:
   pages: write
   id-token: write
 
-# Only one review deployment in flight at a time.
+# Only one deployment in flight at a time.
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -45,13 +54,16 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build static export for GitHub Pages
+      - name: Build static export
         run: npm run build
-        env:
-          # Enables the /eopa-collective basePath in next.config.ts —
-          # see that file's comments. Never set for the real production
-          # build (Bluehost is deployed at the domain root).
-          GITHUB_PAGES: "true"
+
+      - name: Fail if a stray GitHub Pages subpath leaked into the build
+        run: |
+          if grep -RIl "/eopa-collective/_next\|/eopa-collective/images" out/ ; then
+            echo "::error::Found /eopa-collective/-prefixed asset paths in the build output. This build is NOT safe to deploy to the custom domain (it will 404 every asset, as it did in the incident documented in docs/DEPLOYMENT.md). Check next.config.ts for a reintroduced basePath." >&2
+            exit 1
+          fi
+          echo "OK: no stray /eopa-collective/ asset prefix in the build output."
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
