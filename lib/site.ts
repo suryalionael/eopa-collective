@@ -7,9 +7,13 @@ export const siteConfig = {
   shortName: "EOPA",
   description:
     "Growing a learning network for the performing arts across Eastern Ontario.",
-  // Production URL is unconfirmed (no domain has been supplied) — used only
-  // for metadataBase / sitemap generation, not presented to visitors as fact.
-  url: "https://www.eopacollective.ca",
+  // Confirmed real domain (currently live, pointed at Bluehost) — used for
+  // metadataBase / OpenGraph / sitemap generation. Note it does not match
+  // the placeholder contact-email domain (eopacollective.ca) used
+  // elsewhere in the source content — see docs/CONTENT.md's email
+  // inconsistency note. That is a real discrepancy in the client's own
+  // material, not a typo introduced here; do not silently unify them.
+  url: "https://eoperformancecollective.ca",
 };
 
 export const primaryNav = [
