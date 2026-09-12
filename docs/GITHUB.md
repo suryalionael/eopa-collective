@@ -6,8 +6,18 @@
 - **Owner:** the project owner's own personal GitHub account. The
   repository is not owned by an organization, a team, or any
   AI/automation account.
-- **Visibility:** private.
+- **Visibility:** public (changed from private — GitHub Pages requires a
+  public repository on this account's plan; no secrets or credentials
+  exist in the repository, verified before the change).
 - **Default branch:** `main`.
+- **Production:** this repository's GitHub Pages deployment, serving the
+  custom domain `https://eoperformancecollective.ca/`. See
+  `docs/DEPLOYMENT.md` for the full, currently-accurate deployment story
+  — that document was wrong about this once already (it described a
+  Bluehost production target that turned out not to exist for this
+  domain) and caused a real outage; if anything here looks stale, verify
+  against `gh api repos/suryalionael/eopa-collective/pages` before acting
+  on it.
 
 ## Ownership / access policy — read this before adding anyone
 
@@ -39,15 +49,19 @@ git push origin main
         ↓
 GitHub Actions (.github/workflows/deploy-pages.yml)
         ↓
-typecheck → lint → next build (static export, GITHUB_PAGES=true)
+typecheck → lint → next build (static export, root-relative, no basePath)
         ↓
-GitHub Pages (review only)
+GitHub Pages → custom domain https://eoperformancecollective.ca/
 ```
 
-This is entirely separate from the real production deployment, which is a
-manual `next build` + upload of `/out` to Bluehost `public_html/` — see
-`docs/DEPLOYMENT.md` for both flows in full, and why the GitHub Pages
-build uses a different `basePath` than production.
+This **is** the production deployment — there is no separate Bluehost
+target for this domain. See `docs/DEPLOYMENT.md` for the full flow,
+including an incident write-up: a build made with a since-removed
+`basePath` flag was deployed here after a custom domain had already been
+attached, breaking every CSS/JS/image/font request on production. Do not
+reintroduce a basePath/subpath build for this repository without first
+confirming (`gh api repos/suryalionael/eopa-collective/pages`) that the
+custom domain is no longer attached.
 
 ## Security notes
 

@@ -1,190 +1,161 @@
-# DEPLOYMENT.md — Bluehost (Production) + GitHub Pages (Review)
+# DEPLOYMENT.md — GitHub Pages (Production)
 
-The site is a Next.js static export. `next build` produces a plain `/out` directory of
-HTML, CSS, JS, and image files — no Node.js server, no Next.js runtime, and no
-Vercel-specific feature is required to serve it. See `docs/ARCHITECTURE.md`.
+**This document was previously wrong and caused a real production
+incident — read the incident note in §4 before changing anything here.**
 
-There are two deployment targets built from this same export, described below:
-**Bluehost** (§1–5, the real production destination) and **GitHub Pages** (§6,
-a review/staging copy only — see that section for why it needs a different
-build flag and is never to be treated as production).
+The site is a Next.js static export. `next build` produces a plain `/out`
+directory of HTML, CSS, JS, and image files — no Node.js server, no
+Next.js runtime, no Vercel-specific feature. See `docs/ARCHITECTURE.md`.
 
-## 1. Build
+**Production is GitHub Pages, serving a custom domain:**
+
+```text
+Next.js source
+      ↓
+git push to main
+      ↓
+GitHub Actions (.github/workflows/deploy-pages.yml)
+      ↓
+npm ci → typecheck → lint → next build → out/
+      ↓
+GitHub Pages
+      ↓
+https://eoperformancecollective.ca/  (custom domain, DNS at GoDaddy)
+```
+
+There is no separate Bluehost deployment for this domain. An earlier
+version of this document described a Bluehost + "GitHub-Pages-for-review"
+split; that was true right up until a custom domain was attached to this
+repository's GitHub Pages site, which is when it stopped being true and
+this document should have been updated but wasn't. See §4.
+
+## 1. How a deployment happens
+
+Every push to `main` triggers the workflow automatically. To trigger one
+without a new commit: repository → **Actions** tab → "Deploy to GitHub
+Pages (production)" → **Run workflow**.
+
+The workflow: checks out the repo, installs dependencies (`npm ci`),
+type-checks, lints, runs `next build`, **fails the build if any
+`/eopa-collective`-prefixed asset path is found anywhere in the output**
+(a guard added after the incident in §4 — see the workflow file), then
+publishes `/out` via GitHub's own Pages deployment mechanism
+(`actions/deploy-pages`) — no third-party host, no Vercel, no Netlify, no
+Cloudflare involved anywhere in this pipeline.
+
+## 2. Local build (for verification before pushing)
 
 ```bash
 npm install
 npm run build
+npx serve out   # throwaway local static server, not part of the deployed site
 ```
 
-This produces `/out` at the project root. Verify it locally before uploading:
+Before trusting a build, search the **entire** output, not just
+`index.html`:
 
 ```bash
-npx serve out
+grep -RIl "/eopa-collective/" out/   # must print nothing
 ```
 
-(`npx serve` is a throwaway static file server for local verification only — it is
-not part of the deployed site and is not installed as a project dependency.)
+## 3. Custom domain / DNS / HTTPS
 
-## 2. Upload to Bluehost
+- **Domain:** `eoperformancecollective.ca`, registered/managed at GoDaddy.
+- **DNS:** the apex domain's `A` records point at GitHub Pages' four
+  anycast IPs (`185.199.108.153`, `.109.153`, `.110.153`, `.111.153`);
+  `www` is a `CNAME` to `suryalionael.github.io`. This is standard GitHub
+  Pages custom-domain DNS — configured at GoDaddy, not in this repo.
+- **GitHub-side config:** the repository's Pages settings have
+  `cname: eoperformancecollective.ca` set (confirmed via
+  `gh api repos/suryalionael/eopa-collective/pages`). `public/CNAME`
+  (containing the domain, copied into every build's `/out`) exists
+  alongside this as GitHub's recommended safeguard so the custom domain
+  survives across Actions-based deployments.
+- **HTTPS:** a certificate is issued and approved by GitHub for both
+  `eoperformancecollective.ca` and `www.eoperformancecollective.ca`.
+  HTTPS enforcement is **on** (`https_enforced: true` — enabled via
+  `gh api repos/suryalionael/eopa-collective/pages -X PUT -F https_enforced=true`
+  after finding it was off by default; verified `http://` now 301s to
+  `https://`).
+- **`siteConfig.url`** in `lib/site.ts` is set to
+  `https://eoperformancecollective.ca` — this feeds `metadataBase`,
+  OpenGraph tags, `sitemap.xml`, and `robots.txt`.
+- Note this domain does **not** match the placeholder contact-email
+  domain (`eopacollective.ca`, no "performance") used elsewhere in the
+  source content — see `docs/CONTENT.md`'s email-inconsistency note.
+  That mismatch comes from the client's own supplied material, not from
+  this codebase or its deployment; don't silently "fix" it by changing
+  one to match the other.
 
-Upload the **contents** of `/out` (not the `out` folder itself) to `public_html/` via
-Bluehost's File Manager or an SFTP client, so that `index.html` sits directly at
-`public_html/index.html`.
+## 4. The incident this document exists to prevent a repeat of
 
-Included in `/out` and required for correct behavior:
-- `.htaccess` — sets the 404 error document, security headers, and cache
-  expiry for static assets (see `public/.htaccess`, which is the source of this
-  file — it is copied into `/out` automatically by `next build`). Bluehost's
-  Apache stack respects `.htaccess` by default; confirm `mod_headers` and
-  `mod_expires` are enabled if the security headers or cache rules don't seem
-  to apply (they're optional hardening, not required for the site to function).
-- `_next/` — Next.js's built JS/CSS chunks. Do not rename or reorganize this
-  folder; the HTML files reference it by this exact path.
-- `images/` — the site's photography and logo.
-- `404.html` — served for unmatched routes via the `.htaccess` `ErrorDocument`
-  rule.
+Two things went wrong in sequence, both from the same wrong assumption
+(that this domain was hosted on Bluehost, not GitHub Pages):
 
-## 3. Trailing slashes
+1. A build made with a `GITHUB_PAGES=true` flag (which set
+   `basePath: "/eopa-collective"`, intended for viewing the site at
+   `https://suryalionael.github.io/eopa-collective/`) was deployed to
+   this repository's GitHub Pages site *after* a custom domain had
+   already been attached to it. Once a custom domain is attached, GitHub
+   Pages serves the site at the **domain root** and 301-redirects the
+   default project URL to it (both verified directly against the live
+   site) — so a basePath-prefixed build is never correct for this
+   repository, full stop. Every CSS/JS/font/image request 404'd on the
+   custom domain; the page still rendered (semantic HTML degrades
+   gracefully) but completely unstyled, imageless, and without working
+   navigation JS.
+2. This document, at the time, told the reader to fix the equivalent
+   problem by re-uploading a plain build "to Bluehost" — Bluehost was
+   never actually involved. That instruction was based on stale project
+   documentation that hadn't been re-verified against how this specific
+   domain was actually being served, and it sent whoever read it down
+   the wrong path entirely.
 
-The site is built with `trailingSlash: true` (see `next.config.ts`), so every
-route exists as a directory with its own `index.html` (e.g. `/about/index.html`),
-and internal links point to `/about/` rather than `/about`. This is the
-simplest, most reliable pattern for Apache shared hosting — no rewrite rules
-are needed for routing to work.
+**The fix:** `next.config.ts` no longer has any basePath/`GITHUB_PAGES`
+conditional — the build is unconditionally root-relative, which is the
+only correct output now that a custom domain is attached. `lib/basePath.ts`
+was deleted; `components/Header.tsx`/`components/Media.tsx` reverted to
+plain `/images/...` paths. The workflow (`.github/workflows/deploy-pages.yml`)
+no longer sets `GITHUB_PAGES=true` and now fails the build outright if a
+stray `/eopa-collective/` path is ever found in the output again.
 
-## 4. Updating the live site
+**Before ever reintroducing a basePath, subpath, or multi-target build
+strategy for this repository:** re-run
+`gh api repos/suryalionael/eopa-collective/pages` and confirm whether
+`cname` is still set. If it is, a basePath build is wrong, full stop —
+this is not a judgment call, it's what the live configuration and the
+live HTTP response (a 301 from the project URL to the custom domain root)
+both directly show.
 
-There is no CMS and no server — publishing a content or design change means:
-1. Edit the source (page content, `docs/CONTENT.md`-traceable copy, or
-   `docs/DESIGN.md`-traceable styling).
-2. `npm run build` again.
-3. Re-upload the new `/out` contents, overwriting the old ones.
+## 5. Verifying a deployment actually worked
 
-## 5. Domain / HTTPS
-
-The confirmed production domain is `https://eoperformancecollective.ca`
-(live, pointed at Bluehost) — set as `siteConfig.url` in `lib/site.ts` for
-metadataBase/OpenGraph/sitemap generation. Bluehost's own domain and SSL
-configuration (cPanel / AutoSSL) is unrelated to this codebase and out of
-scope here — configure it through Bluehost's hosting panel.
-
-Note this domain does **not** match the placeholder contact-email domain
-(`eopacollective.ca`, no "performance") used elsewhere in the source
-content — see `docs/CONTENT.md`'s email-inconsistency note. That mismatch
-comes from the client's own supplied material, not from this codebase;
-don't silently "fix" it by changing one to match the other.
-
-### A real incident this section exists because of
-
-A build made with the GitHub Pages review flag (`GITHUB_PAGES=true` — see
-§6) was, at some point, uploaded to this production domain instead of a
-normal build. Every asset on a `GITHUB_PAGES=true` build is prefixed with
-`/eopa-collective/`, which doesn't exist at the domain root, so every
-CSS/JS/image/font request 404'd — the page still rendered (semantic HTML
-degrades gracefully) but with zero styling, images, or working navigation
-assets. **Never upload a build made with `GITHUB_PAGES=true` to
-Bluehost.** The production upload in §1–2 above must always be a plain
-`npm run build` with no `GITHUB_PAGES` environment variable set — confirm
-this by checking that `out/index.html` contains no `/eopa-collective`
-strings before uploading:
+Green Actions runs are necessary but not sufficient — verify the live
+site directly:
 
 ```bash
-grep -c '/eopa-collective' out/index.html   # must print 0
+curl -sI https://eoperformancecollective.ca/          # expect HTTP/2 200
+curl -sL https://eoperformancecollective.ca/ | grep -o 'href="/_next/static/chunks/[a-zA-Z0-9_.-]*\.css"'
+# then curl -I that exact path and confirm it 200s too — don't just check index.html
 ```
 
-## 6. GitHub Pages Review Deployment
+`gh api repos/suryalionael/eopa-collective/pages --jq .html_url` gives the
+live URL directly rather than assuming it.
 
-**This is a review/staging deployment only — it is not production, and its
-URL should never be given out as "the EOPA website."** It exists so a
-pushed change can be looked at, on a real URL, before it goes anywhere
-near Bluehost.
+## 6. Updating the live site
 
-### How it works
-
-- **Repository:** `eopa-collective`, owned by the project owner's own
-  GitHub account. See `docs/GITHUB.md` for ownership/access policy.
-- **Workflow:** `.github/workflows/deploy-pages.yml`. On every push to
-  `main` (or a manual run via the Actions tab's "Run workflow" button), it
-  installs dependencies, typechecks, lints, runs `next build` with
-  `GITHUB_PAGES=true`, and publishes the resulting `/out` to GitHub Pages
-  using GitHub's own Pages deployment mechanism (`actions/deploy-pages`) —
-  no third-party host, no Vercel, no Netlify, no Cloudflare.
-- **URL format:** GitHub Pages project sites are served at
-  `https://<username>.github.io/eopa-collective/`, not at the domain root.
-  Confirm the exact URL from the repository's Settings → Pages screen or
-  via `gh api repos/<owner>/eopa-collective/pages --jq .html_url` — never
-  guess it.
-
-### Why the build is different for GitHub Pages
-
-Because GitHub Pages serves this repo under a `/eopa-collective/` subpath
-rather than the domain root, every internal link and every local image
-needs that prefix — but Bluehost is deployed at the domain root and must
-**never** have it. Rather than hardcoding the prefix into the app (which
-would silently break Bluehost), it's applied only when the workflow sets
-`GITHUB_PAGES=true`:
-
-- `next.config.ts` sets `basePath` to `/eopa-collective` only in that case,
-  and forwards the same value as `NEXT_PUBLIC_BASE_PATH` so it's available
-  in application code too.
-- `next/link` and Next's own file-convention metadata (`app/icon.png`,
-  `app/apple-icon.png`) pick up `basePath` automatically.
-- `next/image` does **not** automatically prefix a plain `src="/images/…"`
-  string when `images.unoptimized: true` (confirmed by inspecting the
-  built HTML — the logo's `<img src>` was left unprefixed while every
-  other asset was correctly prefixed). `lib/basePath.ts` exports the same
-  value for `components/Header.tsx` and `components/Media.tsx` to prepend
-  manually.
-- A local (unset `GITHUB_PAGES`) build is byte-for-byte the same
-  root-relative build Bluehost has always received — verified by diffing
-  a normal build's output against this behavior before this workflow was
-  added.
-
-### `.nojekyll`
-
-GitHub Pages runs Jekyll by default, which ignores any file or folder
-starting with an underscore — including Next's own `_next/` asset folder,
-which holds every JS/CSS chunk the site needs. `public/.nojekyll` (an
-empty file, copied into `/out` by `next build` like everything else in
-`public/`) disables Jekyll processing so `_next/` is served intact. Do not
-remove this file.
-
-### Triggering a new review deployment
-
-Push to `main`, or open the repository's **Actions** tab → "Deploy review
-site to GitHub Pages" → **Run workflow** for a manual run without a new
-commit.
-
-### Inspecting a deployment
-
-Repository → **Actions** tab lists every run, its logs, and pass/fail
-status for each step (typecheck, lint, build, deploy). Failed steps show
-their exact output there — the workflow does not swallow errors.
-
-### Disabling / removing the review deployment
-
-To stop future automatic deployments without deleting anything: disable
-or delete `.github/workflows/deploy-pages.yml`, or turn Pages off entirely
-under the repository's Settings → Pages → "Build and deployment" → set
-Source to "None". The Bluehost production deployment is entirely
-unaffected either way — it does not depend on this workflow, this
-repository being on GitHub, or GitHub Pages being enabled.
-
-### GitHub Pages vs. Bluehost — do not confuse the two
-
-| | GitHub Pages | Bluehost |
-|---|---|---|
-| Purpose | Review/staging only | Production |
-| URL | `https://<username>.github.io/eopa-collective/` | The real domain, root path |
-| Triggered by | Push to `main` (automatic) | Manual build + upload |
-| `basePath` | `/eopa-collective` | none (root) |
-| Who should see the link | Reviewers only | The public |
+There is no CMS and no server:
+1. Edit the source (page content traceable to `docs/CONTENT.md`, styling
+   traceable to `docs/DESIGN.md`).
+2. Commit and push to `main`.
+3. GitHub Actions builds and deploys automatically — no manual upload
+   step exists or is needed.
 
 ## What this deployment does not include
 
-No database, no server-rendered pages, no API routes, no image-optimization
-service, no analytics, no cookies. See `docs/LEGAL_RISK_REGISTER.md` for the
-full account of what the site does and doesn't do with visitor data. GitHub
-Pages, as configured here, does not change any of this — the Actions workflow
-only builds and publishes static files; it introduces no tracking, no cookies,
-and no new third-party data flow.
+No database, no server-rendered pages, no API routes, no
+image-optimization service, no analytics, no cookies. See
+`docs/LEGAL_RISK_REGISTER.md` for the full account of what the site does
+and doesn't do with visitor data. Nothing about the GitHub Pages
+deployment changes this — the workflow only builds and publishes static
+files; it introduces no tracking, no cookies, and no new third-party data
+flow.
