@@ -41,7 +41,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "48px 0 96px" }}>
+      <section className="container hairline-top" style={{ padding: "48px 0 56px" }}>
         <div className="contact-grid" style={{ maxWidth: 820 }}>
           <InfoRow label="Email — Nel Coloma-Moya, Founder">{contact.email}</InfoRow>
         </div>
