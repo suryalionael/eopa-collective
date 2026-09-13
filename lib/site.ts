@@ -17,13 +17,23 @@ export const siteConfig = {
   url: "https://eoperformancecollective.ca",
 };
 
+// "Events Calendar" is shortened to "Events" here (the page's own <h1>
+// still reads "Events Calendar" in full) — at this label's original
+// length, the nav link wrapped to two lines at common desktop widths
+// while its siblings stayed single-line, a real layout bug caught in the
+// 2026-09 visual audit (see .navLink's white-space: nowrap in
+// Header.module.css, added the same audit). "Artists" was added directly
+// to primary nav, not just the footer, per repeated explicit direction
+// that the Artist Directory must not be a buried feature — this is the
+// single highest-leverage placement (visible from every page, one click).
 export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/about/", label: "About" },
+  { href: "/directory/", label: "Artists" },
   { href: "/membership/", label: "Membership" },
   { href: "/team/", label: "Team" },
   { href: "/contact/", label: "Contact" },
-  { href: "/events/", label: "Events Calendar" },
+  { href: "/events/", label: "Events" },
 ] as const;
 
 export const footerNav = [

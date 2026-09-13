@@ -87,6 +87,11 @@ export default function MembershipPage() {
           Two ways to join, plus pay-as-you-go options for workshops and idea development
           — no membership required for those.
         </p>
+        <p style={{ fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-700)", maxWidth: 560, marginTop: "var(--space-5)" }}>
+          However you join, you&rsquo;re joining a working regional network, not signing up
+          for a service — membership is what puts you in the directory, on the mailing
+          list, and in the room at our AGM.
+        </p>
       </section>
 
       <section className="container hairline-top" style={{ paddingTop: 40, paddingBottom: 8, maxWidth: 780 }}>
@@ -140,13 +145,13 @@ export default function MembershipPage() {
         <MembershipCheckout />
       </section>
 
-      <section className="container" style={{ padding: "8px 0 96px" }}>
-        <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}>
-          <Link href="/how-to-join/" className="button button--ghost">
-            How to Join &amp; Pay
+      <section className="container hairline-top" style={{ padding: "24px 0 64px" }}>
+        <div style={{ display: "flex", gap: "var(--space-6)", flexWrap: "wrap" }}>
+          <Link href="/how-to-join/" className="arrow-link">
+            How to Join &amp; Pay <span className="arrow-link__arrow" aria-hidden="true">→</span>
           </Link>
-          <Link href="/get-involved/" className="button button--ghost">
-            Get Involved
+          <Link href="/get-involved/" className="arrow-link">
+            Get Involved <span className="arrow-link__arrow" aria-hidden="true">→</span>
           </Link>
         </div>
       </section>
