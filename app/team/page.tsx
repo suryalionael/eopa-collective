@@ -19,7 +19,7 @@ export default function TeamPage() {
         <h1 style={{ margin: "var(--space-3) 0 var(--space-6)" }}>Team</h1>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "56px 0 96px" }}>
+      <section className="container hairline-top" style={{ padding: "56px 0 64px" }}>
         <h2 style={{ fontSize: 34, marginBottom: 8 }}>Nel Coloma-Moya</h2>
         <p
           style={{

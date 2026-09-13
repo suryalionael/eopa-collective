@@ -47,7 +47,7 @@ export default function HowToJoinPage() {
         <h1 style={{ fontSize: 44, margin: "var(--space-3) 0 var(--space-6)" }}>How to Join &amp; Pay</h1>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "56px 0 112px" }}>
+      <section className="container hairline-top" style={{ padding: "56px 0 64px" }}>
         <div style={{ position: "relative", maxWidth: 820, paddingLeft: 56 }}>
           <div
             aria-hidden="true"
