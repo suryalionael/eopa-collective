@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Kicker } from "@/components/ui";
+import { MembershipCheckout } from "@/components/MembershipCheckout";
 
 const directoryLinkStyle = { color: "var(--plum)", textDecoration: "underline" } as const;
 
@@ -135,10 +136,18 @@ export default function MembershipPage() {
         </PayAsYouGoRow>
       </section>
 
-      <section className="container" style={{ padding: "48px 0 96px" }}>
+      <section className="container hairline-top" style={{ paddingTop: 40, paddingBottom: 40, maxWidth: 780 }}>
+        <h2 style={{ fontSize: 20, marginBottom: 10 }}>Pay Online</h2>
+        <p style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)", margin: "0 0 20px", maxWidth: "var(--measure)" }}>
+          Choose what you&rsquo;re paying for and check out securely through Stripe.
+        </p>
+        <MembershipCheckout />
+      </section>
+
+      <section className="container" style={{ padding: "8px 0 96px" }}>
         <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}>
-          <Link href="/how-to-join/" className="button button--primary">
-            Become a Member
+          <Link href="/how-to-join/" className="button button--ghost">
+            How to Join &amp; Pay
           </Link>
           <Link href="/get-involved/" className="button button--ghost">
             Get Involved
