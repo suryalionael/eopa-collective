@@ -42,17 +42,35 @@
   line-height: 1.15;
 }
 
+/* Tightened from --space-7 (48px) to --space-6 (32px) when a 7th item
+   (Artists) was added, for margin against the nowrap fix above. The
+   breakpoint below was also raised from 861px in the same pass: with 7
+   nowrap items + the full org name in the brand mark + a CTA button,
+   the desktop nav (and then the CTA button) overflowed off the right
+   edge of the viewport at both 861px and 1000px (verified empirically
+   in the 2026-09 visual audit — .bar has no flex-wrap, so overflow
+   clips rather than wraps) instead of the old, uglier-but-safe
+   two-line wrap it replaced. 1120px was the first width confirmed
+   overflow-free; don't lower this without re-testing at the boundary
+   width with a real browser (window.innerWidth vs.
+   document.documentElement.scrollWidth), not just eyeballing a
+   screenshot. */
 .desktopNav {
   display: none;
   align-items: center;
-  gap: var(--space-7);
+  gap: var(--space-6);
 }
 
+/* white-space: nowrap fixes a real bug caught in the 2026-09 visual audit:
+   the longest nav label wrapped to two lines at common desktop widths
+   even with visible room to spare, breaking the single-line baseline
+   every other nav item kept. */
 .navLink {
   font-family: var(--font-body);
   font-size: 14.5px;
   color: var(--ink-700);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .navLink:hover {
@@ -118,7 +136,7 @@
   justify-content: center;
 }
 
-@media (min-width: 861px) {
+@media (min-width: 1120px) {
   .desktopNav {
     display: flex;
   }

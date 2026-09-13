@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Kicker } from "@/components/ui";
 import { PhotoFigure } from "@/components/Media";
 
@@ -49,7 +50,7 @@ export default function DirectoryPage() {
         </p>
       </section>
 
-      <section className="container hairline-top" style={{ padding: "8px 0 96px" }}>
+      <section className="container hairline-top" style={{ padding: "8px 0 56px" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {members.map((member, i, arr) => (
             <div
@@ -96,6 +97,13 @@ export default function DirectoryPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="container" style={{ padding: "0 0 96px" }}>
+        <Link href="/membership/" className="arrow-link">
+          Want your own profile here? See Basic Artist Membership{" "}
+          <span className="arrow-link__arrow" aria-hidden="true">→</span>
+        </Link>
       </section>
     </>
   );
