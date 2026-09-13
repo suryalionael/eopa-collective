@@ -61,7 +61,7 @@ export default function RefundsPage() {
         <div>
           <h2 style={{ fontSize: 22, marginBottom: "var(--space-3)" }}>How to request a refund</h2>
           <p>
-            Contact us at <a href={`mailto:${contact.paymentsEmail}`}>{contact.paymentsEmail}</a>{" "}
+            Contact us at <a href={`mailto:${contact.email}`}>{contact.email}</a>{" "}
             with your name and the date of payment. Approved refunds are returned to
             your original payment method through Stripe, and typically appear within
             5–10 business days, depending on your bank or card issuer.
