@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Kicker, PlaceholderNotice } from "@/components/ui";
+import Link from "next/link";
+import { Kicker, Notice } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Events Calendar",
-  description: "Sample listings — replace with real dates once scheduled.",
+  description: "Open Mic at the Delta Harvest Festival, and other upcoming EOPA events.",
 };
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
@@ -12,25 +13,27 @@ export const metadata: Metadata = {
 // design mockup invented — see the discrepancy flagged in docs/CONTENT.md.
 // Each row keeps a when/where meta column — justified here specifically
 // because it's real calendar data, not a decorative device borrowed from
-// elsewhere on the site (see docs/VISUAL_RECOMPOSITION.md). Bottom padding
-// is tightened so three sample listings don't trail into a disproportionate
-// empty area; no events are invented to fill space.
+// elsewhere on the site (see docs/VISUAL_RECOMPOSITION.md).
 //
-// The Open Mic entry is the Collective's first confirmed real event
-// (relayed directly by Nel, 2026-09). It is NOT marked SAMPLE — the event,
-// host, and format are confirmed — but the festival date/time/location
-// were not supplied, so those fields stay explicit placeholders rather
-// than an invented date, per CLAUDE.md's no-hallucination rule.
+// The Open Mic entry is confirmed real, sourced directly from
+// deltaharvestfestival.ca (date, time, venue — "Sunday, September 27, 2026,
+// 11:45 AM–12:45 PM, Old Town Hall"), per Nel's 2026-09 request. Host
+// attribution and open-slot info were separately confirmed by Nel in an
+// earlier message and are kept alongside the festival's own official
+// session description. The other 3 listings are still genuinely
+// unscheduled — their placeholders stay rather than being invented away,
+// per CLAUDE.md's no-hallucination rule.
 const events = [
   {
     title: "Open Mic at the Delta Harvest Festival",
-    when: "[Date placeholder — Delta Harvest Festival]",
-    time: "1 hour, immediately before the first performance",
-    where: "Delta Harvest Festival grounds",
-    placeholderLocation: true,
+    when: "Sunday, September 27, 2026",
+    time: "11:45 AM – 12:45 PM",
+    where: "Old Town Hall",
+    placeholderLocation: false,
     sample: false,
     description:
-      "Hosted by Pat Johnson. Two artists are already signed up, with two more spots open — get in touch if you'd like to perform.",
+      "The Open Mic Session welcomes local musicians to bring their instruments and warm up the audience before the main event performances begin. Hosted by Pat Johnson — two artists are already signed up, with two more spots open, so get in touch if you'd like to perform.",
+    externalLink: { href: "https://deltaharvestfestival.ca/", label: "Delta Harvest Festival" },
   },
   {
     title: "Spoken Word & Poetry Circle — Kickoff Session",
@@ -68,10 +71,11 @@ export default function EventsPage() {
       <section className="container" style={{ padding: "56px 0 40px" }}>
         <Kicker>What&rsquo;s on</Kicker>
         <h1 style={{ margin: "var(--space-3) 0 var(--space-6)" }}>Events Calendar</h1>
-        <div style={{ maxWidth: 480 }}>
-          <PlaceholderNotice>
-            Sample listings — replace with real dates once scheduled.
-          </PlaceholderNotice>
+        <div style={{ maxWidth: 520 }}>
+          <Notice tag="UPCOMING">
+            Open Mic at the Delta Harvest Festival is confirmed. The listings below it
+            are still placeholders — check back as real dates are scheduled.
+          </Notice>
         </div>
       </section>
 
@@ -124,9 +128,29 @@ export default function EventsPage() {
               <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
                 {event.description}
               </p>
+              {event.externalLink && (
+                <a
+                  href={event.externalLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: "inline-block", marginTop: 10, fontSize: 14, color: "var(--plum)", textDecoration: "underline" }}
+                >
+                  Learn more at {event.externalLink.label} ↗
+                </a>
+              )}
             </div>
           </div>
         ))}
+      </section>
+
+      <section className="container hairline-top" style={{ padding: "64px 0 96px" }}>
+        <h2 style={{ fontSize: 34, lineHeight: 1.2, marginBottom: 12 }}>Meet the Artists</h2>
+        <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-700)", margin: "0 0 24px", maxWidth: "var(--measure)" }}>
+          Discover artists from across Eastern Ontario.
+        </p>
+        <Link href="/directory/" className="button button--primary">
+          Visit our Artists Directory →
+        </Link>
       </section>
     </>
   );

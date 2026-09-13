@@ -3,8 +3,6 @@ import Link from "next/link";
 import { Kicker } from "@/components/ui";
 import { MembershipCheckout } from "@/components/MembershipCheckout";
 
-const directoryLinkStyle = { color: "var(--plum)", textDecoration: "underline" } as const;
-
 export const metadata: Metadata = {
   title: "Membership",
   description:
@@ -94,13 +92,8 @@ export default function MembershipPage() {
       <section className="container hairline-top" style={{ paddingTop: 40, paddingBottom: 8, maxWidth: 780 }}>
         <h2 style={{ fontSize: 20, marginBottom: "var(--space-3)" }}>Memberships</h2>
         <Tier title="Basic Artist Membership" price="$25" period="/year">
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <Feature>
-              A profile in our{" "}
-              <Link href="/directory/" style={directoryLinkStyle}>
-                regional artist directory
-              </Link>
-            </Feature>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 16 }}>
+            <Feature>A profile in our regional artist directory</Feature>
             <Feature>Network access to arts events across Eastern Ontario</Feature>
             <Feature>Early word on upcoming events, festivals, and workshops</Feature>
             <Feature>
@@ -108,6 +101,9 @@ export default function MembershipPage() {
               Collective&rsquo;s direction through focus groups and surveys
             </Feature>
           </div>
+          <Link href="/directory/" className="arrow-link">
+            Visit our Artists Directory <span className="arrow-link__arrow" aria-hidden="true">→</span>
+          </Link>
         </Tier>
 
         <Tier
