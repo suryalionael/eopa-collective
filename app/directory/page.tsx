@@ -1,38 +1,39 @@
 import type { Metadata } from "next";
-import { Kicker, PlaceholderNotice } from "@/components/ui";
+import { Kicker } from "@/components/ui";
+import { PhotoFigure } from "@/components/Media";
 
 export const metadata: Metadata = {
   title: "Artist Directory",
   description: "The regional artist directory — a Basic Artist Membership benefit.",
 };
 
-// Structure/placeholder pattern requested by Nel (2026-09): "we have 3
-// members already, our artists... can you add the directory with their
-// profile page." Real names, disciplines, and bios were not supplied, and
-// CLAUDE.md's non-negotiables forbid inventing people — so this page holds
-// the layout with the same explicit [Sample Name]/[Placeholder] convention
-// used on the Team page (docs/VISUAL_RECOMPOSITION.md: no empty
-// photo-placeholder boxes — a missing photo isn't a design element).
-//
-// Kept as one listing page rather than per-member routes for now — three
-// short placeholder bios don't justify dynamic routing, and this mirrors
-// how the Team page already handles multiple people on one page. Revisit
-// once real member bios are long/numerous enough to need their own URLs.
+// Real member profiles (Nel, 2026-09): the Collective's first 3 confirmed
+// members. Photo, bio, and link for each reused directly from the artists'
+// existing public profiles on deltaharvestfestival.ca, per Nel's direction
+// — same artists, same regional network, same organizers. Photos copied
+// into public/images/ and resized with sips, matching this repo's existing
+// asset pipeline (see docs/ASSETS.md).
 const members = [
   {
-    name: "[Sample Name]",
-    discipline: "[Discipline placeholder]",
-    bio: "[Placeholder] A short artist bio will go here once supplied.",
+    name: "Pat Johnson",
+    discipline: "Folk & Blues Musician",
+    photo: "/images/pat-johnson.jpg",
+    bio: "Solo acoustic performer with a guitar worn smooth at the second fret and a voice that sounds as if it has lived in this county for decades. Blends back-porch fingerpicking with a delta blues bend — Canadian folk in the old, oral tradition. Hosting the Collective's Open Mic at the Delta Harvest Festival.",
+    link: "https://patjohnson.ca/",
   },
   {
-    name: "[Sample Name]",
-    discipline: "[Discipline placeholder]",
-    bio: "[Placeholder] A short artist bio will go here once supplied.",
+    name: "Amanda Keeley",
+    discipline: "Singer-Songwriter, Indie Folk",
+    photo: "/images/amanda-keeley.jpg",
+    bio: "Writes the way this county keeps its stories — slowly, in the voice of someone who has listened more than she has spoken. Her sound merges acoustic folk with an unhurried R&B lean, drawing on Eastern Ontario and Maritime landscapes.",
+    link: "http://amandakeeley.ca/",
   },
   {
-    name: "[Sample Name]",
-    discipline: "[Discipline placeholder]",
-    bio: "[Placeholder] A short artist bio will go here once supplied.",
+    name: "Denzel & Jen",
+    discipline: "Line Dance Instructors",
+    photo: "/images/denzel-and-jen.jpg",
+    bio: "Interactive line-dance instructors who facilitate a guided session that is as much community ritual as country two-step, building from a slow grapevine to a full-floor cha-cha-cha.",
+    link: "https://www.tandemunifiedwellness.ca/",
   },
 ];
 
@@ -42,43 +43,56 @@ export default function DirectoryPage() {
       <section className="container" style={{ padding: "56px 0 40px" }}>
         <Kicker>Basic Artist Membership benefit</Kicker>
         <h1 style={{ margin: "var(--space-3) 0 var(--space-6)" }}>Artist Directory</h1>
-        <div style={{ maxWidth: 480 }}>
-          <PlaceholderNotice>
-            Placeholder profiles below — swap in real member names, disciplines, and
-            bios before this goes live.
-          </PlaceholderNotice>
-        </div>
+        <p style={{ fontSize: "var(--text-body-size)", lineHeight: "var(--text-body-line)", color: "var(--ink-700)", maxWidth: "var(--measure)" }}>
+          Meet the members of our regional artist directory — the network every Basic and
+          Digital Artist Membership includes a profile in.
+        </p>
       </section>
 
       <section className="container hairline-top" style={{ padding: "8px 0 96px" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           {members.map((member, i, arr) => (
             <div
-              key={i}
+              key={member.name}
+              className="profile-row"
               style={{
-                borderTop: "1px dashed var(--ink-300)",
-                borderBottom: i === arr.length - 1 ? "1px dashed var(--ink-300)" : undefined,
-                padding: "24px 0",
-                maxWidth: "var(--measure)",
+                borderTop: "1px solid var(--ink-100)",
+                borderBottom: i === arr.length - 1 ? "1px solid var(--ink-100)" : undefined,
+                padding: "32px 0",
               }}
             >
-              <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap", marginBottom: 6 }}>
-                <h2 style={{ margin: 0, fontSize: 20 }}>{member.name}</h2>
-                <span
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: 12,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "var(--grove)",
-                  }}
+              <PhotoFigure
+                src={member.photo}
+                alt={`Portrait of ${member.name}`}
+                ratio="1 / 1"
+              />
+              <div style={{ maxWidth: "var(--measure)" }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap", marginBottom: 6 }}>
+                  <h2 style={{ margin: 0, fontSize: 22 }}>{member.name}</h2>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 12,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "var(--grove)",
+                    }}
+                  >
+                    {member.discipline}
+                  </span>
+                </div>
+                <p style={{ margin: "0 0 12px", fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
+                  {member.bio}
+                </p>
+                <a
+                  href={member.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "var(--plum)", textDecoration: "underline", fontSize: 14 }}
                 >
-                  {member.discipline}
-                </span>
+                  {member.link.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                </a>
               </div>
-              <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
-                {member.bio}
-              </p>
             </div>
           ))}
         </div>
