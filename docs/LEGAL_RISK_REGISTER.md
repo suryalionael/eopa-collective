@@ -38,7 +38,7 @@ Per `docs/PROJECT.md`: EOPA is a currently **unincorporated association**. No bu
 - Never presents placeholder contact/business information as if it were confirmed.
 - Never invents a registration number, tax ID, or legal-entity detail not present in the source content.
 
-**`NEEDS VERIFICATION BEFORE PUBLICATION`:** phone, mailing address, and social handle are still placeholder and must be replaced with real, confirmed information before this site goes live — see `docs/CONTENT.md`. **Email is resolved (2026-09):** Nel confirmed the `info@`/`payments@eopacollective.ca` placeholders don't exist as real inboxes and supplied her own real address instead; `lib/site.ts`'s `contact.email` now carries that everywhere a contact/payments address appears sitewide.
+**Email is resolved (2026-09):** Nel confirmed the `info@`/`payments@eopacollective.ca` placeholders don't exist as real inboxes and supplied her own real address instead; `lib/site.ts`'s `contact.email` now carries that everywhere a contact/payments address appears sitewide. **Phone, mailing address, and social handle are resolved differently (2026-09):** rather than leaving them as placeholders pending real values, Nel asked for all samples/placeholders to be removed — these three fields were deleted from `app/contact/page.tsx` and `lib/site.ts`'s `contact` object entirely, since showing them without a `[placeholder]` label would present fake values as real. Add them back only once real values exist; don't restore the old placeholder strings.
 
 ## Copyright / image rights
 
