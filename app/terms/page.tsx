@@ -1,39 +1,69 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Eyebrow, Notice } from "@/components/ui";
+import { Eyebrow } from "@/components/ui";
 import { contact, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: "Terms for using this website.",
+  description: "Terms for membership, events, and using this website.",
 };
 
-// Covers actual site functionality only — no invented legal claims or
-// obligations. Items needing a real legal/organizational decision are
-// flagged rather than guessed. Not legal advice.
+const LAST_UPDATED = "September 13, 2026";
+
 export default function TermsPage() {
   return (
     <section className="container" style={{ padding: "56px 0 96px", maxWidth: 720 }}>
       <Eyebrow label="Legal" />
-      <h1 style={{ marginBottom: "var(--space-6)" }}>Terms &amp; Conditions</h1>
+      <h1 style={{ marginBottom: 6 }}>Terms &amp; Conditions</h1>
+      <p style={{ fontSize: 13, color: "var(--ink-500)", marginBottom: "var(--space-7)" }}>
+        Last updated: {LAST_UPDATED}
+      </p>
 
-      <div style={{ marginBottom: "var(--space-7)" }}>
-        <Notice tag="NOTE">
-          This is not legal advice and is not a certification of legal compliance. It
-          describes the website as built. Provisions marked below need review by EOPA
-          and, where appropriate, a legal advisor before publication.
-        </Notice>
-      </div>
+      <PolicySection title="Acceptance of these terms">
+        <p>
+          By using this website, applying for membership, or registering for a workshop
+          or Incubator session, you agree to these terms. If you don&rsquo;t agree,
+          please don&rsquo;t use this website or our services.
+        </p>
+      </PolicySection>
 
       <PolicySection title="Use of this website">
         <p>
           This website provides information about {siteConfig.name}: our mission,
-          membership options, events, and how to get involved. It is provided for
-          informational purposes. Content marked SAMPLE or [Placeholder] anywhere on
-          this site (see the <Link href="/team/">Team</Link>,{" "}
-          <Link href="/contact/">Contact</Link>, <Link href="/events/">Events Calendar</Link>,
-          and <Link href="/how-to-join/">How to Join &amp; Pay</Link> pages) is draft
-          content and does not represent confirmed information.
+          membership options, events, and how to get involved, and allows you to apply
+          for membership and pay for memberships, workshops, and Incubator sessions.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="Membership">
+        <p>
+          Membership runs on an annual basis from the date of purchase. Basic and
+          Digital Artist Memberships include a public profile in our{" "}
+          <Link href="/directory/">Artist Directory</Link> — you&rsquo;re responsible for
+          the accuracy of the information you submit for that profile. Digital Artist
+          Membership additionally includes a website of up to three pages, built for
+          you, and one profile update per year. Membership benefits, including AGM
+          voting participation, are personal to the member and not transferable.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="Fees and payment">
+        <p>
+          Current membership, workshop, and Incubator session fees are published on our{" "}
+          <Link href="/membership/">Membership</Link> page. All payments are processed
+          securely through Stripe. We may adjust pricing for future membership terms or
+          new sessions; a change in price never affects a membership or session you have
+          already paid for. See our <Link href="/refunds/">Refund Policy</Link> for
+          cancellation and refund terms.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="Code of conduct">
+        <p>
+          Members and workshop or event attendees are expected to treat other artists,
+          staff, and members of the public with respect. We reserve the right to refuse
+          or end a person&rsquo;s participation in a workshop, event, or membership where
+          their conduct is unsafe, harassing, or seriously disruptive to others.
         </p>
       </PolicySection>
 
@@ -41,57 +71,55 @@ export default function TermsPage() {
         <p>
           The {siteConfig.shortName} name, logo, and the text and photography on this
           site belong to {siteConfig.name} or are used with the rights the Collective
-          holds to them, except where a third party is credited. Do not reproduce the
-          logo in a modified form (recolored, flattened, or altered) — see{" "}
-          <em>docs/ASSETS.md</em>.
+          holds to them, except where a third party is credited. Please don&rsquo;t
+          reproduce the logo in a modified form (recolored, flattened, or altered).
         </p>
-        <Notice tag="NEEDS VERIFICATION">
-          Provenance and licensing for the photography supplied for this site has not
-          been formally documented (see <em>docs/LEGAL_RISK_REGISTER.md</em>). This
-          section should be revisited once that is confirmed.
-        </Notice>
-      </PolicySection>
-
-      <PolicySection title="Membership and payment information">
         <p>
-          Membership tiers, workshop fees, and Incubator session prices described on the{" "}
-          <Link href="/membership/">Membership</Link> and{" "}
-          <Link href="/how-to-join/">How to Join &amp; Pay</Link> pages are current as
-          published but may change; please confirm current pricing and terms directly
-          with the Collective before paying. This website does not process payments
-          itself.
+          When you submit information for your Artist Directory profile (including a
+          bio, photo, or links), you grant {siteConfig.shortName} permission to display
+          that content on this website for as long as your membership and profile
+          remain active.
         </p>
       </PolicySection>
 
-      <PolicySection title="No warranty">
+      <PolicySection title="Third-party links">
         <p>
-          This website is provided as-is, without warranty of any kind, express or
-          implied, regarding its accuracy, availability, or fitness for a particular
-          purpose.
+          This site links to independently operated third-party websites, including
+          individual members&rsquo; own websites and social media profiles listed in the{" "}
+          <Link href="/directory/">Artist Directory</Link>, and to Stripe&rsquo;s
+          checkout pages for payment. {siteConfig.shortName} is not responsible for the
+          content, availability, or privacy practices of those third-party sites.
         </p>
       </PolicySection>
 
-      <PolicySection title="Links and communications">
+      <PolicySection title="No warranty and limitation of liability">
         <p>
-          Buttons on this site that say things like &ldquo;Send Us a Message&rdquo; open
-          your own email application — they do not submit a form to this website. See
-          our <Link href="/privacy/">Privacy Policy</Link>.
+          This website and the information on it are provided &ldquo;as is,&rdquo;
+          without warranty of any kind, express or implied. To the fullest extent
+          permitted by law, {siteConfig.shortName} is not liable for any indirect,
+          incidental, or consequential loss arising from your use of this website or
+          participation in our events, workshops, or membership program.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="Governing law">
+        <p>
+          These terms are governed by the laws of the Province of Ontario and the
+          federal laws of Canada applicable in Ontario.
         </p>
       </PolicySection>
 
       <PolicySection title="Changes to these terms">
         <p>
-          These terms may be updated as the website or the Collective&rsquo;s
-          organizational status changes (see <Link href="/about/">About</Link> for our
-          current unincorporated-association status).
+          We may update these terms from time to time as the Collective or this website
+          changes. The date at the top of this page shows when it was last revised.
         </p>
       </PolicySection>
 
       <PolicySection title="Contact">
         <p>
           Questions about these terms can be sent to{" "}
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>{" "}
-          <span style={{ color: "var(--ink-500)", fontSize: 13 }}>[placeholder — see docs/CONTENT.md]</span>.
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>.
         </p>
       </PolicySection>
     </section>

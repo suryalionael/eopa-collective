@@ -1,102 +1,145 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Eyebrow, Notice } from "@/components/ui";
+import { Eyebrow } from "@/components/ui";
 import { contact, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "What this website does and does not collect, and why.",
+  description: "How the Eastern Ontario Performance Artists Collective handles your information.",
 };
 
-// This page describes the actual current implementation only — see
-// docs/LEGAL_RISK_REGISTER.md, which this content must stay in sync with.
-// It is not legal advice and does not claim legal compliance.
+const LAST_UPDATED = "September 13, 2026";
+
 export default function PrivacyPage() {
   return (
     <section className="container" style={{ padding: "56px 0 96px", maxWidth: 720 }}>
       <Eyebrow label="Legal" />
-      <h1 style={{ marginBottom: "var(--space-6)" }}>Privacy Policy</h1>
+      <h1 style={{ marginBottom: 6 }}>Privacy Policy</h1>
+      <p style={{ fontSize: 13, color: "var(--ink-500)", marginBottom: "var(--space-7)" }}>
+        Last updated: {LAST_UPDATED}
+      </p>
 
-      <div style={{ marginBottom: "var(--space-7)" }}>
-        <Notice tag="NOTE">
-          This is not legal advice. It describes what this website actually does, as
-          built — see docs/LEGAL_RISK_REGISTER.md in the project repository for the
-          full technical record.
-        </Notice>
-      </div>
-
-      <PolicySection title="Information we collect">
+      <PolicySection title="Who we are">
         <p>
-          {siteConfig.shortName}&rsquo;s website does not run a server, database, or
-          content-management system — it is a set of static pages with no backend (see{" "}
-          <em>docs/ARCHITECTURE.md</em>). It does not automatically collect, store, or
-          transmit any personal information about visitors.
-        </p>
-        <p>
-          The only way information reaches us through this website is if you choose to
-          use a &ldquo;Send Us a Message&rdquo; or &ldquo;Fill Out Membership Form&rdquo;
-          link. These links open your own email application addressed to us — whatever
-          you write and send goes directly from your email account to ours, the same as
-          emailing us from any other source. The website itself never receives, stores,
-          or has access to that message.
+          {siteConfig.name} (&ldquo;{siteConfig.shortName}&rdquo;, &ldquo;we&rdquo;,
+          &ldquo;us&rdquo;) is a regional collective supporting the performing arts across
+          Eastern Ontario, operating in partnership with Aspen Training Centre. This
+          policy explains what information we collect through{" "}
+          {siteConfig.url.replace(/^https?:\/\//, "")} and how we use it.
         </p>
       </PolicySection>
 
-      <PolicySection title="Cookies and tracking">
+      <PolicySection title="Information we collect">
         <p>
-          This website does not set any cookies and does not use any analytics or
-          tracking technology. See our <Link href="/cookies/">Cookie Policy</Link> for
-          detail.
+          <strong>Information you give us directly:</strong> when you apply for
+          membership, register for a workshop or Incubator session, or contact us, we
+          collect what you provide — typically your name, email address, art form or
+          discipline, and (for Digital Artist Members) a short bio, social media links,
+          and details for the website built as part of your membership.
+        </p>
+        <p>
+          <strong>Payment information:</strong> membership fees, workshop fees, and
+          Incubator session fees are processed securely by Stripe, our payment
+          processor. Your card details are entered and handled directly on Stripe&rsquo;s
+          own secure checkout page — we never see, receive, or store your full card
+          number, expiry date, or security code. We receive confirmation that a payment
+          was made (amount, date, and what it was for), not your card details.
+        </p>
+        <p>
+          <strong>Information we don&rsquo;t collect:</strong> this website does not use
+          analytics, tracking pixels, or advertising technology, and does not
+          automatically log or profile visitors. See our{" "}
+          <Link href="/cookies/">Cookie Policy</Link>.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="How we use your information">
+        <p>We use the information we collect to:</p>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
+          <li>process your membership application and payment</li>
+          <li>
+            publish your public profile in our <Link href="/directory/">Artist Directory</Link>{" "}
+            if you hold a Basic or Digital Artist Membership
+          </li>
+          <li>register you for workshops and Incubator sessions you sign up for</li>
+          <li>
+            send you information about upcoming events, festivals, workshops, and the
+            Annual General Meeting
+          </li>
+          <li>respond to questions you send us</li>
+        </ul>
+      </PolicySection>
+
+      <PolicySection title="Your Artist Directory profile">
+        <p>
+          A Basic or Digital Artist Membership includes a public profile in our regional
+          Artist Directory, built from the information you submit when you join — your
+          name, discipline, and a short bio, plus (for Digital Members) your social
+          media links and a small website. You choose what to include. Digital Members
+          receive one profile update per year as part of their membership; additional
+          updates, or a request to remove your profile entirely, can be made any time by
+          contacting us.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="How we share your information">
+        <p>
+          We don&rsquo;t sell or rent your personal information. We share it only where
+          necessary: with Stripe, to process a payment you&rsquo;ve made, and with Aspen
+          Training Centre where their student support role in running the Collective
+          requires it. We disclose information beyond this only if required by law.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="How long we keep your information">
+        <p>
+          We keep membership and contact records for as long as you&rsquo;re an active
+          member and for a reasonable period afterward for our own recordkeeping.
+          Payment records are retained as required for financial recordkeeping. You can
+          ask us to delete information we hold about you at any time, and we will do so
+          unless we&rsquo;re required to keep it for a legitimate business or legal
+          reason.
         </p>
       </PolicySection>
 
       <PolicySection title="Fonts">
         <p>
           This site uses the Fraunces and Work Sans typefaces. Both are downloaded once
-          when the website is built and served directly from this site&rsquo;s own
-          hosting — your browser never contacts Google&rsquo;s font servers to display
-          this site.
+          when the website is built and served directly from our own hosting — your
+          browser never contacts Google&rsquo;s font servers to display this site.
         </p>
       </PolicySection>
 
-      <PolicySection title="Third parties">
+      <PolicySection title="Your choices and rights">
         <p>
-          No third-party service, embed, advertising network, or social widget is
-          connected to this website. If that changes in the future, this policy and{" "}
-          <em>docs/LEGAL_RISK_REGISTER.md</em> will be updated to name the service and
-          explain what it does before it is activated.
+          You can ask us at any time what personal information we hold about you,
+          correct it, or have it deleted, by contacting us at{" "}
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>. We&rsquo;ll respond
+          within 3–5 business days. Browsing this website does not require you to give
+          us any information at all.
         </p>
       </PolicySection>
 
-      <PolicySection title="Retention">
+      <PolicySection title="Children's privacy">
         <p>
-          Because the website itself never receives or stores personal information, it
-          has nothing to retain or delete. Any email you send us is retained by us the
-          same as any other correspondence.
-        </p>
-      </PolicySection>
-
-      <PolicySection title="Your choices">
-        <p>
-          You are never required to send us your information through this website —
-          browsing every page here requires nothing from you. If you have already
-          emailed us and want to ask what we hold or have it deleted, contact us using
-          the details on our <Link href="/contact/">Contact page</Link>.
-        </p>
-      </PolicySection>
-
-      <PolicySection title="Contact">
-        <p>
-          Questions about this policy can be sent to{" "}
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>{" "}
-          <span style={{ color: "var(--ink-500)", fontSize: 13 }}>[placeholder — see docs/CONTENT.md]</span>.
+          This website is intended for artists, arts organizations, and members of the
+          public engaging with the performing arts community, and is not directed at
+          children under 13. We do not knowingly collect personal information from
+          children under 13.
         </p>
       </PolicySection>
 
       <PolicySection title="Changes to this policy">
         <p>
-          If what this website collects or connects to changes, this page will be
-          updated to reflect the new reality before that change goes live.
+          We may update this policy from time to time as the Collective or this website
+          changes. The date at the top of this page shows when it was last revised.
+        </p>
+      </PolicySection>
+
+      <PolicySection title="Contact">
+        <p>
+          Questions about this policy or your information can be sent to{" "}
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>.
         </p>
       </PolicySection>
     </section>
