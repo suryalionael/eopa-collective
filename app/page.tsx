@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DirectoryRow } from "@/components/ui";
+import { DirectoryRow, Kicker } from "@/components/ui";
 import { PhotoFigure } from "@/components/Media";
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
@@ -80,13 +80,30 @@ export default function HomePage() {
       </section>
 
       <section className="container hairline-top" style={{ paddingTop: 88, paddingBottom: 128 }}>
-        <p className="pull-quote" style={{ fontSize: 30, lineHeight: 1.4, maxWidth: 600, marginBottom: "var(--space-7)" }}>
-          There&rsquo;s a place here for whatever you make, and however you&rsquo;re
-          starting.
+        <Kicker>Join us</Kicker>
+        <h2 style={{ margin: "var(--space-3) 0 var(--space-6)" }}>Get Involved</h2>
+        <p className="pull-quote" style={{ fontSize: 27, lineHeight: 1.42, maxWidth: 640, marginBottom: "var(--space-6)" }}>
+          Whether you&rsquo;re an aspiring or seasoned artist, a cultural organization, or
+          simply someone who loves the arts — there&rsquo;s a place for you in the
+          Collective.
         </p>
-        <Link href="/membership/" className="button button--primary">
-          Become a Member
-        </Link>
+        <p style={{ fontSize: "var(--text-body-size)", lineHeight: "var(--text-body-line)", color: "var(--ink-700)", maxWidth: "var(--measure)", marginBottom: "var(--space-7)" }}>
+          Members gain visibility through our{" "}
+          <Link href="/directory/" style={{ color: "var(--plum)", textDecoration: "underline" }}>
+            regional directory
+          </Link>
+          , our annual events, and a stronger digital footprint. Beyond that, membership
+          opens the door to workshops, public performances, and the kind of networking
+          that sparks new creative collaborations.
+        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-6)", flexWrap: "wrap" }}>
+          <Link href="/membership/" className="button button--primary">
+            Become a Member
+          </Link>
+          <Link href="/contact/" className="arrow-link">
+            Ask a Question <span className="arrow-link__arrow" aria-hidden="true">→</span>
+          </Link>
+        </div>
       </section>
     </>
   );
