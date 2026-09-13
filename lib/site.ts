@@ -45,12 +45,12 @@ export const legalNav = [
 // Email is Nel Coloma-Moya's own (real, confirmed 2026-09) — the
 // eopacollective.ca placeholder addresses from the source PDF don't exist as
 // real inboxes, so all site contact/payment correspondence uses this one
-// address instead. Phone, mailing address, and social handle are still
-// explicit [placeholder]s from the source PDF — see docs/CONTENT.md §6 and
-// docs/LEGAL_RISK_REGISTER.md. Never present those as confirmed.
+// address instead. Phone, mailing address, and social handle were never
+// confirmed real (only [placeholder] values from the source PDF — see
+// docs/CONTENT.md §6) and were removed entirely (2026-09, per Nel's
+// direction) rather than shown without a placeholder label — see
+// docs/LEGAL_RISK_REGISTER.md. Add them back here only once real values
+// exist.
 export const contact = {
   email: "nelcolomamoya@gmail.com",
-  phone: "(613) 555-0142",
-  address: "c/o Aspen Training Centre, Eastern Ontario, ON",
-  social: "@eopacollective",
 };

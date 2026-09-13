@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Kicker, PlaceholderNotice, InfoRow, PullQuote } from "@/components/ui";
+import { Kicker, InfoRow, PullQuote } from "@/components/ui";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,17 +8,20 @@ export const metadata: Metadata = {
 };
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
-// (CONTACT section) — see docs/CONTENT.md §6. Email is now Nel's own real
-// address (2026-09, see lib/site.ts) — phone, mailing address, and social
-// handle remain explicit [placeholder]s from the source content, see
-// docs/LEGAL_RISK_REGISTER.md. "Send Us a Message" is a mailto: link, not a
-// submitted form: this site has no backend to receive form submissions
-// (docs/ARCHITECTURE.md).
+// (CONTACT section) — see docs/CONTENT.md §6. Email is Nel's own real
+// address (2026-09, see lib/site.ts). Phone, mailing address, and social
+// handle were never confirmed real — only ever placeholder values from the
+// source content — and were removed rather than shown without their
+// [placeholder] label, per Nel's 2026-09 "remove all samples and
+// placeholder" request (see docs/LEGAL_RISK_REGISTER.md): stripping the
+// label while keeping fake values would present them as real, which is a
+// different and worse problem than the placeholder label was. "Send Us a
+// Message" is a mailto: link, not a submitted form: this site has no
+// backend to receive form submissions (docs/ARCHITECTURE.md).
 //
 // The mirror-sunset photo that used to float here is gone — it had no
 // stronger claim to this page than any other supplied landscape shot (see
-// docs/VISUAL_RECOMPOSITION.md). The details now run as a two-column grid
-// using the width it freed, rather than a single narrow list.
+// docs/VISUAL_RECOMPOSITION.md).
 export default function ContactPage() {
   return (
     <>
@@ -39,31 +42,10 @@ export default function ContactPage() {
       </section>
 
       <section className="container hairline-top" style={{ padding: "48px 0 96px" }}>
-        <div style={{ marginBottom: "var(--space-6)", maxWidth: 480 }}>
-          <PlaceholderNotice>
-            Phone, mailing address, and social handle below are still placeholder —
-            confirm before publishing.
-          </PlaceholderNotice>
-        </div>
         <div className="contact-grid" style={{ maxWidth: 820 }}>
           <InfoRow label="Email — Nel Coloma-Moya, Founder">{contact.email}</InfoRow>
-          <InfoRow label="Phone">
-            {contact.phone} <PlaceholderTag />
-          </InfoRow>
-          <InfoRow label="Mailing Address">
-            {contact.address} <PlaceholderTag />
-          </InfoRow>
-          <InfoRow label="Social">
-            Instagram / Facebook: {contact.social} <PlaceholderTag />
-          </InfoRow>
         </div>
       </section>
     </>
-  );
-}
-
-function PlaceholderTag() {
-  return (
-    <span style={{ color: "var(--ink-500)", fontSize: 13 }}> [placeholder]</span>
   );
 }
