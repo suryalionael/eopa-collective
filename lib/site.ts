@@ -42,11 +42,14 @@ export const legalNav = [
   { href: "/refunds/", label: "Refund Policy" },
 ] as const;
 
-// Contact details are explicitly [placeholder] in the source PDF — see
-// docs/CONTENT.md §6 and docs/LEGAL_RISK_REGISTER.md. Never present as confirmed.
+// Email is Nel Coloma-Moya's own (real, confirmed 2026-09) — the
+// eopacollective.ca placeholder addresses from the source PDF don't exist as
+// real inboxes, so all site contact/payment correspondence uses this one
+// address instead. Phone, mailing address, and social handle are still
+// explicit [placeholder]s from the source PDF — see docs/CONTENT.md §6 and
+// docs/LEGAL_RISK_REGISTER.md. Never present those as confirmed.
 export const contact = {
-  email: "info@eopacollective.ca",
-  paymentsEmail: "payments@eopacollective.ca",
+  email: "nelcolomamoya@gmail.com",
   phone: "(613) 555-0142",
   address: "c/o Aspen Training Centre, Eastern Ontario, ON",
   social: "@eopacollective",

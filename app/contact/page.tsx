@@ -8,11 +8,12 @@ export const metadata: Metadata = {
 };
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
-// (CONTACT section) — see docs/CONTENT.md §6. Every detail below is an
-// explicit [placeholder] in the source content — see docs/LEGAL_RISK_REGISTER.md.
-// "Send Us a Message" is a mailto: link, not a submitted form: this site has
-// no backend to receive form submissions (docs/ARCHITECTURE.md), and the
-// destination address is itself unconfirmed placeholder information.
+// (CONTACT section) — see docs/CONTENT.md §6. Email is now Nel's own real
+// address (2026-09, see lib/site.ts) — phone, mailing address, and social
+// handle remain explicit [placeholder]s from the source content, see
+// docs/LEGAL_RISK_REGISTER.md. "Send Us a Message" is a mailto: link, not a
+// submitted form: this site has no backend to receive form submissions
+// (docs/ARCHITECTURE.md).
 //
 // The mirror-sunset photo that used to float here is gone — it had no
 // stronger claim to this page than any other supplied landscape shot (see
@@ -39,12 +40,13 @@ export default function ContactPage() {
 
       <section className="container hairline-top" style={{ padding: "48px 0 96px" }}>
         <div style={{ marginBottom: "var(--space-6)", maxWidth: 480 }}>
-          <PlaceholderNotice>Confirm real details before publishing.</PlaceholderNotice>
+          <PlaceholderNotice>
+            Phone, mailing address, and social handle below are still placeholder —
+            confirm before publishing.
+          </PlaceholderNotice>
         </div>
         <div className="contact-grid" style={{ maxWidth: 820 }}>
-          <InfoRow label="Email">
-            {contact.email} <PlaceholderTag />
-          </InfoRow>
+          <InfoRow label="Email — Nel Coloma-Moya, Founder">{contact.email}</InfoRow>
           <InfoRow label="Phone">
             {contact.phone} <PlaceholderTag />
           </InfoRow>

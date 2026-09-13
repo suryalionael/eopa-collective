@@ -38,7 +38,7 @@ Per `docs/PROJECT.md`: EOPA is a currently **unincorporated association**. No bu
 - Never presents placeholder contact/business information as if it were confirmed.
 - Never invents a registration number, tax ID, or legal-entity detail not present in the source content.
 
-**`NEEDS VERIFICATION BEFORE PUBLICATION`:** every placeholder contact detail (email, phone, mailing address, social handles) must be replaced with real, confirmed information before this site goes live — see `docs/CONTENT.md`.
+**`NEEDS VERIFICATION BEFORE PUBLICATION`:** phone, mailing address, and social handle are still placeholder and must be replaced with real, confirmed information before this site goes live — see `docs/CONTENT.md`. **Email is resolved (2026-09):** Nel confirmed the `info@`/`payments@eopacollective.ca` placeholders don't exist as real inboxes and supplied her own real address instead; `lib/site.ts`'s `contact.email` now carries that everywhere a contact/payments address appears sitewide.
 
 ## Copyright / image rights
 

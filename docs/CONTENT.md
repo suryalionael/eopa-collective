@@ -39,12 +39,14 @@
 - **Content:** Explicit placeholder banner: *"Placeholder names/roles below — swap in real founding members before this goes live."* One real named person — **Nel Coloma-Moya, Founding Coordinator** — with a real (non-placeholder) bio line. Three additional roles are entirely placeholder: `[Sample Name] — Programs Lead`, `[Sample Name] — Membership & Directory`, `[Sample Name] — Treasurer`, each with `[Placeholder]`-prefixed bio text.
 - **Placeholder status:** 3 of 4 team entries are explicit placeholders; `Team.dc.html` visually marks each with a dashed border and a "SAMPLE" tag — preserve this treatment (or an equivalent) in any implementation.
 - **Unresolved:** real names/roles/bios for 3 of 4 positions do not exist yet.
+- **Implementation update (2026-09, per Nel's direction):** the 3 placeholder roles are removed from `app/team/page.tsx` entirely rather than left as SAMPLE entries — Nel's instruction was "just leave Nel as founder, delete everything else," not to wait for real replacements. The page now shows only Nel, retitled **Founder** (not Founding Coordinator), with a link to her own website (`https://nelcoloma-moya.ca/`). This is a deliberate content decision, not a gap — don't re-add placeholder roles to "restore" what was here.
 
 ## 6. Contact
 - **Source:** PDF p.4 ("CONTACT"); `Contact.dc.html`
 - **Content:** Explicit placeholder banner: *"SAMPLE — confirm real details before publishing."* Email `info@eopacollective.ca [placeholder]`, phone `(613) 555-0142 [placeholder]`, mailing address `c/o Aspen Training Centre, Eastern Ontario, ON [placeholder]`, social `@eopacollective [placeholder]`. Closing paragraph + "Send Us a Message" CTA (target unspecified/`#` in the mockup — no form or mailto destination is confirmed).
 - **Placeholder status:** every single contact detail on this page is explicitly placeholder. None should be treated as real or published as-is.
-- **Unresolved:** all contact details need real-world confirmation before publishing; the actual message-send mechanism (form vs. mailto vs. third-party) is undecided.
+- **Unresolved:** phone, mailing address, and social handle still need real-world confirmation before publishing.
+- **Implementation update (2026-09, per Nel's direction):** the placeholder `info@eopacollective.ca` address does not exist as a real inbox. Nel supplied her own real address (`nelcolomamoya@gmail.com`, see `lib/site.ts`), which now appears sitewide (Contact, Privacy, Terms, Refund Policy, How to Join & Pay) as the confirmed contact point, labeled on the Contact page as hers specifically ("Email — Nel Coloma-Moya, Founder"). Phone/address/social remain unconfirmed placeholders.
 
 ## 7. Events Calendar
 - **Source:** PDF p.4 ("EVENTS CALENDAR"); `Events.dc.html`
@@ -84,4 +86,6 @@ Three different placeholder contact emails appear across the source content:
 - `payments@eopacollective.ca` — How to Join & Pay page
 - (Design Source B invents a fourth, `collective@eopa-artists.org` — **not from the Content source, do not use**, per `docs/DESIGN.md` §6.)
 
-The first two (`info@` / `payments@`) both use the same domain and plausibly describe two different real mailboxes (general inquiries vs. payments) — this is likely intentional, not an error, but both are explicitly marked `[placeholder]` and unconfirmed. Do not assume a single canonical address; surface this to the user for confirmation before publishing.
+The first two (`info@` / `payments@`) both use the same domain and plausibly describe two different real mailboxes (general inquiries vs. payments) — this is likely intentional, not an error, but both are explicitly marked `[placeholder]` and unconfirmed.
+
+**Resolved (2026-09):** neither placeholder address exists as a real inbox — Nel confirmed this directly ("There is no info@eopacollective.ca & payments@eopacollective.ca") and supplied her own real address instead. `lib/site.ts`'s `contact.email` is now `nelcolomamoya@gmail.com`, used everywhere a contact or payments address appears on the site; the separate `paymentsEmail` constant was removed rather than pointed at a second placeholder. Design Source B's `collective@eopa-artists.org` is still not used, per the original guidance above.
