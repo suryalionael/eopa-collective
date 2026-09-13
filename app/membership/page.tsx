@@ -136,9 +136,9 @@ export default function MembershipPage() {
         </PayAsYouGoRow>
       </section>
 
-      <section className="container hairline-top" style={{ paddingTop: 40, paddingBottom: 40, maxWidth: 780 }}>
-        <h2 style={{ fontSize: 20, marginBottom: 10 }}>Pay Online</h2>
-        <p style={{ fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)", margin: "0 0 20px", maxWidth: "var(--measure)" }}>
+      <section className="container hairline-top" style={{ paddingTop: 48, paddingBottom: 48, maxWidth: 780 }}>
+        <h2 style={{ fontSize: 34, lineHeight: 1.2, marginBottom: 12 }}>Pay Online</h2>
+        <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-700)", margin: "0 0 24px", maxWidth: "var(--measure)" }}>
           Choose what you&rsquo;re paying for and check out securely through Stripe.
         </p>
         <MembershipCheckout />
