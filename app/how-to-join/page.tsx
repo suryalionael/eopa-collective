@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Kicker, PlaceholderNotice } from "@/components/ui";
+import Link from "next/link";
+import { Kicker, Notice } from "@/components/ui";
 import { contact } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "How to Join & Pay",
-  description:
-    "Sample process — confirm actual payment method and tools with Nel before publishing.",
+  description: "How to choose a membership, sign up, and pay securely online.",
 };
 
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
 // (HOW TO JOIN & PAY section) — see docs/CONTENT.md §8. "Fill Out Membership
 // Form" is a mailto: link, not a submitted form — see docs/LEGAL_RISK_REGISTER.md.
+// Step 3 (payment) is no longer a placeholder — Nel supplied real Stripe
+// Payment Links, wired up via the checkout dropdown on /membership/ (see
+// components/MembershipCheckout.tsx). Steps 2 and 4 (the membership form
+// and confirmation process) remain placeholders — those still don't exist
+// as real, working processes.
+//
 // Steps are a continuous connected line rather than four identical cards.
 // The line's measure was widened (640px -> 820px) and step titles given
 // more presence so the page uses the container intentionally instead of
@@ -31,7 +37,8 @@ const steps = [
   {
     n: "3",
     title: "Pay Your Membership Fee",
-    body: `[Placeholder] Fees can be paid by e-transfer to ${contact.paymentsEmail} or through our online payment page. Workshops and Incubator sessions can be paid the same way, per session.`,
+    body: "Pay securely online through our Membership page — choose your tier from the dropdown and check out through Stripe. Workshops and Incubator sessions can be paid the same way, per session.",
+    checkoutCta: true,
   },
   {
     n: "4",
@@ -47,10 +54,11 @@ export default function HowToJoinPage() {
         <Kicker>Getting started</Kicker>
         <h1 style={{ fontSize: 44, margin: "var(--space-3) 0 var(--space-6)" }}>How to Join &amp; Pay</h1>
         <div style={{ maxWidth: 480 }}>
-          <PlaceholderNotice>
-            Sample process — confirm actual payment method and tools with Nel before
-            publishing.
-          </PlaceholderNotice>
+          <Notice tag="IN PROGRESS">
+            Steps 2 and 4 below are still placeholder — the membership sign-up form and
+            confirmation process aren&rsquo;t built yet. Payment (Step 3) is real and
+            live.
+          </Notice>
         </div>
       </section>
 
@@ -79,7 +87,7 @@ export default function HowToJoinPage() {
                 {step.n}
               </span>
               <h2 style={{ fontSize: 24, marginBottom: 10 }}>{step.title}</h2>
-              <p style={{ margin: step.cta ? "0 0 18px" : 0, fontSize: 16, lineHeight: 1.6, color: "var(--ink-700)", maxWidth: 620 }}>
+              <p style={{ margin: step.cta || step.checkoutCta ? "0 0 18px" : 0, fontSize: 16, lineHeight: 1.6, color: "var(--ink-700)", maxWidth: 620 }}>
                 {step.body}
               </p>
               {step.cta && (
@@ -89,6 +97,11 @@ export default function HowToJoinPage() {
                 >
                   Fill Out Membership Form
                 </a>
+              )}
+              {step.checkoutCta && (
+                <Link href="/membership/" className="button button--primary">
+                  Pay Online
+                </Link>
               )}
             </div>
           ))}
