@@ -402,6 +402,22 @@ p {
   }
 }
 
+/* Artist Directory row: a fixed-width portrait beside the bio, collapsing
+   to a stacked single column on mobile (same collapse pattern as
+   .contact-grid/.trio above). */
+.profile-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--space-6);
+}
+
+@media (max-width: 560px) {
+  .profile-row {
+    grid-template-columns: 1fr;
+    max-width: 220px;
+  }
+}
+
 /* Events Calendar row: a when/where meta column beside the listing —
    justified here specifically because it's real calendar data (see
    docs/VISUAL_RECOMPOSITION.md), not a decorative device reused from
