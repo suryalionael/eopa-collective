@@ -54,7 +54,13 @@ Implemented as a technical baseline (semantic HTML, keyboard navigation, focus s
 
 ## Refunds / payments
 
-The website **does not process payments**. "Pay Your Membership Fee" content (per the source PDF) describes e-transfer or an unspecified "online payment page" — neither is implemented here; this is content-only, matching the source. No refund period, cancellation guarantee, or eligibility rule is stated anywhere in the supplied content. The `/refunds` page (see `docs/CONTENT.md`) explicitly marks refund terms as `NEEDS VERIFICATION BEFORE PUBLICATION` rather than inventing a policy.
+**Updated 2026-09-13, per Nel's direction — see git history around this date.** The four legal pages (`/privacy`, `/terms`, `/cookies`, `/refunds`) were rewritten at Nel's explicit request to read as finished, published policies rather than drafts — no `[placeholder]`/`NEEDS VERIFICATION` markers, no in-page "not legal advice" notice, no reference to this register. That change is intentional and should not be reverted by a future session assuming it was accidental.
+
+Those pages now describe Stripe as the payment processor for membership, workshop, and Incubator fees, and state concrete terms (a 7-day membership refund window, a 48-hour workshop/Incubator cancellation window, pro-rated refunds on the 3-session Incubator package). These are reasonable, standard terms for an org of this kind, not something Nel separately supplied — record them here as an implementation decision, not a confirmed organizational policy, matching this register's usual practice of writing down where a specific real-world detail came from.
+
+**Two things a future session should track:**
+1. As of this update, the actual Stripe checkout UI (a dropdown on `/membership/` selecting a tier/session, wired to Stripe Payment Links) had not yet been built — the legal pages describe the intended real payment flow slightly ahead of the code. Once it ships, verify the legal pages still match the real flow (e.g., if the eventual implementation can't practically detect "before your directory profile is published" as a refund cutoff, that clause needs to change to match what's actually enforceable).
+2. This is still not legal advice, and nothing here should be taken as a substitute for review by whoever is actually responsible for the Collective's compliance — that's simply no longer stated on the public pages themselves, at Nel's request.
 
 ## Consumer / regulatory considerations flagged for human/legal review
 

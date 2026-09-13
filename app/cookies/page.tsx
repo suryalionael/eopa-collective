@@ -1,46 +1,66 @@
 import type { Metadata } from "next";
-import { Eyebrow, Notice } from "@/components/ui";
+import { Eyebrow } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: "This website does not use cookies or tracking technology.",
+  description: "This website does not use its own cookies or tracking technology.",
 };
 
-// This page describes the actual implementation only (audited directly in
-// the codebase, not assumed) — see docs/LEGAL_RISK_REGISTER.md. No consent
-// banner is presented because there is currently nothing non-essential to
-// consent to.
+const LAST_UPDATED = "September 13, 2026";
+
 export default function CookiesPage() {
   return (
     <section className="container" style={{ padding: "56px 0 96px", maxWidth: 720 }}>
       <Eyebrow label="Legal" />
-      <h1 style={{ marginBottom: "var(--space-6)" }}>Cookie Policy</h1>
+      <h1 style={{ marginBottom: 6 }}>Cookie Policy</h1>
+      <p style={{ fontSize: 13, color: "var(--ink-500)", marginBottom: "var(--space-7)" }}>
+        Last updated: {LAST_UPDATED}
+      </p>
 
-      <div style={{ marginBottom: "var(--space-6)" }}>
-        <Notice tag="NOTE">This is not legal advice.</Notice>
-      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-5)", fontSize: 15.5, lineHeight: 1.6, color: "var(--ink-700)" }}>
+        <div>
+          <h2 style={{ fontSize: 22, marginBottom: "var(--space-3)" }}>Cookies on this website</h2>
+          <p>
+            eoperformancecollective.ca does not set any cookies of its own — not
+            strictly necessary, not preference, not analytics, and not advertising. We
+            don&rsquo;t run Google Analytics, a Meta Pixel, or any similar tracking
+            script, and there&rsquo;s no third-party embed on this site that would set
+            its own cookie.
+          </p>
+        </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)", fontSize: 15.5, lineHeight: 1.6, color: "var(--ink-700)" }}>
-        <p>
-          This website does not set any cookies of any kind — not strictly necessary,
-          not preference, not analytics, not advertising, and not third-party. It was
-          built and audited to confirm this directly (see <em>docs/LEGAL_RISK_REGISTER.md</em>),
-          rather than assumed.
-        </p>
-        <p>
-          There is no analytics or tracking script on this site (no Google Analytics,
-          Meta Pixel, or similar), and no third-party embed that would set its own
-          cookies.
-        </p>
-        <p>
-          Because nothing non-essential is used, this site does not present a cookie
-          consent banner — there is currently nothing optional to ask consent for.
-        </p>
-        <p>
-          If a future version of this website introduces any cookie or tracking
-          technology, this page will be updated first to describe it accurately, and
-          appropriate consent controls will be added before it is switched on.
-        </p>
+        <div>
+          <h2 style={{ fontSize: 22, marginBottom: "var(--space-3)" }}>Payment processing</h2>
+          <p>
+            When you pay for a membership, workshop, or Incubator session, you&rsquo;re
+            taken to a secure checkout page hosted by Stripe, our payment processor.
+            Stripe&rsquo;s checkout page may use its own cookies to process your payment
+            securely — this happens on Stripe&rsquo;s own domain, governed by{" "}
+            <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">
+              Stripe&rsquo;s privacy policy
+            </a>
+            , not this one.
+          </p>
+        </div>
+
+        <div>
+          <h2 style={{ fontSize: 22, marginBottom: "var(--space-3)" }}>Managing cookies</h2>
+          <p>
+            Because this website itself sets no cookies, there&rsquo;s nothing here for
+            you to opt out of. If you&rsquo;d like to control or clear cookies set by
+            Stripe&rsquo;s checkout page or any other site you visit, you can do so
+            through your browser&rsquo;s settings at any time.
+          </p>
+        </div>
+
+        <div>
+          <h2 style={{ fontSize: 22, marginBottom: "var(--space-3)" }}>Changes to this policy</h2>
+          <p>
+            If a future version of this website introduces a cookie or tracking
+            technology of its own, we&rsquo;ll update this page to describe it and add
+            appropriate consent controls before it&rsquo;s switched on.
+          </p>
+        </div>
       </div>
     </section>
   );
