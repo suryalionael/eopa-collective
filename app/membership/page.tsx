@@ -71,6 +71,12 @@ function PayAsYouGoRow({
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
 // (MEMBERSHIP section) — see docs/CONTENT.md §3. Do not rewrite.
 //
+// "3 free Artist Workshops" on Basic Artist Membership is a real pricing
+// change Nel made after the PDF was written (2026-09) — not in the source
+// content, added directly per her instruction. Digital Membership inherits
+// it automatically via its existing "Everything in Basic, plus:" framing,
+// so it isn't repeated there.
+//
 // Price now sits immediately beside its title instead of in a far-right
 // column with a large dead gap between it and the description — see
 // docs/VISUAL_RECOMPOSITION.md. Section headers are plain headings
@@ -101,6 +107,7 @@ export default function MembershipPage() {
             <Feature>A profile in our regional artist directory</Feature>
             <Feature>Network access to arts events across Eastern Ontario</Feature>
             <Feature>Early word on upcoming events, festivals, and workshops</Feature>
+            <Feature>3 free Artist Workshops included with your membership</Feature>
             <Feature>
               A voice at our Annual General Meeting, where members help set the
               Collective&rsquo;s direction through focus groups and surveys

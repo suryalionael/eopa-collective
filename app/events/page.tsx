@@ -18,14 +18,20 @@ export const metadata: Metadata = {
 // Open Mic at the Delta Harvest Festival is confirmed real, sourced
 // directly from deltaharvestfestival.ca (date, time, venue). Host
 // attribution and open-slot info were separately confirmed by Nel.
+//
+// All Open Mic sessions are free to attend, per Nel's 2026-09 instruction
+// to make that unmissable — stated in three places on this one listing
+// (the FREE badge beside the title, the meta column under time/location,
+// and the description itself) rather than once and assumed understood.
 const events = [
   {
     title: "Open Mic at the Delta Harvest Festival",
     when: "Sunday, September 27, 2026",
     time: "11:45 AM – 12:45 PM",
     where: "Old Town Hall",
+    free: true,
     description:
-      "The Open Mic Session welcomes local musicians to bring their instruments and warm up the audience before the main event performances begin. Hosted by Pat Johnson — two artists are already signed up, with two more spots open, so get in touch if you'd like to perform.",
+      "Free to attend. The Open Mic Session welcomes local musicians to bring their instruments and warm up the audience before the main event performances begin. Hosted by Pat Johnson — two artists are already signed up, with two more spots open, so get in touch if you'd like to perform.",
     externalLink: { href: "https://deltaharvestfestival.ca/", label: "Delta Harvest Festival" },
   },
 ];
@@ -61,9 +67,33 @@ export default function EventsPage() {
                   {event.where}
                 </span>
               )}
+              {event.free && (
+                <span style={{ fontSize: 12, color: "var(--grove)", fontWeight: 500, display: "block", marginTop: 2 }}>
+                  Free admission
+                </span>
+              )}
             </div>
             <div style={{ maxWidth: "var(--measure)" }}>
-              <h2 style={{ margin: "0 0 6px", fontSize: 20, lineHeight: "var(--text-h3-line)" }}>{event.title}</h2>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
+                <h2 style={{ margin: 0, fontSize: 20, lineHeight: "var(--text-h3-line)" }}>{event.title}</h2>
+                {event.free && (
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      letterSpacing: "0.05em",
+                      color: "var(--paper)",
+                      background: "var(--grove)",
+                      borderRadius: "var(--radius)",
+                      padding: "3px 8px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    FREE
+                  </span>
+                )}
+              </div>
               <p style={{ margin: 0, fontSize: 15, lineHeight: 1.55, color: "var(--ink-700)" }}>
                 {event.description}
               </p>

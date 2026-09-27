@@ -5,6 +5,11 @@ import { PhotoFigure } from "@/components/Media";
 // Copy verbatim from Content/EO-Performance-Artists-Collective-Website-Copy.pdf
 // (HOME section) — see docs/CONTENT.md §1. Do not rewrite.
 //
+// The small "free to attend" line under the hero CTAs was added 2026-09
+// per Nel's instruction to surface the Open Mic's free admission on the
+// Homepage as well as the Events Calendar page — not in the source PDF,
+// added directly.
+//
 // Full recomposition — see docs/VISUAL_RECOMPOSITION.md. The hero no
 // longer uses the generic "headline-left / photo-right" split: the
 // headline runs wide across the top, a single rule grounds it, and the
@@ -31,7 +36,7 @@ export default function HomePage() {
               workshops, a shared events calendar, and hands-on support for building your
               presence, on and off the stage.
             </p>
-            <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "var(--space-4)", flexWrap: "wrap", marginBottom: "var(--space-4)" }}>
               <Link href="/membership/" className="button button--primary">
                 Become a Member
               </Link>
@@ -39,6 +44,9 @@ export default function HomePage() {
                 See Upcoming Events
               </Link>
             </div>
+            <p style={{ fontSize: 13.5, color: "var(--grove)", fontWeight: 500 }}>
+              Our next event — Open Mic at the Delta Harvest Festival — is free to attend.
+            </p>
           </div>
           <PhotoFigure
             src="/images/farm-road-dusk.jpg"
